@@ -1,0 +1,13 @@
+package br.gov.pf.model.dao;
+
+import br.gov.pf.model.User;
+
+/**
+ * Created by sartori on 15/03/17.
+ */
+public class UserDAO extends AbstractDAO<Long, User> {
+
+    public UserDAO(){
+        super();
+    }
+}
