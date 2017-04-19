@@ -11,27 +11,25 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by sartori on 15/03/17.
+ * Created by sartori on 19/04/17.
  */
-
 @Entity
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="name")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class User implements Serializable {
+public class Client implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
     private String name;
 
-    public User() {
+
+    public Client() {
     }
 
-    public User(String name) {
-        this.name = name;
+    public Client(String name) {
+        setName(name);
     }
-
-
 
     public String getName() {
         return name;
@@ -39,11 +37,5 @@ public class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-
-
-    public Long getId() {
-        return id;
     }
 }

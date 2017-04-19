@@ -25,7 +25,7 @@ public class Gun implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String name;
-	private String address;
+
 
 	public Gun() {
 
@@ -51,11 +51,4 @@ public class Gun implements Serializable {
 		this.id = id;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
 }
