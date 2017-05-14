@@ -30,12 +30,13 @@ public class Client implements Serializable {
     private String city;
     private String neighborhood;
     private String addressNumber;
-
+    private String passwd;
+    private String type;
 
     public Client() {
     }
 
-    public Client(String name, String sex, String address, String dateOfBirth, String cpf, String cep, String city, String neighborhood, String addressNumber) {
+    public Client(String name, String sex, String address, String dateOfBirth, String cpf, String cep, String city, String neighborhood, String addressNumber, String passwd) {
         setName(name);
         setSex(sex);
         setAddress(address);
@@ -45,6 +46,8 @@ public class Client implements Serializable {
         setCity(city);
         setNeighborhood(neighborhood);
         setAddressNumber(addressNumber);
+        setPasswd(passwd);
+        setType("Cliente");
     }
 
     public int getId() {
@@ -125,5 +128,21 @@ public class Client implements Serializable {
 
     public void setAddressNumber(String addressNumber) {
         this.addressNumber = addressNumber;
+    }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

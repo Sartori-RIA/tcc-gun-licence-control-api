@@ -3,6 +3,7 @@ package br.gov.pf;
 import br.gov.pf.model.Client;
 import br.gov.pf.model.Gun;
 import br.gov.pf.model.service.ClientService;
+import br.gov.pf.model.service.ExaminatorService;
 import br.gov.pf.model.service.GunService;
 
 import java.io.IOException;
@@ -36,20 +37,10 @@ public class CriarBDServlet extends HttpServlet {
 		criarBD();
 	}
 	
-	private void criarBD(){		
-		
+	private void criarBD(){
 		GunService gunService = new GunService();
 		ClientService clientService = new ClientService();
-		List<String> categories = Arrays.asList("Mecânico", "Carpinteiro", "Eletricista", "Encanador", "Guincho", "Dedetizador", "Desentupidor", "Pedreiro", "Pintor", "Mudanças e Carreto", "Jardineiro", "Motoboy", "Chaveiro", "Técnico em Computação");
-		Gun gun = null;
-		Client client = null;
-		for(String c : categories){
-			gun = new Gun(c);
-			client = new Client(c);
-			gunService.save(gun);
-			clientService.save(client);
-		}
-		
+		ExaminatorService examinatorService = new ExaminatorService();
 	}	
 
 

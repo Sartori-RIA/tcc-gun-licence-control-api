@@ -1,8 +1,5 @@
 package br.gov.pf.util;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Persistence;
 
 public class SchemaCreator {
@@ -18,3 +15,10 @@ public class SchemaCreator {
 	
 }
 /** CRIAR AUTOMATICAMENTE AS TABELAS */
+
+/**
+ * URL
+ * http://localhost:8080/api/guns
+ * http://localhost:8080/api/clients
+ * http://localhost:8080/api/examinators
+ */
