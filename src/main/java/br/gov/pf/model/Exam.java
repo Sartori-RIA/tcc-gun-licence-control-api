@@ -5,35 +5,35 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by sartori on 13/07/17.
  */
 @Entity
-@Table(name = "arma")
+@Table(name = "exame")
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="name")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Gun implements Serializable{
+public class Exam implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "A arma deve possuir um nome")
+    @NotNull
     private String name;
-    @NotNull(message = "A arma deve possuir um calibre")
-    private String caliber;
-    @NotNull(message = "A arma deve possuir um número de série")
-    private String serialNumber;
+    @Future
+    private Date date;
 
-    public Gun() {
+    public Exam() {
     }
 
-    public Gun(String name, String caliber, String serialNumber) {
+    public Exam(String name) {
         this.name = name;
-        this.caliber = caliber;
-        this.serialNumber = serialNumber;
     }
+
+
 
     public Long getId() {
         return id;
@@ -47,19 +47,11 @@ public class Gun implements Serializable{
         this.name = name;
     }
 
-    public String getCaliber() {
-        return caliber;
+    public Date getDate() {
+        return date;
     }
 
-    public void setCaliber(String caliber) {
-        this.caliber = caliber;
-    }
-
-    public String getSerialNumber() {
-        return serialNumber;
-    }
-
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

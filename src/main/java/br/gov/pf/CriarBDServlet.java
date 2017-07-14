@@ -1,15 +1,15 @@
 package br.gov.pf;
 
-import br.gov.pf.model.Client;
-import br.gov.pf.model.Gun;
-import br.gov.pf.model.service.ClientService;
-import br.gov.pf.model.service.ExaminatorService;
+import br.gov.pf.model.Exam;
+import br.gov.pf.model.service.ExamService;
 import br.gov.pf.model.service.GunService;
+import br.gov.pf.model.service.LicenceService;
+import br.gov.pf.model.service.UserService;
+import br.gov.pf.util.JPAUtil;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,10 +38,23 @@ public class CriarBDServlet extends HttpServlet {
 	}
 	
 	private void criarBD(){
+
+    	EntityManager entityManager = JPAUtil.getEntityManager();
+		entityManager.getTransaction().begin();
+
+		Exam exam = new Exam("Teste Prático");
+		entityManager.persist(exam);
+		Exam exam1 = new Exam("Teste Psicológico" );
+		entityManager.persist(exam1);
+		entityManager.getTransaction().commit();
+		entityManager.close();
+
+		ExamService examService = new ExamService();
 		GunService gunService = new GunService();
-		ClientService clientService = new ClientService();
-		ExaminatorService examinatorService = new ExaminatorService();
-	}	
+		LicenceService licenceService = new LicenceService();
+		UserService userService = new UserService();
+
+	}
 
 
 }

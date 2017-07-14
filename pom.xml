@@ -23,7 +23,11 @@
                 <artifactId>hibernate-core</artifactId>
                 <version>5.1.0.Final</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>5.3.4.Final</version>
+            </dependency>
             <!-- MySQL -->
             <dependency>
                 <groupId>mysql</groupId>
@@ -82,22 +86,22 @@
                 </plugin>
 
                 <!--JETTY -->
-                <plugin>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-maven-plugin</artifactId>
-                    <version>9.2.21.v20170120</version>
-                    <configuration>
-                        <scanIntervalSeconds>10</scanIntervalSeconds>
-                        <webApp>
-                            <contextPath>/sinarm</contextPath>
-                        </webApp>
-                        <connectors>
-                            <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                                <port>8888</port>
-                            </connector>
-                        </connectors>
-                    </configuration>
-                </plugin>
+                <!--<plugin>-->
+                    <!--<groupId>org.eclipse.jetty</groupId>-->
+                    <!--<artifactId>jetty-maven-plugin</artifactId>-->
+                    <!--<version>9.2.21.v20170120</version>-->
+                    <!--<configuration>-->
+                        <!--<scanIntervalSeconds>10</scanIntervalSeconds>-->
+                        <!--<webApp>-->
+                            <!--<contextPath>/sinarm</contextPath>-->
+                        <!--</webApp>-->
+                        <!--<connectors>-->
+                            <!--<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">-->
+                                <!--<port>8888</port>-->
+                            <!--</connector>-->
+                        <!--</connectors>-->
+                    <!--</configuration>-->
+                <!--</plugin>-->
             </plugins>
         </build>
 

@@ -14,6 +14,9 @@ IDEA utilizada: Intellij IDEA Ultimate
 + REST
 + Tomcat 8
 
+#URLS
+
+
 ##Front-end:
 disponivel no repositório:
 + [client](https://github.com/Sartori-RIA/tcc-project-sinarm-client)

@@ -17,6 +17,7 @@
 *.launch
 .settings/
 *.sublime-workspace
+*.iml
 
 # IDE - VSCode
 .vscode/*
@@ -41,3 +42,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+/src/main/resources/rebel.xml

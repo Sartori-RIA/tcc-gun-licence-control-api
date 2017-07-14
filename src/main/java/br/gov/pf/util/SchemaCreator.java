@@ -18,7 +18,7 @@ public class SchemaCreator {
 
 /**
  * URL
- * http://localhost:8080/api/guns
- * http://localhost:8080/api/clients
- * http://localhost:8080/api/examinators
+ * http://localhost:8080/sinarm/api/guns
+ * http://localhost:8080/sinarm/api/clients
+ * http://localhost:8080/sinarm/api/examinators
  */

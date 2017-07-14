@@ -1,143 +1,64 @@
 package br.gov.pf.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.br.CPF;
+
+import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import java.io.Serializable;
+import java.util.Date;
+
 /**
- * Created by sartori on 13/05/17.
+ * Created by sartori on 13/07/17.
  */
-public class User {
+@Entity
+@Table(name = "usuario")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="name")
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class User implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NotNull
     private String name;
-    private String sex;
-    private String Address;
-    private String dateOfBirth;
-    private String cpf;
+    @NotNull
+    @CPF
+    private Integer cpf;
+    @NotNull
+    @Email
+    private String email;
+    @NotNull
+    private String password;
+    @NotNull
     private String cep;
-    private String city;
+    @NotNull
+    @Min(5) @Max(30)
+    private String street;
+    @NotNull
+    @Min(5) @Max(30)
     private String neighborhood;
-    private String addressNumber;
-    private String passwd;
-    private String type;
+    @NotNull
+    @Min(2) @Max(15)
+    private String state;
+    @NotNull
+    @Past
+    private Date dateOfBirth;
+    @NotNull
+    private int type;
+    @ManyToOne
+    private Licence licence;
+    @ManyToOne
+    private Exam exam;
+    @ManyToOne
+    private Gun gun;
 
     public User() {
     }
 
-    public User(String name, String sex, String address,
-                String dateOfBirth, String cpf, String cep, String city,
-                String neighborhood, String addressNumber, String passwd) {
-        setName(name);
-        setSex(sex);
-        setAddress(address);
-        setDateOfBirth(dateOfBirth);
-        setCpf(cpf);
-        setCep(cep);
-        setCity(city);
-        setNeighborhood(neighborhood);
-        setAddressNumber(addressNumber);
-        setPasswd(passwd);
-        setType("Cliente");
-    }
-
-    public User(String name, String sex,
-                String address, String dateOfBirth,
-                String cpf, String cep, String city,
-                String neighborhood, String addressNumber,
-                String passwd, String type) {
-        setName(name);
-        setSex(sex);
-        setAddress(address);
-        setDateOfBirth(dateOfBirth);
-        setCpf(cpf);
-        setCep(cep);
-        setCity(city);
-        setNeighborhood(neighborhood);
-        setAddressNumber(addressNumber);
-        setPasswd(passwd);
-        setType(type);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getAddress() {
-        return Address;
-    }
-
-    public void setAddress(String address) {
-        Address = address;
-    }
-
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getNeighborhood() {
-        return neighborhood;
-    }
-
-    public void setNeighborhood(String neighborhood) {
-        this.neighborhood = neighborhood;
-    }
-
-    public String getAddressNumber() {
-        return addressNumber;
-    }
-
-    public void setAddressNumber(String addressNumber) {
-        this.addressNumber = addressNumber;
-    }
-
-    public String getPasswd() {
-        return passwd;
-    }
-
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 }
