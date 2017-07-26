@@ -35,6 +35,7 @@ public class Gun implements Serializable{
         this.serialNumber = serialNumber;
     }
 
+    /** GETS E SETS */
     public Long getId() {
         return id;
     }

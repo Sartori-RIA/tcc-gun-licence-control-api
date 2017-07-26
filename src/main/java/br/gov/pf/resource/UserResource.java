@@ -10,7 +10,7 @@ import javax.ws.rs.Path;
  * Created by sartori on 13/07/17.
  */
 @Path("/usuarios")
-public class UserResource extends AbstractResource<Integer, User> {
+public class UserResource extends AbstractResource<Long, User> {
     private static final Logger LOGGER = Logger.getLogger(UserResource.class);
 
     public UserResource() {

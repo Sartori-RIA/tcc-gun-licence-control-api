@@ -10,7 +10,7 @@ import javax.ws.rs.Path;
  * Created by sartori on 13/07/17.
  */
 @Path("/licencas")
-public class LicenceResource extends AbstractResource<Integer, Licence> {
+public class LicenceResource extends AbstractResource<Long, Licence> {
     private static final Logger LOGGER = Logger.getLogger(LicenceResource.class);
 
     public LicenceResource() {

@@ -10,7 +10,7 @@ import javax.ws.rs.Path;
  * Created by sartori on 13/07/17.
  */
 @Path("/armas")
-public class GunResource extends AbstractResource<Integer, Gun>{
+public class GunResource extends AbstractResource<Long, Gun>{
     private static final Logger LOGGER = Logger.getLogger(GunResource.class);
 
     public GunResource() {

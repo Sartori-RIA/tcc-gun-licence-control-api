@@ -21,30 +21,38 @@ public class Exam implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    private String name;
+    @NotNull(message = "o exame deve possuir uma categoria")
+    @ManyToOne
+    @JoinColumn(name = "exame")
+    private ExamCategory examCategory;
     @Future
+    @Column(name = "data")
     private Date date;
+
+    @Column(name = "resultado")
+    private boolean status;
 
     public Exam() {
     }
 
-    public Exam(String name) {
-        this.name = name;
+    public Exam(ExamCategory examCategory, Date date, boolean status) {
+        this.examCategory = examCategory;
+        this.date = date;
+        this.status = status;
     }
 
-
+    /** GETS E SETS */
 
     public Long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public ExamCategory getExamCategory() {
+        return examCategory;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setExamCategory(ExamCategory examCategory) {
+        this.examCategory = examCategory;
     }
 
     public Date getDate() {
@@ -53,5 +61,13 @@ public class Exam implements Serializable{
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

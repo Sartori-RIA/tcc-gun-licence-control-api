@@ -2,21 +2,17 @@
 
 ## projeto de back-end para sistema utilizado para TCC
 
-#author: Lucas Antonio Ramos Sartori
+### author: Lucas Antonio Ramos Sartori
 
-IDEA utilizada: Intellij IDEA Ultimate
+IDEA utilizada: Intellij IDEA Ultimate 17.4
 
 ##Tecnologias:
-+ Hibernate
-+ MySQL
-+ Java 8
-+ Jersey
-+ REST
-+ Tomcat 8
++ **Hibernate**
++ **BeanValidation**
++ **MySQL**
++ **Java 8**
++ **Jersey**
++ **REST**
++ **Tomcat 8.5**
 
 #URLS
-
-
-##Front-end:
-disponivel no repositório:
-+ [client](https://github.com/Sartori-RIA/tcc-project-sinarm-client)

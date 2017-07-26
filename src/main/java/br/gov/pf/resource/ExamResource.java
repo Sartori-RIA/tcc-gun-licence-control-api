@@ -10,7 +10,7 @@ import javax.ws.rs.Path;
  * Created by sartori on 13/07/17.
  */
 @Path("/exames")
-public class ExamResource  extends AbstractResource<Integer, Exam>{
+public class ExamResource  extends AbstractResource<Long, Exam>{
     private static final Logger LOGGER = Logger.getLogger(ExamResource.class);
 
     public ExamResource() {

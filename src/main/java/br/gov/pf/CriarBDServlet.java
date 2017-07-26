@@ -1,10 +1,7 @@
 package br.gov.pf;
 
-import br.gov.pf.model.Exam;
-import br.gov.pf.model.service.ExamService;
-import br.gov.pf.model.service.GunService;
-import br.gov.pf.model.service.LicenceService;
-import br.gov.pf.model.service.UserService;
+import br.gov.pf.model.*;
+import br.gov.pf.model.service.*;
 import br.gov.pf.util.JPAUtil;
 
 import java.io.IOException;
@@ -42,10 +39,33 @@ public class CriarBDServlet extends HttpServlet {
     	EntityManager entityManager = JPAUtil.getEntityManager();
 		entityManager.getTransaction().begin();
 
-		Exam exam = new Exam("Teste Prático");
+		ExamCategory exam = new ExamCategory("Teste Prático");
 		entityManager.persist(exam);
-		Exam exam1 = new Exam("Teste Psicológico" );
+		ExamCategory exam1 = new ExamCategory("Teste Psicológico" );
 		entityManager.persist(exam1);
+
+		Sex sex = new Sex("Masculino");
+		entityManager.persist(sex);
+		Sex sex1 = new Sex("Feminino");
+		entityManager.persist(sex1);
+
+		LicenceCategory licenceCategory = new LicenceCategory("Porte");
+		entityManager.persist(licenceCategory);
+		LicenceCategory licenceCategory1 = new LicenceCategory("Posse");
+		entityManager.persist(licenceCategory1);
+
+		UserCategory userCategory = new UserCategory("Admin");
+		entityManager.persist(userCategory);
+		UserCategory userCategory1 = new UserCategory("Delegado");
+		entityManager.persist(userCategory1);
+		UserCategory userCategory2 = new UserCategory("Psicologo");
+		entityManager.persist(userCategory2);
+		UserCategory userCategory3 = new UserCategory("Instrutor");
+		entityManager.persist(userCategory3);
+		UserCategory userCategory4 = new UserCategory("Civil");
+		entityManager.persist(userCategory4);
+
+
 		entityManager.getTransaction().commit();
 		entityManager.close();
 
@@ -53,6 +73,9 @@ public class CriarBDServlet extends HttpServlet {
 		GunService gunService = new GunService();
 		LicenceService licenceService = new LicenceService();
 		UserService userService = new UserService();
+		SexService sexService = new SexService();
+		UserCategoryService userCategoryService = new UserCategoryService();
+		LicenceCategoryService licenceCategoryService = new LicenceCategoryService();
 
 	}
 

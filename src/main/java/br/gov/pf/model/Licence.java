@@ -22,17 +22,28 @@ public class Licence implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+    @NotNull(message = "a licenca deve possuir uma descricao")
+    @Column(name = "descricao")
     private String description;
-    @NotNull
-    private int type;
-    @NotNull
+    @NotNull(message = "a licenca deve possuir uma categoria")
+    @ManyToOne
+    @JoinColumn(name = "categoria")
+    private LicenceCategory licenceCategory;
+    @NotNull(message = "a licenca deve possuir uma validade")
+    @Column(name = "validade")
     @Future
     private Date shelfLife;
 
     public Licence() {
     }
 
+    public Licence(String description, LicenceCategory licenceCategory, Date shelfLife) {
+        this.description = description;
+        this.licenceCategory = licenceCategory;
+        this.shelfLife = shelfLife;
+    }
+
+    /** GETS E SETS */
     public Long getId() {
         return id;
     }
@@ -45,12 +56,8 @@ public class Licence implements Serializable {
         this.description = description;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
+    public LicenceCategory getLicenceCategory() {
+        return licenceCategory;
     }
 
     public Date getShelfLife() {
