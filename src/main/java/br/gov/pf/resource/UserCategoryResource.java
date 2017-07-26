@@ -5,7 +5,7 @@ import br.gov.pf.model.service.UserCategoryService;
 
 import javax.ws.rs.Path;
 
-@Path("/niveis/acessos")
+@Path("/usuarios/niveis/acessos")
 public class UserCategoryResource extends AbstractResource<Long, UserCategory> {
     public UserCategoryResource() {
         service = new UserCategoryService();
