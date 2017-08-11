@@ -1,4 +1,4 @@
-package br.gov.pf.model;
+package br.gov.pf.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

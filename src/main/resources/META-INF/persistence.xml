@@ -5,25 +5,9 @@
 
 	<persistence-unit name="sinarm" transaction-type="RESOURCE_LOCAL">
 
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>	
-
+		<jta-data-source>java:/SinarmDB</jta-data-source>
 
 		<properties>
-			<!-- none create drop -->			 
-
-			<!--  
-			<property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create" />
-			<property name="javax.persistence.schema-generation.scripts.create-target" value="create.ddl"/>
-      		<property name="javax.persistence.schema-generation.scripts.drop-target" value="drop.ddl"/>
-      		-->
-      		
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sinarm_db" />
-			<!-- USUARIO DO DATABASE -->
-			<property name="javax.persistence.jdbc.user" value="root" />
-			<!-- SENHA DO DATABASE -->
-			<property name="javax.persistence.jdbc.password" value="3660" />
 
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 
@@ -31,7 +15,7 @@
 			<property name="hibernate.format_sql" value="true" />			
 			
 			<!-- create - executa na criação - update - executa na consulta -->
-			 <property name="hibernate.hbm2ddl.auto" value="create" />
+			 <property name="hibernate.hbm2ddl.auto" value="update" />
 			<!-- <property name="hibernate.hbm2ddl.auto" value="create" />-->
 		</properties>
 		

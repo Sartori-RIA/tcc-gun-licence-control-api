@@ -1,6 +1,9 @@
 package br.gov.pf;
 
-import br.gov.pf.model.*;
+import br.gov.pf.model.entity.ExamCategory;
+import br.gov.pf.model.entity.LicenceCategory;
+import br.gov.pf.model.entity.Sex;
+import br.gov.pf.model.entity.UserRole;
 import br.gov.pf.model.service.*;
 import br.gov.pf.util.JPAUtil;
 
@@ -44,9 +47,9 @@ public class CriarBDServlet extends HttpServlet {
 		ExamCategory exam1 = new ExamCategory("Teste Psicológico" );
 		entityManager.persist(exam1);
 
-		Sex sex = new Sex("Masculino");
+		Sex sex = new Sex("Masculino","M");
 		entityManager.persist(sex);
-		Sex sex1 = new Sex("Feminino");
+		Sex sex1 = new Sex("Feminino","F");
 		entityManager.persist(sex1);
 
 		LicenceCategory licenceCategory = new LicenceCategory("Porte");
@@ -54,16 +57,16 @@ public class CriarBDServlet extends HttpServlet {
 		LicenceCategory licenceCategory1 = new LicenceCategory("Posse");
 		entityManager.persist(licenceCategory1);
 
-		UserCategory userCategory = new UserCategory("Admin");
-		entityManager.persist(userCategory);
-		UserCategory userCategory1 = new UserCategory("Delegado");
-		entityManager.persist(userCategory1);
-		UserCategory userCategory2 = new UserCategory("Psicologo");
-		entityManager.persist(userCategory2);
-		UserCategory userCategory3 = new UserCategory("Instrutor");
-		entityManager.persist(userCategory3);
-		UserCategory userCategory4 = new UserCategory("Civil");
-		entityManager.persist(userCategory4);
+		UserRole userRole = new UserRole("ADMIN");
+		entityManager.persist(userRole);
+		UserRole userRole1 = new UserRole("DELEGADO");
+		entityManager.persist(userRole1);
+		UserRole userRole2 = new UserRole("PSICOLOGO");
+		entityManager.persist(userRole2);
+		UserRole userRole3 = new UserRole("INSTRUTOR");
+		entityManager.persist(userRole3);
+		UserRole userRole4 = new UserRole("CIVIL");
+		entityManager.persist(userRole4);
 
 
 		entityManager.getTransaction().commit();
@@ -74,7 +77,7 @@ public class CriarBDServlet extends HttpServlet {
 		LicenceService licenceService = new LicenceService();
 		UserService userService = new UserService();
 		SexService sexService = new SexService();
-		UserCategoryService userCategoryService = new UserCategoryService();
+		UserRoleService userRoleService = new UserRoleService();
 		LicenceCategoryService licenceCategoryService = new LicenceCategoryService();
 
 	}

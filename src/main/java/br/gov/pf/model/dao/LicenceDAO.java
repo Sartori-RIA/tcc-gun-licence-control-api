@@ -1,6 +1,6 @@
 package br.gov.pf.model.dao;
 
-import br.gov.pf.model.Licence;
+import br.gov.pf.model.entity.Licence;
 
 /**
  * Created by sartori on 13/07/17.

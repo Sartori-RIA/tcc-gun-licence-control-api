@@ -1,4 +1,4 @@
-package br.gov.pf.model;
+package br.gov.pf.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -7,12 +7,11 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
+import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by sartori on 13/07/17.
@@ -52,17 +51,20 @@ public class User implements Serializable {
     @Column(name = "bairro")
     private String neighborhood;
     @NotNull(message = "o usuario deve residir em um estado")
-    @Min(2) @Max(15)
+    @Size.List({
+            @Size(min = 2, message = "minimo de 2(dois) caracter"),
+            @Size(max = 15, message = "maximo de 15(quinze) caracteres")
+    })
     @Column(name = "estado")
     private String state;
     @NotNull
     @Past
     @Column(name = "data_aniversario")
     private Date dateOfBirth;
-    @ManyToOne
+    @ManyToMany(fetch = FetchType.EAGER)
     @NotNull(message = "o usuario deve possuir um nivel de acesso")
     @JoinColumn(name = "tipo_usuario")
-    private UserCategory type;
+    private List<UserRole> role = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "licenca")
     private Licence licence;
@@ -74,6 +76,25 @@ public class User implements Serializable {
     private Gun gun;
 
     public User() {
+    }
+
+    public User(String name, Sex sex, Integer cpf, String email, String password, String cep, String street,
+                String neighborhood, String state, Date dateOfBirth, List<UserRole> role,
+                Licence licence, Exam exam, Gun gun) {
+        this.name = name;
+        this.sex = sex;
+        this.cpf = cpf;
+        this.email = email;
+        this.password = password;
+        this.cep = cep;
+        this.street = street;
+        this.neighborhood = neighborhood;
+        this.state = state;
+        this.dateOfBirth = dateOfBirth;
+        this.role = role;
+        this.licence = licence;
+        this.exam = exam;
+        this.gun = gun;
     }
 
     /** GETS E SETS */
@@ -161,12 +182,12 @@ public class User implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public UserCategory getType() {
-        return type;
+    public List<UserRole> getRole() {
+        return role;
     }
 
-    public void setType(UserCategory type) {
-        this.type = type;
+    public void setRole(List<UserRole> role) {
+        this.role = role;
     }
 
     public Licence getLicence() {

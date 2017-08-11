@@ -15,4 +15,59 @@
         <servlet-name>Jersey Web Application</servlet-name>
         <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
+
+    <security-constraint>
+        <display-name>Sexos</display-name>
+        <web-resource-collection>
+            <web-resource-name>sex</web-resource-name>
+            <description>url dos sexos existentes</description>
+            <url-pattern>/api/sexos/*</url-pattern>
+            <http-method>POST</http-method>
+            <http-method>PUT</http-method>
+            <http-method>DELETE</http-method>
+            <http-method>GET</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <display-name>niveis</display-name>
+        <web-resource-collection>
+            <web-resource-name>niveis</web-resource-name>
+            <description>url dos niveis de acesso existentes</description>
+            <url-pattern>/api/usuarios/niveis/*</url-pattern>
+            <http-method>POST</http-method>
+            <http-method>PUT</http-method>
+            <http-method>DELETE</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <display-name>licencas-tipos</display-name>
+        <web-resource-collection>
+            <web-resource-name>licencas-tipos</web-resource-name>
+            <description>url dos tipos de licencas de acesso existentes</description>
+            <url-pattern>/api/licencas/categorias</url-pattern>
+            <http-method>POST</http-method>
+            <http-method>PUT</http-method>
+            <http-method>DELETE</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/usuarios/login.xhtml</form-login-page>
+            <form-error-page>/usuarios/login.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+
 </web-app>

@@ -1,5 +1,4 @@
-package br.gov.pf.model;
-
+package br.gov.pf.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -9,23 +8,26 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "sexo")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="sex")
+@Table(name = "usuario_categorias")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="description")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Sex {
+public class UserRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull(message = "o campo deve possuir uma descricao")
     @Column(name = "descricao")
     private String description;
 
-    public Sex() {
-    }
 
-    public Sex(String description) {
+    public UserRole(String description) {
         this.description = description;
     }
+
+    public UserRole() {
+    }
+
 
     /** GETS E SETS */
     public Long getId() {

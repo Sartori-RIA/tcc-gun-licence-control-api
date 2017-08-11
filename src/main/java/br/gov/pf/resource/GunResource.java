@@ -1,6 +1,6 @@
 package br.gov.pf.resource;
 
-import br.gov.pf.model.Gun;
+import br.gov.pf.model.entity.Gun;
 import br.gov.pf.model.service.GunService;
 import org.apache.log4j.Logger;
 

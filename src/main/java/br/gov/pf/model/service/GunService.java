@@ -1,6 +1,6 @@
 package br.gov.pf.model.service;
 
-import br.gov.pf.model.Gun;
+import br.gov.pf.model.entity.Gun;
 import br.gov.pf.model.dao.GunDAO;
 
 /**

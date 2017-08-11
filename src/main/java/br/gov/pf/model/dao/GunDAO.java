@@ -1,6 +1,6 @@
 package br.gov.pf.model.dao;
 
-import br.gov.pf.model.Gun;
+import br.gov.pf.model.entity.Gun;
 
 /**
  * Created by sartori on 13/07/17.

@@ -1,6 +1,6 @@
 package br.gov.pf.resource;
 
-import br.gov.pf.model.Licence;
+import br.gov.pf.model.entity.Licence;
 import br.gov.pf.model.service.LicenceService;
 import org.apache.log4j.Logger;
 

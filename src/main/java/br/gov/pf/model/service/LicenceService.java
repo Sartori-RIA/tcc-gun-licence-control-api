@@ -1,6 +1,6 @@
 package br.gov.pf.model.service;
 
-import br.gov.pf.model.Licence;
+import br.gov.pf.model.entity.Licence;
 import br.gov.pf.model.dao.LicenceDAO;
 
 /**

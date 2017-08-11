@@ -1,6 +1,6 @@
 package br.gov.pf.resource;
 
-import br.gov.pf.model.Exam;
+import br.gov.pf.model.entity.Exam;
 import br.gov.pf.model.service.ExamService;
 import org.apache.log4j.Logger;
 

@@ -1,6 +1,6 @@
 package br.gov.pf.resource;
 
-import br.gov.pf.model.LicenceCategory;
+import br.gov.pf.model.entity.LicenceCategory;
 import br.gov.pf.model.service.LicenceCategoryService;
 
 import javax.ws.rs.Path;

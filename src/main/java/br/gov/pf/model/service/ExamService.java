@@ -1,6 +1,6 @@
 package br.gov.pf.model.service;
 
-import br.gov.pf.model.Exam;
+import br.gov.pf.model.entity.Exam;
 import br.gov.pf.model.dao.ExamDAO;
 
 /**

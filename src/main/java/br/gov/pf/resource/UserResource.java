@@ -1,6 +1,6 @@
 package br.gov.pf.resource;
 
-import br.gov.pf.model.User;
+import br.gov.pf.model.entity.User;
 import br.gov.pf.model.service.UserService;
 import org.apache.log4j.Logger;
 

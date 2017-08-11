@@ -1,5 +1,7 @@
 package br.gov.pf.util;
 
+import br.gov.pf.security.PassGeneretor;
+
 import javax.persistence.Persistence;
 
 public class SchemaCreator {
@@ -9,6 +11,7 @@ public class SchemaCreator {
 		SchemaCreator schemaCreator = new SchemaCreator();
 		
 		Persistence.generateSchema("sinarm", null);
+
 				
 	}
 	

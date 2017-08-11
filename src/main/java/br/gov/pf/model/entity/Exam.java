@@ -1,4 +1,4 @@
-package br.gov.pf.model;
+package br.gov.pf.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -15,7 +15,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "exame")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="name")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Exam implements Serializable{
     @Id

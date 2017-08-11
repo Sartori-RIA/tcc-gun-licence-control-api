@@ -1,6 +1,6 @@
 package br.gov.pf.resource;
 
-import br.gov.pf.model.Sex;
+import br.gov.pf.model.entity.Sex;
 import br.gov.pf.model.service.SexService;
 
 import javax.ws.rs.Path;

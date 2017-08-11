@@ -1,6 +1,6 @@
 package br.gov.pf.model.service;
 
-import br.gov.pf.model.User;
+import br.gov.pf.model.entity.User;
 import br.gov.pf.model.dao.UserDAO;
 
 /**
