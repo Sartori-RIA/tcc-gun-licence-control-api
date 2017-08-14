@@ -6,7 +6,14 @@
 	<persistence-unit name="sinarm" transaction-type="RESOURCE_LOCAL">
 
 		<jta-data-source>java:/SinarmDB</jta-data-source>
-
+		<class>br.gov.pf.model.entity.Exam</class>
+		<class>br.gov.pf.model.entity.ExamCategory</class>
+		<class>br.gov.pf.model.entity.Gun</class>
+		<class>br.gov.pf.model.entity.Licence</class>
+		<class>br.gov.pf.model.entity.LicenceCategory</class>
+		<class>br.gov.pf.model.entity.Sex</class>
+		<class>br.gov.pf.model.entity.User</class>
+		<class>br.gov.pf.model.entity.UserRole</class>
 		<properties>
 
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />

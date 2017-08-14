@@ -74,6 +74,13 @@
                 <groupId>org.glassfish.jersey.media</groupId>
                 <artifactId>jersey-media-json-jackson</artifactId>
             </dependency>
+            <!-- JSF API -->
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.faces</artifactId>
+                <version>2.3.2</version>
+                <scope>provided</scope>
+            </dependency>
 
         </dependencies>
         <build>
