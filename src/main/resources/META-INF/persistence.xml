@@ -3,7 +3,7 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
 
-    <persistence-unit name="sinarm" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="sinarm" >
 
         <jta-data-source>java:/sinarm_ds</jta-data-source>
         <class>br.gov.pf.model.entity.Exam</class>

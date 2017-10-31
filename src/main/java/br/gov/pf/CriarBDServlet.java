@@ -25,7 +25,6 @@ public class CriarBDServlet extends HttpServlet {
      
     public CriarBDServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,7 +37,7 @@ public class CriarBDServlet extends HttpServlet {
 	}
 	
 	private void criarBD(){
-
+/*
     	EntityManager entityManager = JPAUtil.getEntityManager();
 		entityManager.getTransaction().begin();
 
@@ -78,7 +77,7 @@ public class CriarBDServlet extends HttpServlet {
 		UserService userService = new UserService();
 		SexService sexService = new SexService();
 		UserRoleService userRoleService = new UserRoleService();
-		LicenceCategoryService licenceCategoryService = new LicenceCategoryService();
+		LicenceCategoryService licenceCategoryService = new LicenceCategoryService();*/
 
 	}
 
