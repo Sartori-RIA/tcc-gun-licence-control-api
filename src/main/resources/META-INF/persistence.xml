@@ -3,17 +3,11 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
 
-    <persistence-unit name="sinarm" >
+    <persistence-unit name="sinarm">
 
         <jta-data-source>java:/sinarm_ds</jta-data-source>
-        <class>br.gov.pf.model.entity.Exam</class>
-        <class>br.gov.pf.model.entity.ExamCategory</class>
-        <class>br.gov.pf.model.entity.Gun</class>
-        <class>br.gov.pf.model.entity.Licence</class>
-        <class>br.gov.pf.model.entity.LicenceCategory</class>
-        <class>br.gov.pf.model.entity.Sex</class>
-        <class>br.gov.pf.model.entity.User</class>
-        <class>br.gov.pf.model.entity.UserRole</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
         <properties>
 
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
@@ -22,7 +16,7 @@
             <property name="hibernate.format_sql" value="true"/>
 
             <!-- create - executa na criação - update - executa na consulta -->
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="NONE"/>
             <!-- <property name="hibernate.hbm2ddl.auto" value="create" />-->
         </properties>
 

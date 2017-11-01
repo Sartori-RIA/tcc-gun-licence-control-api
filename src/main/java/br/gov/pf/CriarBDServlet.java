@@ -1,44 +1,35 @@
 package br.gov.pf;
 
-import br.gov.pf.model.entity.ExamCategory;
-import br.gov.pf.model.entity.LicenceCategory;
-import br.gov.pf.model.entity.Sex;
-import br.gov.pf.model.entity.UserRole;
-import br.gov.pf.model.service.*;
-import br.gov.pf.util.JPAUtil;
-
-import java.io.IOException;
-
-import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Servlet implementation class CriarBDServlet
  */
 @WebServlet("/criar")
 public class CriarBDServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-     
+    private static final long serialVersionUID = 1L;
+
     public CriarBDServlet() {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		criarBD();
-		response.getWriter().println("SUCESSO");
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        criarBD();
+        response.getWriter().println("SUCESSO");
+    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		criarBD();
-	}
-	
-	private void criarBD(){
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        criarBD();
+    }
+
+    private void criarBD() {
 /*
-    	EntityManager entityManager = JPAUtil.getEntityManager();
+        EntityManager entityManager = JPAUtil.getEntityManager();
 		entityManager.getTransaction().begin();
 
 		ExamCategory exam = new ExamCategory("Teste Prático");
@@ -79,7 +70,7 @@ public class CriarBDServlet extends HttpServlet {
 		UserRoleService userRoleService = new UserRoleService();
 		LicenceCategoryService licenceCategoryService = new LicenceCategoryService();*/
 
-	}
+    }
 
 
 }

@@ -1,6 +1,7 @@
 package br.gov.pf.model.dao;
 
-import br.gov.pf.util.JPAUtil;
+import br.gov.pf.util.Parameter;
+import br.gov.pf.util.PredicateBuilder;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,8 +23,7 @@ public abstract class AbstractDAO<PK, T> implements Serializable {
     /**
      * Retorna uma entidade pelo seu ID
      *
-     * @param pk
-     *            id da entidade
+     * @param pk id da entidade
      * @return
      */
     public T getById(PK pk) {
@@ -34,10 +34,8 @@ public abstract class AbstractDAO<PK, T> implements Serializable {
      * Retorna a entidade pelo atributo �nico, ou seja, assumir� que h� apenas
      * uma entidade com este atributo, retornando apenas um elemento.
      *
-     * @param propertyName
-     *            nome do atributo
-     * @param propertyValue
-     *            valor do atributo
+     * @param propertyName  nome do atributo
+     * @param propertyValue valor do atributo
      * @return
      */
     public T getByProperty(String propertyName, String propertyValue) {
@@ -114,5 +112,43 @@ public abstract class AbstractDAO<PK, T> implements Serializable {
                 .getActualTypeArguments()[1];
         return clazz;
     }
+
+    public T getByPredicate(PredicateBuilder predicate) {
+        predicate.limit(0, 1);
+        List<T> entities = findAll(predicate);
+        if (!entities.isEmpty())
+            return entities.get(0);
+
+        return null;
+    }
+
+    public List<T> findAll(PredicateBuilder predicate) {
+        Query query = entityManager.createQuery(predicate.getQuery().toString());
+        if (!predicate.getParams().isEmpty()) {
+            for (Parameter param : predicate.getParams()) {
+                query.setParameter(param.getName(), param.getValue());
+            }
+        }
+        if (predicate.getMaxResult() != null && predicate.getStartPosition() != null) {
+            query.setMaxResults(predicate.getMaxResult());
+            query.setFirstResult(predicate.getStartPosition());
+        }
+        return (List<T>) query.getResultList();
+    }
+
+    public Long count(PredicateBuilder predicate) {
+        Query query = entityManager.createQuery(predicate.getQueryCount().toString());
+        if (!predicate.getParams().isEmpty()) {
+            for (Parameter param : predicate.getParams()) {
+                query.setParameter(param.getName(), param.getValue());
+            }
+        }
+        return (Long) query.getSingleResult();
+    }
+
+    public PredicateBuilder getPredicateBuilder() {
+        return new PredicateBuilder(getTypeClass());
+    }
+
 }
 

@@ -1,6 +1,7 @@
 package br.gov.pf.resource;
 
 import br.gov.pf.model.service.AbstractService;
+import br.gov.pf.util.PredicateBuilder;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -19,11 +20,17 @@ public abstract class AbstractResource<PK, T> implements Serializable {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<T> findAll() {
+    public List<T> findAll(@QueryParam("start") int start,
+                           @QueryParam("qnt") int quantity)  {
         try {
-
-            return service.findAll();
-
+            if (quantity <= 0 )
+                quantity = 100;
+            if (start >= 0) {
+                PredicateBuilder builder = this.service.getPredicateBuilder();
+                return this.service.findAll(builder.limit(start, quantity ));
+            } else {
+                return this.service.findAll();
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new WebApplicationException(500);

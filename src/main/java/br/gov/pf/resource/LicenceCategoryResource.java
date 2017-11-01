@@ -9,7 +9,7 @@ import javax.ws.rs.Path;
 import java.util.logging.Logger;
 
 @Stateless
-@Path("/licencas/categorias")
+@Path("/licencas-categorias")
 public class LicenceCategoryResource extends AbstractResource<Long, LicenceCategory> {
     private static final Logger LOGGER = Logger.getLogger(String.valueOf(LicenceCategory.class));
     @Inject

@@ -1,4 +1,4 @@
-package br.inf.teorema.erp.resource;
+package br.gov.pf.resource;
 
 import java.io.IOException;
 

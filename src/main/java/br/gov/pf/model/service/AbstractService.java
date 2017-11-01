@@ -1,6 +1,7 @@
 package br.gov.pf.model.service;
 
 import br.gov.pf.model.dao.AbstractDAO;
+import br.gov.pf.util.PredicateBuilder;
 
 import java.io.Serializable;
 import java.util.List;
@@ -61,4 +62,22 @@ public abstract class AbstractService<PK, T> implements Serializable {
     public List<T> findAll() {
         return this.getDAO().findAll();
     }
+
+    public PredicateBuilder getPredicateBuilder() {
+        return this.getDAO().getPredicateBuilder();
+    }
+
+    public T getByPredicate(PredicateBuilder predicate) {
+        return this.getDAO().getByPredicate(predicate);
+    }
+
+    public List<T> findAll(PredicateBuilder predicate) {
+        return this.getDAO().findAll(predicate);
+    }
+
+    public Long count(PredicateBuilder predicate) {
+        return this.getDAO().count(predicate);
+    }
+
+
 }
