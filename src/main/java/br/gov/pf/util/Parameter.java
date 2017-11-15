@@ -31,7 +31,7 @@ public class Parameter {
 
     @Override
     public boolean equals(Object obj) {
-        return ((Parameter)obj).getName().equals(this.name);
+        return ((Parameter) obj).getName().equals(this.name);
     }
 
 }

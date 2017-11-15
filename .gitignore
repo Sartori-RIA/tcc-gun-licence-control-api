@@ -6,6 +6,7 @@
 /out-tsc
 /target
 
+rebel.xml
 # dependencies
 /node_modules
 

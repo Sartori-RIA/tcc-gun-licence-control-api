@@ -1,31 +1,27 @@
 package br.gov.pf.security;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
 /**
  * Created by sartori on 01/11/2017
  */
-@Configuration
-@EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+//@Configuration
+//@EnableWebSecurity
+//public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+//
 //    @Override
 //    protected void configure(HttpSecurity httpSecurity) throws Exception {
 //        httpSecurity.csrf().disable().authorizeRequests()
 //                .antMatchers("/home").permitAll()
 //                .antMatchers(HttpMethod.POST, "/login").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
+//                .anyRequest().authenticated();
+//        //.and();
 //
-//                // filtra requisições de login
-//                .addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),
-//                        UsernamePasswordAuthenticationFilter.class)
-//
-//                // filtra outras requisições para verificar a presença do JWT no header
-//                .addFilterBefore(new JWTAuthenticationFilter(),
-//                        UsernamePasswordAuthenticationFilter.class);
+////                // filtra requisições de login
+////                .addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),
+////                        UsernamePasswordAuthenticationFilter.class)
+////
+////                // filtra outras requisições para verificar a presença do JWT no header
+////                .addFilterBefore(new JWTAuthenticationFilter(),
+////                        UsernamePasswordAuthenticationFilter.class);
 //    }
 //
 //    @Override
@@ -36,4 +32,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .password("password")
 //                .roles("ADMIN");
 //    }
-}
+//}

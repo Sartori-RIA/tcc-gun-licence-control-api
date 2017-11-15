@@ -15,27 +15,35 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "licenca")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="description")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "description")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Licence implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull(message = "a licenca deve possuir uma descricao")
     @Column(name = "descricao")
     private String description;
+
     @NotNull(message = "a licenca deve possuir uma categoria")
     @ManyToOne
     @JoinColumn(name = "categoria")
     private LicenceCategory licenceCategory;
+
     @NotNull(message = "a licenca deve possuir uma validade")
     @Column(name = "validade")
     @Future
     private Date shelfLife;
 
-    public Licence() {
-    }
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
 
     public Licence(String description, LicenceCategory licenceCategory, Date shelfLife) {
         this.description = description;
@@ -43,7 +51,9 @@ public class Licence implements Serializable {
         this.shelfLife = shelfLife;
     }
 
-    /** GETS E SETS */
+    /**
+     * GETS E SETS
+     */
     public Long getId() {
         return id;
     }
@@ -66,5 +76,17 @@ public class Licence implements Serializable {
 
     public void setShelfLife(Date shelfLife) {
         this.shelfLife = shelfLife;
+    }
+
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public Licence() {
     }
 }

@@ -9,7 +9,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Logger;
 
 
 public abstract class AbstractResource<PK, T> implements Serializable {
@@ -21,13 +20,13 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<T> findAll(@QueryParam("start") int start,
-                           @QueryParam("qnt") int quantity)  {
+                           @QueryParam("qnt") int quantity) {
         try {
-            if (quantity <= 0 )
+            if (quantity <= 0)
                 quantity = 100;
             if (start >= 0) {
                 PredicateBuilder builder = this.service.getPredicateBuilder();
-                return this.service.findAll(builder.limit(start, quantity ));
+                return this.service.findAll(builder.limit(start, quantity));
             } else {
                 return this.service.findAll();
             }

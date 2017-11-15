@@ -13,7 +13,8 @@ import java.util.logging.Logger;
 public class UserRoleResource extends AbstractResource<Long, UserRole> {
     private static final Logger LOGGER = Logger.getLogger(String.valueOf(UserRole.class));
 
-    @Inject private UserRoleService service;
+    @Inject
+    private UserRoleService service;
 
     public UserRoleResource() {
     }

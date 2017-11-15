@@ -8,18 +8,22 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 @Table(name = "sexo")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="description")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "description")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Sex {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull(message = "o campo deve possuir uma descricao")
     @Column(name = "descricao")
     private String description;
+
     @NotNull(message = "o campo deve possuir uma abreviacao")
     @Size.List({
             @Size(min = 1, message = "minimo de 1(um) caracter"),
@@ -27,6 +31,16 @@ public class Sex {
     })
     @Column(name = "Abreviacao")
     private String abbrev;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
+
     public Sex() {
     }
 
@@ -35,7 +49,9 @@ public class Sex {
         this.abbrev = abbrev;
     }
 
-    /** GETS E SETS */
+    /**
+     * GETS E SETS
+     */
     public String getDescription() {
         return description;
     }
@@ -54,5 +70,14 @@ public class Sex {
 
     public Long getId() {
         return id;
+    }
+
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 }

@@ -15,22 +15,33 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "exame")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Exam implements Serializable{
+public class Exam implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull(message = "o exame deve possuir uma categoria")
     @ManyToOne
     @JoinColumn(name = "exame")
     private ExamCategory examCategory;
+
     @Future
     @Column(name = "data")
     private Date date;
 
     @Column(name = "resultado")
     private boolean status;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
 
     public Exam() {
     }
@@ -41,7 +52,9 @@ public class Exam implements Serializable{
         this.status = status;
     }
 
-    /** GETS E SETS */
+    /**
+     * GETS E SETS
+     */
 
     public Long getId() {
         return id;
@@ -69,5 +82,13 @@ public class Exam implements Serializable{
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 }

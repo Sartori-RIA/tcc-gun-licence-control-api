@@ -3,7 +3,6 @@ package br.gov.pf.model.entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
@@ -18,38 +17,49 @@ import java.util.List;
  */
 @Entity
 @Table(name = "usuario")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="name")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull(message = "o usuario deve possuir um nome")
     @Column(name = "nome")
     private String name;
+
     @ManyToOne
     @NotNull(message = "o usuario deve possuir um sexo")
     @JoinColumn(name = "sexo")
     private Sex sex;
+
     @NotNull(message = "o usuario deve possuir um CPF")
     @CPF
     private Integer cpf;
+
     @NotNull(message = "o usuario deve possuir um e-mail")
-    @Email
     private String email;
+
     @NotNull(message = "o usuario deve possuir uma senha")
     @Column(name = "senha")
     private String password;
+
     @NotNull
     private String cep;
+
     @NotNull(message = "o usuario deve residir em um rua")
-    @Min(5) @Max(30)
+    @Min(5)
+    @Max(30)
     @Column(name = "rua")
     private String street;
+
     @NotNull(message = "o usuario deve residir em uma cidade")
-    @Min(5) @Max(30)
+    @Min(5)
+    @Max(30)
     @Column(name = "bairro")
     private String neighborhood;
+
     @NotNull(message = "o usuario deve residir em um estado")
     @Size.List({
             @Size(min = 2, message = "minimo de 2(dois) caracter"),
@@ -57,25 +67,46 @@ public class User implements Serializable {
     })
     @Column(name = "estado")
     private String state;
+
     @NotNull
     @Past
     @Column(name = "data_aniversario")
     private Date dateOfBirth;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @NotNull(message = "o usuario deve possuir um nivel de acesso")
     @JoinColumn(name = "tipo_usuario")
     private List<UserRole> role = new ArrayList<>();
+
     @ManyToOne
     @JoinColumn(name = "licenca")
     private Licence licence;
+
     @ManyToOne
     @JoinColumn(name = "exames")
     private Exam exam;
+
     @ManyToOne
     @JoinColumn(name = "armas")
     private Gun gun;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
     public User() {
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
     public User(String name, Sex sex, Integer cpf, String email, String password, String cep, String street,
@@ -97,7 +128,9 @@ public class User implements Serializable {
         this.gun = gun;
     }
 
-    /** GETS E SETS */
+    /**
+     * GETS E SETS
+     */
     public Long getId() {
         return id;
     }

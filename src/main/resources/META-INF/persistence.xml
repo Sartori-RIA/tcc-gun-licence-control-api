@@ -3,8 +3,8 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
 
-    <persistence-unit name="sinarm">
-
+    <persistence-unit name="sinarm" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:/sinarm_ds</jta-data-source>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
@@ -16,7 +16,7 @@
             <property name="hibernate.format_sql" value="true"/>
 
             <!-- create - executa na criação - update - executa na consulta -->
-            <property name="hibernate.hbm2ddl.auto" value="NONE"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
             <!-- <property name="hibernate.hbm2ddl.auto" value="create" />-->
         </properties>
 
