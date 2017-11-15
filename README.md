@@ -24,11 +24,13 @@ IDEA utilizada: Intellij IDEA Ultimate 17.2.1
  que estejam com o seguinte trecho `<scope>provided</scope>`**
 
 + **adicione no seu wildfly o driver do mysql, e adicione o jar no seu respectivo diretorio**
+  ````
     <driver name="mysql-6.0.6" module="com.mysql">
         <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
-    </driver>
+    </driver>`
+    ```
 + **adicione o datasource ao standalone**
-
+```
   <datasource jta="true" jndi-name="java:/sinarm_ds" pool-name="sinarm_ds" enabled="true" use-ccm="true">
     <connection-url>jdbc:mysql://localhost:3306/sinarm_db?useSSL=false</connection-url>
       <driver>mysql-6.0.6</driver>
@@ -47,3 +49,4 @@ IDEA utilizada: Intellij IDEA Ultimate 17.2.1
             <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
         </validation>
   </datasource
+  ```
