@@ -25,11 +25,12 @@ IDEA utilizada: Intellij IDEA Ultimate 17.2.1
 + **instale no seu servidor todas as libs listadas no arquivo `pom.xml` que estejam com o seguinte trecho `<scope>provided</scope>`**
 
 + **adicione no seu wildfly o driver do mysql, e adicione o jar no seu respectivo diretorio**
-  ```xml
+
+```xml
   <driver name="mysql-6.0.6" module="com.mysql">
     <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
   </driver>
-  ```
+ ```
 
 + **adicione o datasource ao standalone**
 
@@ -52,4 +53,4 @@ IDEA utilizada: Intellij IDEA Ultimate 17.2.1
             <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
         </validation>
   </datasource
-  ```
+```
