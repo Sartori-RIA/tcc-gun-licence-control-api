@@ -30,7 +30,7 @@ IDEA utilizada: Intellij IDEA Ultimate 17.2.1
   <driver name="mysql-6.0.6" module="com.mysql">
     <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
   </driver>
- ```
+```
 
 + **adicione o datasource ao standalone**
 
