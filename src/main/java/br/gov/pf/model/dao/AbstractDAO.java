@@ -83,9 +83,22 @@ public abstract class AbstractDAO<PK, T> implements Serializable {
         Query query = entityManager.createQuery(queryString);
         query.setParameter("param", propertyValue);
 
-        List<T> queryResult = query.getResultList();
+        return (List<T>) query.getResultList();
+    }
 
-        return queryResult;
+    public List<T> listByTwoProperties(String firstPropertyName,
+                                       String firstPropertyValue,
+                                       String secondPropertyName,
+                                       String secondPropertyValue) {
+
+        String queryString = "SELECT o FROM " + getTypeClass().getName() + " o where o." + firstPropertyName
+                + " = :param AND o." + secondPropertyName + " = :param2";
+
+        Query query = entityManager.createQuery(queryString);
+        query.setParameter("param", firstPropertyValue);
+        query.setParameter("param2", secondPropertyValue);
+
+        return (List<T>) query.getResultList();
     }
 
     public T save(T entity) {
@@ -108,9 +121,8 @@ public abstract class AbstractDAO<PK, T> implements Serializable {
     }
 
     private Class<?> getTypeClass() {
-        Class<?> clazz = (Class<?>) ((ParameterizedType) this.getClass().getGenericSuperclass())
+        return (Class<?>) ((ParameterizedType) this.getClass().getGenericSuperclass())
                 .getActualTypeArguments()[1];
-        return clazz;
     }
 
     public T getByPredicate(PredicateBuilder predicate) {

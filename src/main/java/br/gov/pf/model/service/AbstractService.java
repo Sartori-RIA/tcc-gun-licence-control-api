@@ -31,15 +31,20 @@ public abstract class AbstractService<PK, T> implements Serializable {
         return this.getDAO().getById(pk);
     }
 
-    public T getByProperty(String propertyName, String propertyValue) {
+    public T getByProperty(String propertyName,
+                           String propertyValue) {
         return this.getDAO().getByProperty(propertyName, propertyValue);
     }
 
-    public T getByTwoProperties(String firstPropertyName, String firstPropertyValue, String secondPropertyName,
+    public T getByTwoProperties(String firstPropertyName,
+                                String firstPropertyValue,
+                                String secondPropertyName,
                                 String secondPropertyValue) {
         T entity = null;
         try {
-            entity = this.getDAO().getByTwoProperties(firstPropertyName, firstPropertyValue, secondPropertyName,
+            entity = this.getDAO().getByTwoProperties(firstPropertyName,
+                    firstPropertyValue,
+                    secondPropertyName,
                     secondPropertyValue);
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,10 +53,29 @@ public abstract class AbstractService<PK, T> implements Serializable {
         return entity;
     }
 
-    public List<T> listByProperty(String propertyName, String propertyValue) {
+    public List<T> listByProperty(String propertyName,
+                                  String propertyValue) {
         List<T> entity = null;
         try {
-            entity = this.getDAO().listByProperty(propertyName, propertyValue);
+            entity = this.getDAO().listByProperty(propertyName,
+                    propertyValue);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return entity;
+    }
+
+    public List<T> listByTwoProperties(String firstPropertyName,
+                                       String firstPropertyValue,
+                                       String secondPropertyName,
+                                       String secondPropertyValue) {
+        List<T> entity = null;
+        try {
+            entity = this.getDAO().listByTwoProperties(firstPropertyName,
+                    firstPropertyValue,
+                    secondPropertyName,
+                    secondPropertyValue);
         } catch (Exception e) {
             e.printStackTrace();
         }
