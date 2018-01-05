@@ -27,7 +27,7 @@ public class Gun extends AbstractEntity<Long> implements Serializable {
     public Gun() {
     }
 
-    public Gun(String name, String caliber, String serialNumber) {
+    public Gun(@NotNull(message = "A arma deve possuir um nome") String name, @NotNull(message = "A arma deve possuir um calibre") String caliber, @NotNull(message = "A arma deve possuir um número de série") String serialNumber) {
         this.name = name;
         this.caliber = caliber;
         this.serialNumber = serialNumber;

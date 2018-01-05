@@ -16,8 +16,7 @@ public class UserRole extends AbstractEntity<Long> implements Serializable {
     @Column(name = "descricao")
     private String description;
 
-
-    public UserRole(String description) {
+    public UserRole(@NotNull(message = "o campo deve possuir uma descricao") String description) {
         this.description = description;
     }
 

@@ -16,7 +16,7 @@ public class LicenceCategory extends AbstractEntity<Long> implements Serializabl
     @Column(name = "descricao")
     private String description;
 
-    public LicenceCategory(String description) {
+    public LicenceCategory(@NotNull(message = "a campo deve possuir uma descricao") String description) {
         this.description = description;
     }
 

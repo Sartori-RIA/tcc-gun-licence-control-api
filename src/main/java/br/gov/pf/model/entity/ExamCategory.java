@@ -16,7 +16,7 @@ public class ExamCategory extends AbstractEntity<Long> implements Serializable {
     @Column(name = "description")
     private String description;
 
-    public ExamCategory(String description) {
+    public ExamCategory(@NotNull(message = "a categoria deve possuir uma descricao") String description) {
         this.description = description;
     }
 

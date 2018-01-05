@@ -25,7 +25,7 @@ public class User extends AbstractEntity<Long> implements Serializable {
     @ManyToOne
     @NotNull(message = "o usuario deve possuir um sexo")
     @JoinColumn(name = "sexo")
-    private Sex sex;
+    private Gender gender;
 
     @NotNull(message = "o usuario deve possuir um CPF")
     @CPF
@@ -86,11 +86,12 @@ public class User extends AbstractEntity<Long> implements Serializable {
     public User() {
     }
 
-    public User(String name, Sex sex, String cpf, String email, String password, String cep, String street,
-                String neighborhood, String state, Date dateOfBirth, UserRole role,
-                Licence licence, Exam exam, Gun gun) {
+    public User(@NotNull(message = "o usuario deve possuir um nome") String name, @NotNull(message = "o usuario deve possuir um sexo") Gender gender, @NotNull(message = "o usuario deve possuir um CPF") @CPF String cpf, @NotNull(message = "o usuario deve possuir um e-mail") String email, @NotNull(message = "o usuario deve possuir uma senha") String password, @NotNull String cep, @NotNull(message = "o usuario deve residir em um rua") @Min(5) @Max(30) String street, @NotNull(message = "o usuario deve residir em uma cidade") @Min(5) @Max(30) String neighborhood, @NotNull(message = "o usuario deve residir em um estado") @Size.List({
+            @Size(min = 2, message = "minimo de 2(dois) caracter"),
+            @Size(max = 15, message = "maximo de 15(quinze) caracteres")
+    }) String state, @NotNull @Past Date dateOfBirth, @NotNull(message = "o usuario deve possuir um nivel de acesso") UserRole role, Licence licence, Exam exam, Gun gun) {
         this.name = name;
-        this.sex = sex;
+        this.gender = gender;
         this.cpf = cpf;
         this.email = email;
         this.password = password;
@@ -120,12 +121,12 @@ public class User extends AbstractEntity<Long> implements Serializable {
         this.name = name;
     }
 
-    public Sex getSex() {
-        return sex;
+    public Gender getGender() {
+        return gender;
     }
 
-    public void setSex(Sex sex) {
-        this.sex = sex;
+    public void setGender(Gender sex) {
+        this.gender = sex;
     }
 
     public String getCpf() {

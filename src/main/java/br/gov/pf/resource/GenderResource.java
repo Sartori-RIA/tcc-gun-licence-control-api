@@ -1,6 +1,6 @@
 package br.gov.pf.resource;
 
-import br.gov.pf.model.entity.Sex;
+import br.gov.pf.model.entity.Gender;
 import br.gov.pf.model.service.GenderService;
 import br.gov.pf.security.Secured;
 
@@ -12,8 +12,8 @@ import java.util.logging.Logger;
 @Secured
 @Stateless
 @Path("/generos")
-public class GenderResource extends AbstractResource<Long, Sex> {
-    private static final Logger LOGGER = Logger.getLogger(String.valueOf(Sex.class));
+public class GenderResource extends AbstractResource<Long, Gender> {
+    private static final Logger LOGGER = Logger.getLogger(String.valueOf(Gender.class));
     @Inject
     private GenderService service;
 

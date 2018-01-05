@@ -1,6 +1,5 @@
 package br.gov.pf.model.entity;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -8,7 +7,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "genero")
-public class Sex extends AbstractEntity<Long> implements Serializable {
+public class Gender extends AbstractEntity<Long> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +26,13 @@ public class Sex extends AbstractEntity<Long> implements Serializable {
     private String abbrev;
 
 
-    public Sex() {
+    public Gender() {
     }
 
-    public Sex(String description, String abbrev) {
+    public Gender(@NotNull(message = "o campo deve possuir uma descricao") String description, @NotNull(message = "o campo deve possuir uma abreviacao") @Size.List({
+            @Size(min = 1, message = "minimo de 1(um) caracter"),
+            @Size(max = 1, message = "maximo de 1(um) caracter")
+    }) String abbrev) {
         this.description = description;
         this.abbrev = abbrev;
     }

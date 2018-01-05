@@ -34,7 +34,7 @@ public class Licence extends AbstractEntity<Long> implements Serializable {
     public Licence() {
     }
 
-    public Licence(String description, LicenceCategory licenceCategory, Date shelfLife) {
+    public Licence(@NotNull(message = "a licenca deve possuir uma descricao") String description, @NotNull(message = "a licenca deve possuir uma categoria") LicenceCategory licenceCategory, @NotNull(message = "a licenca deve possuir uma validade") @Future Date shelfLife) {
         this.description = description;
         this.licenceCategory = licenceCategory;
         this.shelfLife = shelfLife;

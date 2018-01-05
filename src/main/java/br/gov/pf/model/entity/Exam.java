@@ -32,7 +32,7 @@ public class Exam extends AbstractEntity<Long> implements Serializable {
     public Exam() {
     }
 
-    public Exam(ExamCategory examCategory, Date date, boolean status) {
+    public Exam(@NotNull(message = "o exame deve possuir uma categoria") ExamCategory examCategory, @Future Date date, boolean status) {
         this.examCategory = examCategory;
         this.date = date;
         this.status = status;
