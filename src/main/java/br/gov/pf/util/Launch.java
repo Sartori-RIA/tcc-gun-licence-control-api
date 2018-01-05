@@ -1,8 +1,7 @@
 package br.gov.pf.util;
 
 
-import br.gov.pf.model.entity.Sex;
-import br.gov.pf.model.entity.User;
+import br.gov.pf.model.entity.Gender;
 import br.gov.pf.model.entity.UserRole;
 import br.gov.pf.model.service.GenderService;
 import br.gov.pf.model.service.UserRoleService;
@@ -31,8 +30,8 @@ public class Launch {
         try {
             new Thread(() -> {
                 try {
-                    Launch.this.genderService.save(new Sex("Masculino", "M"));
-                    Launch.this.genderService.save(new Sex("Feminino", "F"));
+                    Launch.this.genderService.save(new Gender("Masculino", "M"));
+                    Launch.this.genderService.save(new Gender("Feminino", "F"));
                     Launch.this.userRoleService.save(new UserRole("ADMIN"));
                     Launch.this.userRoleService.save(new UserRole("INSTRUTOR"));
                     Launch.this.userRoleService.save(new UserRole("PSICOLOGO"));
