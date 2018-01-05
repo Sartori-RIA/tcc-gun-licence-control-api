@@ -2,6 +2,7 @@ package br.gov.pf.resource;
 
 import br.gov.pf.model.entity.Licence;
 import br.gov.pf.model.service.LicenceService;
+import br.gov.pf.security.Secured;
 import org.apache.log4j.Logger;
 
 import javax.ejb.Stateless;
@@ -11,6 +12,7 @@ import javax.ws.rs.Path;
 /**
  * Created by sartori on 13/07/17.
  */
+@Secured
 @Stateless
 @Path("/licencas")
 public class LicenceResource extends AbstractResource<Long, Licence> {

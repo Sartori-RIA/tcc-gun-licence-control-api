@@ -3,12 +3,14 @@ package br.gov.pf.resource;
 
 import br.gov.pf.model.entity.UserRole;
 import br.gov.pf.model.service.UserRoleService;
+import br.gov.pf.security.Secured;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Path;
 import java.util.logging.Logger;
 
+@Secured
 @Stateless
 @Path("/usuarios-niveis-acessos")
 public class UserRoleResource extends AbstractResource<Long, UserRole> {

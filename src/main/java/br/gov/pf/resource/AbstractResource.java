@@ -19,7 +19,6 @@ public abstract class AbstractResource<PK, T> implements Serializable {
 
 
     @GET
-    @Secured
     @Produces(MediaType.APPLICATION_JSON)
     public List<T> findAll(@QueryParam("start") int start,
                            @QueryParam("qnt") int quantity) {
@@ -39,7 +38,6 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     }
 
     @GET
-    @Secured
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
     public T findById(@PathParam("id") PK id) {
@@ -68,7 +66,6 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     }
 
     @GET
-    @Secured
     @Path("/find/property/{property_one}/value/{value_one}/property/{property_two}/value/{value_two}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findByTwoProperties(@PathParam("property_one") String propertyOne,
@@ -87,7 +84,6 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     }
 
     @GET
-    @Secured
     @Path("/property/{property}/value/{value}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listByProperty(@PathParam("property") String property,
@@ -103,7 +99,6 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     }
 
     @GET
-    @Secured
     @Path("/property/{property_one}/value/{value_one}/property/{property_two}/value/{value_two}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listByTwoProperties(@PathParam("property_one") String propertyOne,
@@ -122,7 +117,6 @@ public abstract class AbstractResource<PK, T> implements Serializable {
 
 
     @POST
-    @Secured
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(T entity) {
@@ -139,7 +133,6 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     }
 
     @PUT
-    @Secured
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(T entity) {
@@ -155,7 +148,6 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     }
 
     @DELETE
-    @Secured
     @Path("/{id}")
     @Consumes({MediaType.APPLICATION_JSON})
     public Response delete(@PathParam("id") PK id) {

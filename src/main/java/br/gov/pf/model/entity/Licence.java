@@ -1,9 +1,5 @@
 package br.gov.pf.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
@@ -15,9 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "licenca")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "description")
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Licence implements Serializable {
+public class Licence extends AbstractEntity<Long> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,13 +31,8 @@ public class Licence implements Serializable {
     @Future
     private Date shelfLife;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at")
-    private Date createdAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at")
-    private Date updatedAt;
+    public Licence() {
+    }
 
     public Licence(String description, LicenceCategory licenceCategory, Date shelfLife) {
         this.description = description;
@@ -79,14 +68,4 @@ public class Licence implements Serializable {
     }
 
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public Licence() {
-    }
 }

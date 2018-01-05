@@ -1,25 +1,18 @@
 package br.gov.pf.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by sartori on 13/07/17.
  */
 @Entity
 @Table(name = "usuario")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class User implements Serializable {
+public class User extends AbstractEntity<Long> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +29,7 @@ public class User implements Serializable {
 
     @NotNull(message = "o usuario deve possuir um CPF")
     @CPF
-    private Integer cpf;
+    private String cpf;
 
     @NotNull(message = "o usuario deve possuir um e-mail")
     private String email;
@@ -73,10 +66,10 @@ public class User implements Serializable {
     @Column(name = "data_aniversario")
     private Date dateOfBirth;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @NotNull(message = "o usuario deve possuir um nivel de acesso")
     @JoinColumn(name = "tipo_usuario")
-    private List<UserRole> role = new ArrayList<>();
+    private UserRole role;
 
     @ManyToOne
     @JoinColumn(name = "licenca")
@@ -90,27 +83,11 @@ public class User implements Serializable {
     @JoinColumn(name = "armas")
     private Gun gun;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at")
-    private Date createdAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at")
-    private Date updatedAt;
-
     public User() {
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public User(String name, Sex sex, Integer cpf, String email, String password, String cep, String street,
-                String neighborhood, String state, Date dateOfBirth, List<UserRole> role,
+    public User(String name, Sex sex, String cpf, String email, String password, String cep, String street,
+                String neighborhood, String state, Date dateOfBirth, UserRole role,
                 Licence licence, Exam exam, Gun gun) {
         this.name = name;
         this.sex = sex;
@@ -151,11 +128,11 @@ public class User implements Serializable {
         this.sex = sex;
     }
 
-    public Integer getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Integer cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -215,11 +192,11 @@ public class User implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public List<UserRole> getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(List<UserRole> role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 

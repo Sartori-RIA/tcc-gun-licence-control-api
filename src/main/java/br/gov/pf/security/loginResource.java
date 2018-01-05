@@ -12,6 +12,9 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
@@ -19,17 +22,19 @@ import java.util.Map;
 public class loginResource {
     @Inject
     private UserService userService;
+    private Login login = new Login();
 
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String login(Map<String, String> json) throws ServletException {
+    public Login login(Map<String, String> json) throws ServletException {
         if (json.get("cpf") == null || json.get("password") == null)
             throw new ServletException("Por favor informe um CPF e Senha");
 
         String cpf = json.get("cpf");
         String password = json.get("password");
 
-        User user = userService.getByProperty("cpf", cpf);
+        User user = userService.getByProperty("cpf", String.valueOf(cpf));
 
         if (user == null)
             throw new ServletException("CPF não encontrado");
@@ -39,8 +44,24 @@ public class loginResource {
         if (!password.equals(pwd))
             throw new ServletException("Login invalido. Por favor verifique seu CPF/Senha");
 
-        return Jwts.builder().setSubject(cpf).claim("roles", user.getRole()).setIssuedAt(new Date())
-                .signWith(SignatureAlgorithm.HS256, "secretkey").compact();
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 2);
+        Date expiration = calendar.getTime();
+        String base64 = "";
+        try {
+            base64 = Base64.getEncoder().encodeToString("SECRETKEY".getBytes("UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        String token = Jwts.builder()
+                .setHeaderParam("typ", "JWT")
+                .setSubject(cpf).claim("role", user.getRole())
+                .setIssuedAt(new Date())
+                .setExpiration(expiration)
+                .signWith(SignatureAlgorithm.HS256, base64).compact();
+        System.out.println(token);
+        this.login.setToken(token);
+        return this.login;
 
     }
 
