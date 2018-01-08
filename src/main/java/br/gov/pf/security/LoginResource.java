@@ -2,6 +2,7 @@ package br.gov.pf.security;
 
 import br.gov.pf.model.entity.User;
 import br.gov.pf.model.service.UserService;
+import br.gov.pf.util.BCrypt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -19,7 +20,7 @@ import java.util.Date;
 import java.util.Map;
 
 @Path("/login")
-public class loginResource {
+public class LoginResource {
     @Inject
     private UserService userService;
     private Login login = new Login();
@@ -34,14 +35,13 @@ public class loginResource {
         String cpf = json.get("cpf");
         String password = json.get("password");
 
-        User user = userService.getByProperty("cpf", String.valueOf(cpf));
+        User user = userService.getByProperty("cpf", cpf);
 
         if (user == null)
             throw new ServletException("CPF não encontrado");
 
         String pwd = user.getPassword();
-
-        if (!password.equals(pwd))
+        if (!BCrypt.checkpw(password, pwd))
             throw new ServletException("Login invalido. Por favor verifique seu CPF/Senha");
 
         Calendar calendar = Calendar.getInstance();

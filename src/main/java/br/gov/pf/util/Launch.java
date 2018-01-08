@@ -38,7 +38,7 @@ public class Launch {
                     Launch.this.userRoleService.save(new UserRole("DELEGADO"));
                     Launch.this.userRoleService.save(new UserRole("INSTRUTOR"));
                     Launch.this.userRoleService.save(new UserRole("PSICOLOGO"));
-                    Launch.this.userRoleService.save(new UserRole("CLIENT"));
+                    Launch.this.userRoleService.save(new UserRole("CIVIL"));
 
                     User admin = new User();
                     admin.setName("nome do admin");

@@ -1,5 +1,6 @@
 package br.gov.pf.model.entity;
 
+import br.gov.pf.util.BCrypt;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
@@ -278,9 +279,9 @@ public class User  extends AbstractEntity  implements Serializable {
     }
 
     //TODO olhar em casa
-    /*@PrePersist
+    @PrePersist
     public void prePersist(){
-        this.getPassword()
-    }*/
+       this.setPassword(BCrypt.hashpw(this.getPassword(), BCrypt.gensalt(5)));
+    }
 
 }
