@@ -12,11 +12,8 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "usuario")
-public class User implements Serializable {
+public class User  extends AbstractEntity  implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @NotNull(message = "o usuario deve possuir um nome")
     @Column(name = "nome")
@@ -98,13 +95,6 @@ public class User implements Serializable {
     @JoinColumn(name = "armas")
     private Gun gun;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at")
-    private Date createdAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at")
-    private Date updatedAt;
 
     public User() {
     }
@@ -149,9 +139,6 @@ public class User implements Serializable {
     /**
      * GETS E SETS
      */
-    public Long getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -188,6 +175,7 @@ public class User implements Serializable {
     public String getPassword() {
         return password;
     }
+
 
     public void setPassword(String password) {
         this.password = password;
@@ -289,21 +277,10 @@ public class User implements Serializable {
         this.addressNumber = addressNumber;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
+    //TODO olhar em casa
+    /*@PrePersist
+    public void prePersist(){
+        this.getPassword()
+    }*/
 
-    @PrePersist
-    public void setCreatedAt() {
-        this.createdAt = new Date();
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    @PreUpdate
-    public void setUpdatedAt() {
-        this.updatedAt = new Date();
-    }
 }

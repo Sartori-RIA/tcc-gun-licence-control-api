@@ -10,11 +10,8 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "arma")
-public class Gun implements Serializable {
+public class Gun  extends AbstractEntity  implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @NotNull(message = "A arma deve possuir um nome")
     private String name;
@@ -25,13 +22,6 @@ public class Gun implements Serializable {
     @NotNull(message = "A arma deve possuir um número de série")
     private String serialNumber;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at")
-    private Date createdAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at")
-    private Date updatedAt;
 
     public Gun() {
     }
@@ -47,10 +37,6 @@ public class Gun implements Serializable {
     /**
      * GETS E SETS
      */
-    public Long getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
     }
@@ -75,21 +61,4 @@ public class Gun implements Serializable {
         this.serialNumber = serialNumber;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    @PrePersist
-    public void setCreatedAt() {
-        this.createdAt = new Date();
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    @PreUpdate
-    public void setUpdatedAt() {
-        this.updatedAt = new Date();
-    }
 }

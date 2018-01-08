@@ -11,11 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "exame")
-public class Exam implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Exam  extends AbstractEntity implements Serializable {
 
     @NotNull(message = "o exame deve possuir uma categoria")
     @ManyToOne
@@ -29,13 +25,6 @@ public class Exam implements Serializable {
     @Column(name = "resultado")
     private boolean status;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at")
-    private Date createdAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at")
-    private Date updatedAt;
 
     public Exam() {
     }
@@ -51,10 +40,6 @@ public class Exam implements Serializable {
     /**
      * GETS E SETS
      */
-
-    public Long getId() {
-        return id;
-    }
 
     public ExamCategory getExamCategory() {
         return examCategory;
@@ -80,21 +65,5 @@ public class Exam implements Serializable {
         this.status = status;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
 
-    @PrePersist
-    public void setCreatedAt() {
-        this.createdAt = new Date();
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    @PreUpdate
-    public void setUpdatedAt() {
-        this.updatedAt = new Date();
-    }
 }
