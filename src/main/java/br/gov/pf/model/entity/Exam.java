@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "exame")
-public class Exam extends AbstractEntity<Long> implements Serializable {
+public class Exam implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,10 +29,20 @@ public class Exam extends AbstractEntity<Long> implements Serializable {
     @Column(name = "resultado")
     private boolean status;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
     public Exam() {
     }
 
-    public Exam(@NotNull(message = "o exame deve possuir uma categoria") ExamCategory examCategory, @Future Date date, boolean status) {
+    public Exam(@NotNull(message = "o exame deve possuir uma categoria") ExamCategory examCategory,
+                @Future Date date,
+                boolean status) {
         this.examCategory = examCategory;
         this.date = date;
         this.status = status;
@@ -70,4 +80,21 @@ public class Exam extends AbstractEntity<Long> implements Serializable {
         this.status = status;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    @PrePersist
+    public void setCreatedAt() {
+        this.createdAt = new Date();
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    @PreUpdate
+    public void setUpdatedAt() {
+        this.updatedAt = new Date();
+    }
 }

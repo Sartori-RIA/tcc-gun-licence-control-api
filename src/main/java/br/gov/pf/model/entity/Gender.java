@@ -4,10 +4,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "genero")
-public class Gender extends AbstractEntity<Long> implements Serializable {
+public class Gender implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +26,13 @@ public class Gender extends AbstractEntity<Long> implements Serializable {
     @Column(name = "Abreviacao")
     private String abbrev;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
 
     public Gender() {
     }
@@ -58,5 +66,23 @@ public class Gender extends AbstractEntity<Long> implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    @PrePersist
+    public void setCreatedAt() {
+        this.createdAt = new Date();
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    @PreUpdate
+    public void setUpdatedAt() {
+        this.updatedAt = new Date();
     }
 }

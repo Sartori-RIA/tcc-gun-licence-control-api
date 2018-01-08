@@ -3,10 +3,11 @@ package br.gov.pf.model.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "exame_categoria")
-public class ExamCategory extends AbstractEntity<Long> implements Serializable {
+public class ExamCategory implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +16,17 @@ public class ExamCategory extends AbstractEntity<Long> implements Serializable {
     @NotNull(message = "a categoria deve possuir uma descricao")
     @Column(name = "description")
     private String description;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
+    public ExamCategory() {
+    }
 
     public ExamCategory(@NotNull(message = "a categoria deve possuir uma descricao") String description) {
         this.description = description;
@@ -35,7 +47,21 @@ public class ExamCategory extends AbstractEntity<Long> implements Serializable {
         this.description = description;
     }
 
-    public ExamCategory() {
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
+    @PrePersist
+    public void setCreatedAt() {
+        this.createdAt = new Date();
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    @PreUpdate
+    public void setUpdatedAt() {
+        this.updatedAt = new Date();
+    }
 }

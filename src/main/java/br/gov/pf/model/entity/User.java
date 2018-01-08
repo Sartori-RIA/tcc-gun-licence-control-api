@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "usuario")
-public class User extends AbstractEntity<Long> implements Serializable {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,7 @@ public class User extends AbstractEntity<Long> implements Serializable {
     private Gender gender;
 
     @NotNull(message = "o usuario deve possuir um CPF")
-    @CPF
+//    @CPF//TODO LEMBRAR DE DESCOMENTAR O VALIDADOR DE CPF
     private String cpf;
 
     @NotNull(message = "o usuario deve possuir um e-mail")
@@ -38,18 +38,23 @@ public class User extends AbstractEntity<Long> implements Serializable {
     @Column(name = "senha")
     private String password;
 
-    @NotNull
+    @NotNull(message = "o usuario deve possuir um cep")
+    @Column(name = "cep")
     private String cep;
 
     @NotNull(message = "o usuario deve residir em um rua")
-    @Min(5)
-    @Max(30)
+    @Size.List({
+            @Size(min = 5, message = "minimo de 5(dois) caracter"),
+            @Size(max = 100, message = "maximo de 100(quinze) caracteres")
+    })
     @Column(name = "rua")
     private String street;
 
-    @NotNull(message = "o usuario deve residir em uma cidade")
-    @Min(5)
-    @Max(30)
+    @NotNull(message = "o usuario deve residir em um bairro")
+    @Size.List({
+            @Size(min = 5, message = "minimo de 5(dois) caracter"),
+            @Size(max = 100, message = "maximo de 100(quinze) caracteres")
+    })
     @Column(name = "bairro")
     private String neighborhood;
 
@@ -61,7 +66,17 @@ public class User extends AbstractEntity<Long> implements Serializable {
     @Column(name = "estado")
     private String state;
 
-    @NotNull
+    @NotNull(message = "o usuario deve residir em uma cidade")
+    @Column(name = "cidade")
+    private String city;
+    @NotNull(message = "a residencia do usuario deve conter um numero")
+    @Column(name = "numero")
+    private String addressNumber;
+
+    @Column(name = "complemento")
+    private String complement;
+
+    @NotNull(message = "o usuario deve ter uma data de nascimento")
     @Past
     @Column(name = "data_aniversario")
     private Date dateOfBirth;
@@ -83,13 +98,36 @@ public class User extends AbstractEntity<Long> implements Serializable {
     @JoinColumn(name = "armas")
     private Gun gun;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
     public User() {
     }
 
-    public User(@NotNull(message = "o usuario deve possuir um nome") String name, @NotNull(message = "o usuario deve possuir um sexo") Gender gender, @NotNull(message = "o usuario deve possuir um CPF") @CPF String cpf, @NotNull(message = "o usuario deve possuir um e-mail") String email, @NotNull(message = "o usuario deve possuir uma senha") String password, @NotNull String cep, @NotNull(message = "o usuario deve residir em um rua") @Min(5) @Max(30) String street, @NotNull(message = "o usuario deve residir em uma cidade") @Min(5) @Max(30) String neighborhood, @NotNull(message = "o usuario deve residir em um estado") @Size.List({
-            @Size(min = 2, message = "minimo de 2(dois) caracter"),
-            @Size(max = 15, message = "maximo de 15(quinze) caracteres")
-    }) String state, @NotNull @Past Date dateOfBirth, @NotNull(message = "o usuario deve possuir um nivel de acesso") UserRole role, Licence licence, Exam exam, Gun gun) {
+
+    public User(@NotNull(message = "o usuario deve possuir um nome") String name,
+                @NotNull(message = "o usuario deve possuir um sexo") Gender gender,
+                @NotNull(message = "o usuario deve possuir um CPF") @CPF String cpf,
+                @NotNull(message = "o usuario deve possuir um e-mail") String email,
+                @NotNull(message = "o usuario deve possuir uma senha") String password,
+                @NotNull(message = "o usuario deve possuir um cep") String cep,
+                @NotNull(message = "o usuario deve residir em um rua") @Min(5) @Max(100) String street,
+                @NotNull(message = "o usuario deve residir em um bairro") @Min(5) @Max(100) String neighborhood,
+                @NotNull(message = "o usuario deve residir em um estado")
+                @Size.List({
+                        @Size(min = 2, message = "minimo de 2(dois) caracter"),
+                        @Size(max = 15, message = "maximo de 15(quinze) caracteres")
+                }) String state,
+                @NotNull(message = "o usuario deve residir em uma cidade") String city,
+                String complement,
+                @NotNull(message = "o usuario deve ter uma data de nascimento") @Past Date dateOfBirth,
+                @NotNull(message = "o usuario deve possuir um nivel de acesso") UserRole role,
+                Licence licence, Exam exam, Gun gun) {
         this.name = name;
         this.gender = gender;
         this.cpf = cpf;
@@ -99,6 +137,8 @@ public class User extends AbstractEntity<Long> implements Serializable {
         this.street = street;
         this.neighborhood = neighborhood;
         this.state = state;
+        this.city = city;
+        this.complement = complement;
         this.dateOfBirth = dateOfBirth;
         this.role = role;
         this.licence = licence;
@@ -223,5 +263,47 @@ public class User extends AbstractEntity<Long> implements Serializable {
 
     public void setGun(Gun gun) {
         this.gun = gun;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getComplement() {
+        return complement;
+    }
+
+    public void setComplement(String complement) {
+        this.complement = complement;
+    }
+
+    public String getAddressNumber() {
+        return addressNumber;
+    }
+
+    public void setAddressNumber(String addressNumber) {
+        this.addressNumber = addressNumber;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    @PrePersist
+    public void setCreatedAt() {
+        this.createdAt = new Date();
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    @PreUpdate
+    public void setUpdatedAt() {
+        this.updatedAt = new Date();
     }
 }

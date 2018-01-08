@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "licenca")
-public class Licence extends AbstractEntity<Long> implements Serializable {
+public class Licence  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,10 +31,20 @@ public class Licence extends AbstractEntity<Long> implements Serializable {
     @Future
     private Date shelfLife;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
     public Licence() {
     }
 
-    public Licence(@NotNull(message = "a licenca deve possuir uma descricao") String description, @NotNull(message = "a licenca deve possuir uma categoria") LicenceCategory licenceCategory, @NotNull(message = "a licenca deve possuir uma validade") @Future Date shelfLife) {
+    public Licence(@NotNull(message = "a licenca deve possuir uma descricao") String description,
+                   @NotNull(message = "a licenca deve possuir uma categoria") LicenceCategory licenceCategory,
+                   @NotNull(message = "a licenca deve possuir uma validade") @Future Date shelfLife) {
         this.description = description;
         this.licenceCategory = licenceCategory;
         this.shelfLife = shelfLife;
@@ -67,5 +77,25 @@ public class Licence extends AbstractEntity<Long> implements Serializable {
         this.shelfLife = shelfLife;
     }
 
+    public void setLicenceCategory(LicenceCategory licenceCategory) {
+        this.licenceCategory = licenceCategory;
+    }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    @PrePersist
+    public void setCreatedAt() {
+        this.createdAt = new Date();
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    @PreUpdate
+    public void setUpdatedAt() {
+        this.updatedAt = new Date();
+    }
 }
