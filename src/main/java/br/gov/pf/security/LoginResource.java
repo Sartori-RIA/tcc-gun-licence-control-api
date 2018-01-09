@@ -45,7 +45,8 @@ public class LoginResource {
             throw new ServletException("Login invalido. Por favor verifique seu CPF/Senha");
 
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_YEAR, 2);
+        calendar.setTime(new Date());
+        calendar.add(Calendar.HOUR_OF_DAY, 1);
         Date expiration = calendar.getTime();
         String base64 = "";
         try {
@@ -59,7 +60,6 @@ public class LoginResource {
                 .setIssuedAt(new Date())
                 .setExpiration(expiration)
                 .signWith(SignatureAlgorithm.HS256, base64).compact();
-        System.out.println(token);
         this.login.setToken(token);
         return this.login;
 
