@@ -1,16 +1,16 @@
 package br.gov.pf.model.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by sartori on 13/07/17.
  */
 @Entity
 @Table(name = "arma")
-public class Gun  extends AbstractEntity  implements Serializable {
+public class Gun extends AbstractEntity implements Serializable {
 
 
     @NotNull(message = "A arma deve possuir um nome")

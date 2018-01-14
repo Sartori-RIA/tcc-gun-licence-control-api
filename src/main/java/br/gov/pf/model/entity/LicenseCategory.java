@@ -1,13 +1,14 @@
 package br.gov.pf.model.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 @Table(name = "licencas_categorias")
-public class LicenceCategory  extends AbstractEntity  implements Serializable {
+public class LicenseCategory extends AbstractEntity implements Serializable {
 
 
     @NotNull(message = "a campo deve possuir uma descricao")
@@ -15,11 +16,11 @@ public class LicenceCategory  extends AbstractEntity  implements Serializable {
     private String description;
 
 
-    public LicenceCategory(@NotNull(message = "a campo deve possuir uma descricao") String description) {
+    public LicenseCategory(@NotNull(message = "a campo deve possuir uma descricao") String description) {
         this.description = description;
     }
 
-    public LicenceCategory() {
+    public LicenseCategory() {
     }
 
     /**

@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 @Secured
 @Stateless
-@Path("/generos")
+@Path("/genders")
 public class GenderResource extends AbstractResource<Long, Gender> {
     private static final Logger LOGGER = Logger.getLogger(String.valueOf(Gender.class));
     @Inject

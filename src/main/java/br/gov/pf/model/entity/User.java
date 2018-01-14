@@ -13,7 +13,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "usuario")
-public class User  extends AbstractEntity  implements Serializable {
+public class User extends AbstractEntity implements Serializable {
 
 
     @NotNull(message = "o usuario deve possuir um nome")
@@ -86,7 +86,7 @@ public class User  extends AbstractEntity  implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "licenca")
-    private Licence licence;
+    private License license;
 
     @ManyToOne
     @JoinColumn(name = "exames")
@@ -118,7 +118,7 @@ public class User  extends AbstractEntity  implements Serializable {
                 String complement,
                 @NotNull(message = "o usuario deve ter uma data de nascimento") @Past Date dateOfBirth,
                 @NotNull(message = "o usuario deve possuir um nivel de acesso") UserRole role,
-                Licence licence, Exam exam, Gun gun) {
+                License license, Exam exam, Gun gun) {
         this.name = name;
         this.gender = gender;
         this.cpf = cpf;
@@ -132,7 +132,7 @@ public class User  extends AbstractEntity  implements Serializable {
         this.complement = complement;
         this.dateOfBirth = dateOfBirth;
         this.role = role;
-        this.licence = licence;
+        this.license = license;
         this.exam = exam;
         this.gun = gun;
     }
@@ -230,12 +230,12 @@ public class User  extends AbstractEntity  implements Serializable {
         this.role = role;
     }
 
-    public Licence getLicence() {
-        return licence;
+    public License getLicense() {
+        return license;
     }
 
-    public void setLicence(Licence licence) {
-        this.licence = licence;
+    public void setLicense(License license) {
+        this.license = license;
     }
 
     public Exam getExam() {
@@ -280,8 +280,8 @@ public class User  extends AbstractEntity  implements Serializable {
 
     //TODO olhar em casa
     @PrePersist
-    public void prePersist(){
-       this.setPassword(BCrypt.hashpw(this.getPassword(), BCrypt.gensalt(5)));
+    public void prePersist() {
+        this.setPassword(BCrypt.hashpw(this.getPassword(), BCrypt.gensalt(5)));
     }
 
 }

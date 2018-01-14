@@ -14,7 +14,7 @@ import javax.ws.rs.Path;
  */
 @Secured
 @Stateless
-@Path("/armas")
+@Path("/guns")
 public class GunResource extends AbstractResource<Long, Gun> {
     private static final Logger LOGGER = Logger.getLogger(GunResource.class);
 

@@ -28,9 +28,8 @@ public abstract class AbstractResource<PK, T> implements Serializable {
             if (start >= 0) {
                 PredicateBuilder builder = this.service.getPredicateBuilder();
                 return this.service.findAll(builder.limit(start, quantity));
-            } else {
+            } else
                 return this.service.findAll();
-            }
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new WebApplicationException(500);
@@ -56,10 +55,7 @@ public abstract class AbstractResource<PK, T> implements Serializable {
                                    @PathParam("value") String value) {
         try {
             T entity = service.getByProperty(property, value);
-            return Response
-                    .ok(entity)
-                    .build();
-
+            return Response.ok(entity).build();
         } catch (Exception ex) {
             throw new WebApplicationException(500);
         }
@@ -74,9 +70,7 @@ public abstract class AbstractResource<PK, T> implements Serializable {
                                         @PathParam("value_two") String valueTwo) {
         try {
             T entity = service.getByTwoProperties(propertyOne, valueOne, propertyTwo, valueTwo);
-            return Response
-                    .ok(entity)
-                    .build();
+            return Response.ok(entity).build();
 
         } catch (Exception ex) {
             throw new WebApplicationException(500);
@@ -90,9 +84,7 @@ public abstract class AbstractResource<PK, T> implements Serializable {
                                    @PathParam("value") String value) {
         try {
             List<T> entity = service.listByProperty(property, value);
-            return Response
-                    .ok(entity)
-                    .build();
+            return Response.ok(entity).build();
         } catch (Exception ex) {
             throw new WebApplicationException(500);
         }
@@ -107,9 +99,7 @@ public abstract class AbstractResource<PK, T> implements Serializable {
                                         @PathParam("value_two") String valueTwo) {
         try {
             List<T> entity = service.listByTwoProperties(propertyOne, valueOne, propertyTwo, valueTwo);
-            return Response
-                    .ok(entity)
-                    .build();
+            return Response.ok(entity).build();
         } catch (Exception ex) {
             throw new WebApplicationException(500);
         }
@@ -122,10 +112,7 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     public Response save(T entity) {
         try {
             service.save(entity);
-            return Response
-                    .status(200)
-                    .entity(entity)
-                    .build();
+            return Response.status(200).entity(entity).build();
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new WebApplicationException(500);
@@ -138,10 +125,7 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     public Response update(T entity) {
         try {
             service.update(entity);
-            return Response
-                    .status(200)
-                    .entity(entity)
-                    .build();
+            return Response.status(200).entity(entity).build();
         } catch (Exception ex) {
             throw new WebApplicationException(500);
         }
@@ -153,10 +137,7 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     public Response delete(@PathParam("id") PK id) {
         try {
             service.deleteById(id);
-            return Response
-                    .status(200)
-                    .build();
-
+            return Response.status(200).build();
         } catch (Exception ex) {
             throw new WebApplicationException(500);
         }

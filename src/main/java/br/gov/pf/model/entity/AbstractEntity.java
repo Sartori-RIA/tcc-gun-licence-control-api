@@ -1,8 +1,6 @@
 package br.gov.pf.model.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 

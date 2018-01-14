@@ -14,7 +14,7 @@ import javax.ws.rs.Path;
  */
 @Secured
 @Stateless
-@Path("/usuarios")
+@Path("/users")
 public class UserResource extends AbstractResource<Long, User> {
     private static final Logger LOGGER = Logger.getLogger(UserResource.class);
 

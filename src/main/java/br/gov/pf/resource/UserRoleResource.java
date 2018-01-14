@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 @Secured
 @Stateless
-@Path("/usuarios-niveis-acessos")
+@Path("/users-roles")
 public class UserRoleResource extends AbstractResource<Long, UserRole> {
     private static final Logger LOGGER = Logger.getLogger(String.valueOf(UserRole.class));
 

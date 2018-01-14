@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "licenca")
-public class Licence  extends AbstractEntity   implements Serializable {
+public class License extends AbstractEntity implements Serializable {
 
 
     @NotNull(message = "a licenca deve possuir uma descricao")
@@ -21,23 +21,29 @@ public class Licence  extends AbstractEntity   implements Serializable {
     @NotNull(message = "a licenca deve possuir uma categoria")
     @ManyToOne
     @JoinColumn(name = "categoria")
-    private LicenceCategory licenceCategory;
+    private LicenseCategory licenseCategory;
 
     @NotNull(message = "a licenca deve possuir uma validade")
     @Column(name = "validade")
     @Future
     private Date shelfLife;
 
+    @NotNull(message = "a licenca deve possuir um numero de serie")
+    @Column(name = "serial_number")
+    private String serial;
 
-    public Licence() {
+
+    public License() {
     }
 
-    public Licence(@NotNull(message = "a licenca deve possuir uma descricao") String description,
-                   @NotNull(message = "a licenca deve possuir uma categoria") LicenceCategory licenceCategory,
-                   @NotNull(message = "a licenca deve possuir uma validade") @Future Date shelfLife) {
+    public License(@NotNull(message = "a licenca deve possuir uma descricao") String description,
+                   @NotNull(message = "a licenca deve possuir uma categoria") LicenseCategory licenseCategory,
+                   @NotNull(message = "a licenca deve possuir uma validade") @Future Date shelfLife,
+                   @NotNull(message = "a licenca deve possuir um numero de serie") String serial) {
         this.description = description;
-        this.licenceCategory = licenceCategory;
+        this.licenseCategory = licenseCategory;
         this.shelfLife = shelfLife;
+        this.serial = serial;
     }
 
     /**
@@ -52,8 +58,12 @@ public class Licence  extends AbstractEntity   implements Serializable {
         this.description = description;
     }
 
-    public LicenceCategory getLicenceCategory() {
-        return licenceCategory;
+    public LicenseCategory getLicenseCategory() {
+        return licenseCategory;
+    }
+
+    public void setLicenseCategory(LicenseCategory licenseCategory) {
+        this.licenseCategory = licenseCategory;
     }
 
     public Date getShelfLife() {
@@ -64,8 +74,11 @@ public class Licence  extends AbstractEntity   implements Serializable {
         this.shelfLife = shelfLife;
     }
 
-    public void setLicenceCategory(LicenceCategory licenceCategory) {
-        this.licenceCategory = licenceCategory;
+    public String getSerial() {
+        return serial;
     }
 
+    public void setSerial(String serial) {
+        this.serial = serial;
+    }
 }

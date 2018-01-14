@@ -14,7 +14,7 @@ import javax.ws.rs.Path;
  */
 @Secured
 @Stateless
-@Path("/exames")
+@Path("/exams")
 public class ExamResource extends AbstractResource<Long, Exam> {
     private static final Logger LOGGER = Logger.getLogger(ExamResource.class);
 

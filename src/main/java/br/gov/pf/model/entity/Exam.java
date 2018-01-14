@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "exame")
-public class Exam  extends AbstractEntity implements Serializable {
+public class Exam extends AbstractEntity implements Serializable {
 
     @NotNull(message = "o exame deve possuir uma categoria")
     @ManyToOne

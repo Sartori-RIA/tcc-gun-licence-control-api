@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 @Secured
 @Stateless
-@Path("/exames-categorias")
+@Path("/exams-typess")
 public class ExamCategoryResource extends AbstractResource<Long, ExamCategory> {
     private static final Logger LOGGER = Logger.getLogger(String.valueOf(ExamCategory.class));
 
