@@ -10,25 +10,24 @@ import java.util.Date;
  * Created by sartori on 13/07/17.
  */
 @Entity
-@Table(name = "licenca")
+@Table(name = "licenses")
 public class License extends AbstractEntity implements Serializable {
 
 
-    @NotNull(message = "a licenca deve possuir uma descricao")
-    @Column(name = "descricao")
+    @NotNull
+    @Column(name = "description")
     private String description;
 
-    @NotNull(message = "a licenca deve possuir uma categoria")
+    @NotNull
     @ManyToOne
-    @JoinColumn(name = "categoria")
     private LicenseCategory licenseCategory;
 
-    @NotNull(message = "a licenca deve possuir uma validade")
-    @Column(name = "validade")
+    @NotNull
+    @Column(name = "shelf_life")
     @Future
     private Date shelfLife;
 
-    @NotNull(message = "a licenca deve possuir um numero de serie")
+    @NotNull
     @Column(name = "serial_number")
     private String serial;
 
@@ -36,10 +35,10 @@ public class License extends AbstractEntity implements Serializable {
     public License() {
     }
 
-    public License(@NotNull(message = "a licenca deve possuir uma descricao") String description,
-                   @NotNull(message = "a licenca deve possuir uma categoria") LicenseCategory licenseCategory,
-                   @NotNull(message = "a licenca deve possuir uma validade") @Future Date shelfLife,
-                   @NotNull(message = "a licenca deve possuir um numero de serie") String serial) {
+    public License(@NotNull String description,
+                   @NotNull LicenseCategory licenseCategory,
+                   @NotNull @Future Date shelfLife,
+                   @NotNull String serial) {
         this.description = description;
         this.licenseCategory = licenseCategory;
         this.shelfLife = shelfLife;

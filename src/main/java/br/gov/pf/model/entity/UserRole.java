@@ -7,16 +7,14 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "usuario_categorias")
+@Table(name = "users_categories")
 public class UserRole extends AbstractEntity implements Serializable {
 
-
-    @NotNull(message = "o campo deve possuir uma descricao")
-    @Column(name = "descricao")
+    @NotNull
+    @Column(name = "description")
     private String description;
 
-
-    public UserRole(@NotNull(message = "o campo deve possuir uma descricao") String description) {
+    public UserRole(@NotNull String description) {
         this.description = description;
     }
 

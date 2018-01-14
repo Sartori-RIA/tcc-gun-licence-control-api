@@ -8,29 +8,30 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "genero")
+@Table(name = "gender")
 public class Gender extends AbstractEntity implements Serializable {
 
 
-    @NotNull(message = "o campo deve possuir uma descricao")
-    @Column(name = "descricao")
+    @NotNull
+    @Column(name = "description")
     private String description;
 
-    @NotNull(message = "o campo deve possuir uma abreviacao")
+    @NotNull
     @Size.List({
-            @Size(min = 1, message = "minimo de 1(um) caracter"),
-            @Size(max = 1, message = "maximo de 1(um) caracter")
+            @Size(min = 1),
+            @Size(max = 1)
     })
-    @Column(name = "Abreviacao")
+    @Column(name = "abbrev")
     private String abbrev;
 
     public Gender() {
     }
 
-    public Gender(@NotNull(message = "o campo deve possuir uma descricao") String description, @NotNull(message = "o campo deve possuir uma abreviacao") @Size.List({
-            @Size(min = 1, message = "minimo de 1(um) caracter"),
-            @Size(max = 1, message = "maximo de 1(um) caracter")
-    }) String abbrev) {
+    public Gender(@NotNull String description,
+                  @NotNull @Size.List({
+                          @Size(min = 1),
+                          @Size(max = 1)
+                  }) String abbrev) {
         this.description = description;
         this.abbrev = abbrev;
     }

@@ -10,31 +10,33 @@ import java.util.Date;
  * Created by sartori on 13/07/17.
  */
 @Entity
-@Table(name = "exame")
+@Table(name = "exams")
 public class Exam extends AbstractEntity implements Serializable {
 
-    @NotNull(message = "o exame deve possuir uma categoria")
+    @NotNull
     @ManyToOne
-    @JoinColumn(name = "exame")
     private ExamCategory examCategory;
 
     @Future
     @Column(name = "data")
     private Date date;
 
-    @Column(name = "resultado")
+    @Column(name = "result")
     private boolean status;
+
+    @Column(name = "result_description")
+    private String resultDescription;
 
 
     public Exam() {
     }
 
-    public Exam(@NotNull(message = "o exame deve possuir uma categoria") ExamCategory examCategory,
-                @Future Date date,
-                boolean status) {
+
+    public Exam(@NotNull ExamCategory examCategory, @Future Date date, boolean status, String resultDescription) {
         this.examCategory = examCategory;
         this.date = date;
         this.status = status;
+        this.resultDescription = resultDescription;
     }
 
     /**
@@ -65,5 +67,11 @@ public class Exam extends AbstractEntity implements Serializable {
         this.status = status;
     }
 
+    public String getResultDescription() {
+        return resultDescription;
+    }
 
+    public void setResultDescription(String resultDescription) {
+        this.resultDescription = resultDescription;
+    }
 }

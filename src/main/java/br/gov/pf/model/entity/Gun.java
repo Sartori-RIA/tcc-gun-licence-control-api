@@ -1,5 +1,6 @@
 package br.gov.pf.model.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -9,40 +10,35 @@ import java.io.Serializable;
  * Created by sartori on 13/07/17.
  */
 @Entity
-@Table(name = "arma")
+@Table(name = "guns")
 public class Gun extends AbstractEntity implements Serializable {
 
+    @NotNull
+    @Column(name = "description", updatable = false, insertable = false)
+    private String description;
 
-    @NotNull(message = "A arma deve possuir um nome")
-    private String name;
-
-    @NotNull(message = "A arma deve possuir um calibre")
+    @NotNull
+    @Column(name = "description")
     private String caliber;
 
-    @NotNull(message = "A arma deve possuir um número de série")
+    @NotNull
+    @Column(name = "serial_number")
     private String serialNumber;
 
 
     public Gun() {
     }
 
-    public Gun(@NotNull(message = "A arma deve possuir um nome") String name,
-               @NotNull(message = "A arma deve possuir um calibre") String caliber,
-               @NotNull(message = "A arma deve possuir um número de série") String serialNumber) {
-        this.name = name;
-        this.caliber = caliber;
-        this.serialNumber = serialNumber;
-    }
 
     /**
      * GETS E SETS
      */
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String name) {
+        this.description = name;
     }
 
     public String getCaliber() {

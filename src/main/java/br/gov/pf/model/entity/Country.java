@@ -3,28 +3,20 @@ package br.gov.pf.model.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
 @Entity
-@Table(name = "exam_category")
-public class ExamCategory extends AbstractEntity implements Serializable {
+@Table(name = "countries")
+public class Country extends AbstractEntity{
 
-
-    @NotNull
     @Column(name = "description")
     private String description;
 
-    public ExamCategory() {
+    public Country() {
     }
 
-    public ExamCategory(@NotNull String description) {
+    public Country(String description) {
         this.description = description;
     }
-
-    /**
-     * GETS E SETS
-     */
 
     public String getDescription() {
         return description;
@@ -33,5 +25,4 @@ public class ExamCategory extends AbstractEntity implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }

@@ -7,16 +7,16 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "licencas_categorias")
+@Table(name = "licenses_categories")
 public class LicenseCategory extends AbstractEntity implements Serializable {
 
 
-    @NotNull(message = "a campo deve possuir uma descricao")
-    @Column(name = "descricao")
+    @NotNull
+    @Column(name = "description")
     private String description;
 
 
-    public LicenseCategory(@NotNull(message = "a campo deve possuir uma descricao") String description) {
+    public LicenseCategory(@NotNull String description) {
         this.description = description;
     }
 
