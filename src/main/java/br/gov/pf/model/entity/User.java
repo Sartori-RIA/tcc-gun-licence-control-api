@@ -1,6 +1,7 @@
 package br.gov.pf.model.entity;
 
 import br.gov.pf.util.BCrypt;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -26,7 +27,7 @@ public class User extends AbstractEntity implements Serializable {
     private Gender gender;
 
     @NotNull
-    //@CPF//TODO LEMBRAR DE DESCOMENTAR O VALIDADOR DE CPF
+    @CPF
     private String cpf;
 
     @NotNull
@@ -46,11 +47,11 @@ public class User extends AbstractEntity implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private UserRole role;
 
-    @ManyToOne
-    private License license;
+    @OneToMany
+    private List<License> license;
 
-    @ManyToOne
-    private Exam exam;
+    @ManyToMany
+    private List<Exam> exam;
 
     @OneToMany
     @JoinColumn(name = "description")
@@ -123,19 +124,19 @@ public class User extends AbstractEntity implements Serializable {
         this.role = role;
     }
 
-    public License getLicense() {
+    public List<License> getLicense() {
         return license;
     }
 
-    public void setLicense(License license) {
+    public void setLicense(List<License> license) {
         this.license = license;
     }
 
-    public Exam getExam() {
+    public List<Exam> getExam() {
         return exam;
     }
 
-    public void setExam(Exam exam) {
+    public void setExam(List<Exam> exam) {
         this.exam = exam;
     }
 

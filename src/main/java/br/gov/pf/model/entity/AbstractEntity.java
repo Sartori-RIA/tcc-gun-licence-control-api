@@ -34,6 +34,7 @@ public abstract class AbstractEntity implements Serializable {
     @PrePersist
     public void setCreatedAt() {
         this.createdAt = new Date();
+        this.updatedAt = new Date();
     }
 
     public Date getUpdatedAt() {
