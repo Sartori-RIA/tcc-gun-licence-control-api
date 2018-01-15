@@ -38,16 +38,6 @@ public class Launch {
         try {
             new Thread(() -> {
                 try {
-                    Launch.this.genderService.save(new Gender("Masculino", "M"));
-                    Launch.this.genderService.save(new Gender("Feminino", "F"));
-
-                    Launch.this.userRoleService.save(new UserRole("ADMIN"));
-                    Launch.this.userRoleService.save(new UserRole("DELEGADO"));
-                    Launch.this.userRoleService.save(new UserRole("INSTRUTOR"));
-                    Launch.this.userRoleService.save(new UserRole("PSICOLOGO"));
-                    Launch.this.userRoleService.save(new UserRole("CIVIL"));
-
-                    Launch.this.countryService.save(new Country("Brasil"));
 
                     Launch.this.cityService.save(new City("Guarapuava", this.stateService.getById(24L)));
                     Launch.this.cityService.save(new City("Foz do Iguaçu", this.stateService.getById(24L)));

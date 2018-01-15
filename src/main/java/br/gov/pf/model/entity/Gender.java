@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "gender")
+@Table(name = "genders")
 public class Gender extends AbstractEntity implements Serializable {
 
 

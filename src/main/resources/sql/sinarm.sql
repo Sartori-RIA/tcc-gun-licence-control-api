@@ -1,3 +1,16 @@
+INSERT INTO `genders` (`description`,`abbrev`) VALUES
+  ('Masculino','M'),
+  ('Feminino','F');
+
+INSERT INTO `users_categories` (`description`) VALUES
+  ('ADMIN'),
+  ('DELEGADO'),
+  ('INSTRUTOR'),
+  ('PSICOLOGO'),
+  ('CIVIL');
+
+INSERT INTO `countries` (`description`) VALUES ('Brasil');
+
 INSERT INTO `states`(`description`,`abbrev`,`country_id`) VALUES
   ('RONDÔNIA','RO',1),
   ('ACRE','AC',1),
