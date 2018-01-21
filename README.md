@@ -12,6 +12,11 @@ IDEA utilizada: Intellij IDEA Ultimate 17.2.1
 + **BeanValidation**
 + **MySQL**
 + **Java 8**
++ **Jax-rs**
++ **EJB**
++ **Javax Injection**
++ **JWT**
++ **JUnit**
 + **REST**
 + **Wildfly 10.1.0.final**
 
@@ -52,5 +57,7 @@ IDEA utilizada: Intellij IDEA Ultimate 17.2.1
             <background-validation>true</background-validation>
             <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
         </validation>
-  </datasource
+  </datasource>
 ```
+
++ **Apos iniciado o servidor pela primeira vez para criar o banco, rodar o script `/src/main/resources/sql/sinarm.sql`**
