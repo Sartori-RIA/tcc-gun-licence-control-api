@@ -15,8 +15,27 @@ public class UserService extends AbstractService<Long, User> {
     @Inject
     private UserDAO dao;
 
+    @Inject
+    private UserRoleService roleService;
+
+    @Inject
+    private AddressService addressService;
+
     @Override
     public AbstractDAO<Long, User> getDAO() {
         return this.dao;
+    }
+
+    @Override
+    public User save(User entity) throws Exception {
+        if (entity.getRole() == null)
+            entity.setRole(roleService.getByProperty("description", "CIVIL"));
+        return super.save(entity);
+    }
+
+    @Override
+    public User update(User entity) throws Exception {
+
+        return super.update(entity);
     }
 }

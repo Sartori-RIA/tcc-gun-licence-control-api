@@ -1,6 +1,11 @@
 package br.gov.pf.model.entity;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -11,15 +16,14 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "exams")
-public class Exam extends AbstractEntity implements Serializable {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Exam extends AbstractEntity {
 
-    @NotNull
     @ManyToOne
-    private ExamCategory examCategory;
+    private @NotNull ExamCategory examCategory;
 
-    @Future
     @Column(name = "data")
-    private Date date;
+    private @Future Date date;
 
     @Column(name = "result")
     private boolean status;
@@ -44,7 +48,7 @@ public class Exam extends AbstractEntity implements Serializable {
      */
 
     public ExamCategory getExamCategory() {
-        return examCategory;
+        return this.examCategory;
     }
 
     public void setExamCategory(ExamCategory examCategory) {
@@ -52,7 +56,7 @@ public class Exam extends AbstractEntity implements Serializable {
     }
 
     public Date getDate() {
-        return date;
+        return this.date;
     }
 
     public void setDate(Date date) {
@@ -60,7 +64,7 @@ public class Exam extends AbstractEntity implements Serializable {
     }
 
     public boolean isStatus() {
-        return status;
+        return this.status;
     }
 
     public void setStatus(boolean status) {
@@ -68,7 +72,7 @@ public class Exam extends AbstractEntity implements Serializable {
     }
 
     public String getResultDescription() {
-        return resultDescription;
+        return this.resultDescription;
     }
 
     public void setResultDescription(String resultDescription) {

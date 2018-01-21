@@ -8,9 +8,11 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 @Stateless
-public class AddressService extends AbstractService<Long, Address>{
+public class AddressService extends AbstractService<Long, Address> {
 
-    @Inject private AddressDAO dao;
+    @Inject
+    private AddressDAO dao;
+
     @Override
     public AbstractDAO<Long, Address> getDAO() {
         return this.dao;

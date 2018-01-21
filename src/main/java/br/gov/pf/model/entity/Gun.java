@@ -1,5 +1,7 @@
 package br.gov.pf.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -11,19 +13,17 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "guns")
-public class Gun extends AbstractEntity implements Serializable {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Gun extends AbstractEntity {
 
-    @NotNull
     @Column(name = "description", updatable = false, insertable = false)
-    private String description;
+    private @NotNull String description;
 
-    @NotNull
     @Column(name = "description")
-    private String caliber;
+    private @NotNull String caliber;
 
-    @NotNull
     @Column(name = "serial_number")
-    private String serialNumber;
+    private @NotNull String serialNumber;
 
 
     public Gun() {
@@ -34,15 +34,15 @@ public class Gun extends AbstractEntity implements Serializable {
      * GETS E SETS
      */
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String name) {
-        this.description = name;
+        description = name;
     }
 
     public String getCaliber() {
-        return caliber;
+        return this.caliber;
     }
 
     public void setCaliber(String caliber) {
@@ -50,7 +50,7 @@ public class Gun extends AbstractEntity implements Serializable {
     }
 
     public String getSerialNumber() {
-        return serialNumber;
+        return this.serialNumber;
     }
 
     public void setSerialNumber(String serialNumber) {

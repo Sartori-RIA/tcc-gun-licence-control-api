@@ -1,12 +1,12 @@
 package br.gov.pf.model.entity;
 
 import br.gov.pf.util.BCrypt;
-import org.hibernate.validator.constraints.br.CPF;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -15,36 +15,28 @@ import java.util.List;
  */
 @Entity
 @Table(name = "users")
-public class User extends AbstractEntity implements Serializable {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class User extends AbstractEntity {
 
-
-    @NotNull
     @Column(name = "name")
-    private String name;
+    private @NotNull String name;
 
-    @NotNull
     @ManyToOne
-    private Gender gender;
+    private @NotNull Gender gender;
 
-    @NotNull
-    @Column(name = "CPF")
-    //@CPF //TODO remover este comentario quando pronto
-    private String cpf;
+    @Column(name = "CPF") //@CPF //TODO remover este comentario quando pronto
+    private @NotNull String cpf;
 
-    @NotNull
     @Column(name = "email")
-    private String email;
+    private @NotNull String email;
 
-    @NotNull
+    @JsonIgnore
     @Column(name = "password")
     private String password;
 
-    @NotNull
-    @Past
     @Column(name = "date_of_birth")
-    private Date dateOfBirth;
+    private @NotNull @Past Date dateOfBirth;
 
-    @NotNull
     @ManyToOne
     private UserRole role;
 
@@ -57,7 +49,7 @@ public class User extends AbstractEntity implements Serializable {
     @OneToMany
     private List<Gun> gun;
 
-    @OneToMany
+    @ManyToMany
     private List<Address> addressList;
 
     public User() {
@@ -68,7 +60,7 @@ public class User extends AbstractEntity implements Serializable {
      */
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -76,7 +68,7 @@ public class User extends AbstractEntity implements Serializable {
     }
 
     public Gender getGender() {
-        return gender;
+        return this.gender;
     }
 
     public void setGender(Gender gender) {
@@ -84,7 +76,7 @@ public class User extends AbstractEntity implements Serializable {
     }
 
     public String getCpf() {
-        return cpf;
+        return this.cpf;
     }
 
     public void setCpf(String cpf) {
@@ -92,7 +84,7 @@ public class User extends AbstractEntity implements Serializable {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -100,7 +92,7 @@ public class User extends AbstractEntity implements Serializable {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -108,7 +100,7 @@ public class User extends AbstractEntity implements Serializable {
     }
 
     public Date getDateOfBirth() {
-        return dateOfBirth;
+        return this.dateOfBirth;
     }
 
     public void setDateOfBirth(Date dateOfBirth) {
@@ -116,7 +108,7 @@ public class User extends AbstractEntity implements Serializable {
     }
 
     public UserRole getRole() {
-        return role;
+        return this.role;
     }
 
     public void setRole(UserRole role) {
@@ -129,7 +121,7 @@ public class User extends AbstractEntity implements Serializable {
 
     @PrePersist
     public void prePersist() {
-        this.setPassword(BCrypt.hashpw(this.getPassword(), BCrypt.gensalt(5)));
+        setPassword(BCrypt.hashpw(getPassword(), BCrypt.gensalt(5)));
     }
 
 }

@@ -1,7 +1,6 @@
 package br.gov.pf.resource;
 
 import br.gov.pf.model.service.AbstractService;
-import br.gov.pf.security.Secured;
 import br.gov.pf.util.PredicateBuilder;
 
 import javax.inject.Inject;
@@ -26,10 +25,10 @@ public abstract class AbstractResource<PK, T> implements Serializable {
             if (quantity <= 0)
                 quantity = 100;
             if (start >= 0) {
-                PredicateBuilder builder = this.service.getPredicateBuilder();
-                return this.service.findAll(builder.limit(start, quantity));
+                PredicateBuilder builder = service.getPredicateBuilder();
+                return service.findAll(builder.limit(start, quantity));
             } else
-                return this.service.findAll();
+                return service.findAll();
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new WebApplicationException(500);
@@ -38,10 +37,10 @@ public abstract class AbstractResource<PK, T> implements Serializable {
 
     @GET
     @Path("/{id}")
-    @Produces({MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
     public Response findById(@PathParam("id") PK id) {
         try {
-            return Response.ok(service.getById(id)).build();
+            return Response.ok(this.service.getById(id)).build();
         } catch (Exception ex) {
             return Response.status(404).build();
         }
@@ -53,7 +52,7 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     public Response findByProperty(@PathParam("property") String property,
                                    @PathParam("value") String value) {
         try {
-            T entity = service.getByProperty(property, value);
+            T entity = this.service.getByProperty(property, value);
             return Response.ok(entity).build();
         } catch (Exception ex) {
             return Response.status(404).build();
@@ -68,7 +67,7 @@ public abstract class AbstractResource<PK, T> implements Serializable {
                                         @PathParam("property_two") String propertyTwo,
                                         @PathParam("value_two") String valueTwo) {
         try {
-            T entity = service.getByTwoProperties(propertyOne, valueOne, propertyTwo, valueTwo);
+            T entity = this.service.getByTwoProperties(propertyOne, valueOne, propertyTwo, valueTwo);
             return Response.ok(entity).build();
         } catch (Exception ex) {
             return Response.status(404).build();
@@ -81,7 +80,7 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     public Response listByProperty(@PathParam("property") String property,
                                    @PathParam("value") String value) {
         try {
-            List<T> entity = service.listByProperty(property, value);
+            List<T> entity = this.service.listByProperty(property, value);
             return Response.ok(entity).build();
         } catch (Exception ex) {
             return Response.status(404).build();
@@ -96,7 +95,7 @@ public abstract class AbstractResource<PK, T> implements Serializable {
                                         @PathParam("property_two") String propertyTwo,
                                         @PathParam("value_two") String valueTwo) {
         try {
-            List<T> entity = service.listByTwoProperties(propertyOne, valueOne, propertyTwo, valueTwo);
+            List<T> entity = this.service.listByTwoProperties(propertyOne, valueOne, propertyTwo, valueTwo);
             return Response.ok(entity).build();
         } catch (Exception ex) {
             return Response.status(404).build();
@@ -105,11 +104,11 @@ public abstract class AbstractResource<PK, T> implements Serializable {
 
 
     @POST
-    @Consumes({MediaType.APPLICATION_JSON})
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(T entity) {
         try {
-            service.save(entity);
+            this.service.save(entity);
             return Response.status(200).entity(entity).build();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -118,11 +117,11 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     }
 
     @PUT
-    @Consumes({MediaType.APPLICATION_JSON})
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(T entity) {
         try {
-            service.update(entity);
+            this.service.update(entity);
             return Response.status(200).entity(entity).build();
         } catch (Exception ex) {
             throw new WebApplicationException(500);
@@ -131,10 +130,10 @@ public abstract class AbstractResource<PK, T> implements Serializable {
 
     @DELETE
     @Path("/{id}")
-    @Consumes({MediaType.APPLICATION_JSON})
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") PK id) {
         try {
-            service.deleteById(id);
+            this.service.deleteById(id);
             return Response.status(200).build();
         } catch (Exception ex) {
             throw new WebApplicationException(500);

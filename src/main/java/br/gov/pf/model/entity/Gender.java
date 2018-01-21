@@ -1,34 +1,35 @@
 package br.gov.pf.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.Size.List;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "genders")
-public class Gender extends AbstractEntity implements Serializable {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Gender extends AbstractEntity {
 
 
-    @NotNull
     @Column(name = "description")
-    private String description;
+    private @NotNull String description;
 
-    @NotNull
-    @Size.List({
+    @Column(name = "abbrev")
+    private @NotNull @List({
             @Size(min = 1),
             @Size(max = 1)
-    })
-    @Column(name = "abbrev")
-    private String abbrev;
+    }) String abbrev;
 
     public Gender() {
     }
 
     public Gender(@NotNull String description,
-                  @NotNull @Size.List({
+                  @NotNull @List({
                           @Size(min = 1),
                           @Size(max = 1)
                   }) String abbrev) {
@@ -40,7 +41,7 @@ public class Gender extends AbstractEntity implements Serializable {
      * GETS E SETS
      */
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -48,7 +49,7 @@ public class Gender extends AbstractEntity implements Serializable {
     }
 
     public String getAbbrev() {
-        return abbrev;
+        return this.abbrev;
     }
 
     public void setAbbrev(String abbrev) {

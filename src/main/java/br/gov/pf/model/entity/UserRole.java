@@ -1,5 +1,7 @@
 package br.gov.pf.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -8,11 +10,11 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "users_roles")
-public class UserRole extends AbstractEntity implements Serializable {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class UserRole extends AbstractEntity {
 
-    @NotNull
     @Column(name = "description")
-    private String description;
+    private @NotNull String description;
 
     public UserRole(@NotNull String description) {
         this.description = description;
@@ -25,7 +27,7 @@ public class UserRole extends AbstractEntity implements Serializable {
      * GETS E SETS
      */
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {

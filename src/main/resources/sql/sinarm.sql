@@ -49,11 +49,11 @@ INSERT INTO `states`(`description`,`abbrev`,`country_id`) VALUES
 
 
 # INSERT DE CIDADES
-INSERT INTO sinarm_db.cities (id, created_at, updated_at, description, state_id) VALUES (6, '2018-01-20 19:54:20', '2018-01-20 19:54:20', 'Guarapuava', 24);
-INSERT INTO sinarm_db.cities (id, created_at, updated_at, description, state_id) VALUES (7, '2018-01-20 19:54:20', '2018-01-20 19:54:20', 'Foz do Iguaçu', 24);
-INSERT INTO sinarm_db.cities (id, created_at, updated_at, description, state_id) VALUES (8, '2018-01-20 19:54:20', '2018-01-20 19:54:20', 'Garuva', 25);
-INSERT INTO sinarm_db.cities (id, created_at, updated_at, description, state_id) VALUES (9, '2018-01-20 19:54:20', '2018-01-20 19:54:20', 'Blumenau', 25);
-INSERT INTO sinarm_db.cities (id, created_at, updated_at, description, state_id) VALUES (10, '2018-01-20 19:54:20', '2018-01-20 19:54:20', 'Porto Alegre', 26);
+INSERT INTO sinarm_db.cities (id, created_at, updated_at, description, state_id) VALUES (6, '2018-01-20 19:54:20', '2018-01-20 19:54:20', 'Guarapuava', 21);
+INSERT INTO sinarm_db.cities (id, created_at, updated_at, description, state_id) VALUES (7, '2018-01-20 19:54:20', '2018-01-20 19:54:20', 'Foz do Iguaçu', 21);
+INSERT INTO sinarm_db.cities (id, created_at, updated_at, description, state_id) VALUES (8, '2018-01-20 19:54:20', '2018-01-20 19:54:20', 'Garuva', 22);
+INSERT INTO sinarm_db.cities (id, created_at, updated_at, description, state_id) VALUES (9, '2018-01-20 19:54:20', '2018-01-20 19:54:20', 'Blumenau', 22);
+INSERT INTO sinarm_db.cities (id, created_at, updated_at, description, state_id) VALUES (10, '2018-01-20 19:54:20', '2018-01-20 19:54:20', 'Porto Alegre', 23);
 
 # INSERT DE USUARIOS, SENHA PADRAO = 123456
 INSERT INTO sinarm_db.users (id, created_at, updated_at, cpf, date_of_birth, email, name, password, gender_id, role_id) VALUES (1, '2018-01-20 19:54:20', '2018-01-20 19:54:20', '111', '2018-01-20 19:54:20', 'email@email.com', 'nome do admin', '$2a$05$99WnoBXA/g14iw6AHheWSeOzPJd67HMgtzhv9NS0NA1nEr1SLSa1G', 1, 1);
