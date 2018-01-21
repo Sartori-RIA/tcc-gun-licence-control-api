@@ -12,7 +12,6 @@ import javax.ws.rs.Path;
 /**
  * Created by sartori on 13/07/17.
  */
-@Secured
 @Stateless
 @Path("/exams")
 public class ExamResource extends AbstractResource<Long, Exam> {

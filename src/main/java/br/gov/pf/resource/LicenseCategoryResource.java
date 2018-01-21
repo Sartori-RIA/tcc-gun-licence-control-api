@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import javax.ws.rs.Path;
 import java.util.logging.Logger;
 
-@Secured
 @Stateless
 @Path("/licenses-types")
 public class LicenseCategoryResource extends AbstractResource<Long, LicenseCategory> {

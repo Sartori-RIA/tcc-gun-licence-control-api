@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "users_categories")
+@Table(name = "users_roles")
 public class UserRole extends AbstractEntity implements Serializable {
 
     @NotNull

@@ -8,9 +8,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Path;
 
-@Secured
-@Path("/cities")
 @Stateless
+@Path("/cities")
 public class CityResource extends AbstractResource<Long, City> {
     @Inject
     private CityService service;

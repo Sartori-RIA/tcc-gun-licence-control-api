@@ -39,16 +39,15 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public T findById(@PathParam("id") PK id) {
+    public Response findById(@PathParam("id") PK id) {
         try {
-            return service.getById(id);
+            return Response.ok(service.getById(id)).build();
         } catch (Exception ex) {
-            throw new WebApplicationException(500);
+            return Response.status(404).build();
         }
     }
 
     @GET
-    @Secured
     @Path("/find/property/{property}/value/{value}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findByProperty(@PathParam("property") String property,
@@ -57,7 +56,7 @@ public abstract class AbstractResource<PK, T> implements Serializable {
             T entity = service.getByProperty(property, value);
             return Response.ok(entity).build();
         } catch (Exception ex) {
-            throw new WebApplicationException(500);
+            return Response.status(404).build();
         }
     }
 
@@ -71,9 +70,8 @@ public abstract class AbstractResource<PK, T> implements Serializable {
         try {
             T entity = service.getByTwoProperties(propertyOne, valueOne, propertyTwo, valueTwo);
             return Response.ok(entity).build();
-
         } catch (Exception ex) {
-            throw new WebApplicationException(500);
+            return Response.status(404).build();
         }
     }
 
@@ -86,7 +84,7 @@ public abstract class AbstractResource<PK, T> implements Serializable {
             List<T> entity = service.listByProperty(property, value);
             return Response.ok(entity).build();
         } catch (Exception ex) {
-            throw new WebApplicationException(500);
+            return Response.status(404).build();
         }
     }
 
@@ -101,7 +99,7 @@ public abstract class AbstractResource<PK, T> implements Serializable {
             List<T> entity = service.listByTwoProperties(propertyOne, valueOne, propertyTwo, valueTwo);
             return Response.ok(entity).build();
         } catch (Exception ex) {
-            throw new WebApplicationException(500);
+            return Response.status(404).build();
         }
     }
 

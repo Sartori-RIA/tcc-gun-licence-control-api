@@ -12,7 +12,6 @@ import javax.ws.rs.Path;
 /**
  * Created by sartori on 13/07/17.
  */
-@Secured
 @Stateless
 @Path("/users")
 public class UserResource extends AbstractResource<Long, User> {

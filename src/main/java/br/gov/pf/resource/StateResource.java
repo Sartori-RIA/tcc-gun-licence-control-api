@@ -8,7 +8,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Path;
 
-@Secured
 @Path("/states")
 @Stateless
 public class StateResource extends AbstractResource<Long, State> {

@@ -13,6 +13,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 import java.util.Calendar;
@@ -28,9 +29,9 @@ public class LoginResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Login login(Map<String, String> json) throws ServletException {
+    public Response login(Map<String, String> json) throws ServletException {
         if (json.get("cpf") == null || json.get("password") == null)
-            throw new ServletException("Por favor informe um CPF e Senha");
+            Response.status(401).build();
 
         String cpf = json.get("cpf");
         String password = json.get("password");
@@ -38,11 +39,11 @@ public class LoginResource {
         User user = userService.getByProperty("cpf", cpf);
 
         if (user == null)
-            throw new ServletException("CPF não encontrado");
+            Response.status(401).build();
 
         String pwd = user.getPassword();
         if (!BCrypt.checkpw(password, pwd))
-            throw new ServletException("Login invalido. Por favor verifique seu CPF/Senha");
+            Response.status(401).build();
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
@@ -61,7 +62,7 @@ public class LoginResource {
                 .setExpiration(expiration)
                 .signWith(SignatureAlgorithm.HS256, base64).compact();
         this.login.setToken(token);
-        return this.login;
+        return Response.ok(this.login).build();
 
     }
 

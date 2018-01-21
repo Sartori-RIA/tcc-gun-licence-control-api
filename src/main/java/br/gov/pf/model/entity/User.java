@@ -27,7 +27,8 @@ public class User extends AbstractEntity implements Serializable {
     private Gender gender;
 
     @NotNull
-    @CPF
+    @Column(name = "CPF")
+    //@CPF //TODO remover este comentario quando pronto
     private String cpf;
 
     @NotNull
@@ -44,7 +45,7 @@ public class User extends AbstractEntity implements Serializable {
     private Date dateOfBirth;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private UserRole role;
 
     @OneToMany
@@ -54,10 +55,8 @@ public class User extends AbstractEntity implements Serializable {
     private List<Exam> exam;
 
     @OneToMany
-    @JoinColumn(name = "description")
     private List<Gun> gun;
 
-    @NotNull
     @OneToMany
     private List<Address> addressList;
 
@@ -122,35 +121,6 @@ public class User extends AbstractEntity implements Serializable {
 
     public void setRole(UserRole role) {
         this.role = role;
-    }
-
-    public List<License> getLicense() {
-        return license;
-    }
-
-    public void setLicense(List<License> license) {
-        this.license = license;
-    }
-
-    public List<Exam> getExam() {
-        return exam;
-    }
-
-    public void setExam(List<Exam> exam) {
-        this.exam = exam;
-    }
-
-    public List<Address> getAddressList() {
-        return addressList;
-    }
-
-    public void setAddressList(List<Address> addressList) {
-        this.addressList = addressList;
-    }
-
-
-    public List<Gun> getGun() {
-        return gun;
     }
 
     public void setGun(List<Gun> gun) {

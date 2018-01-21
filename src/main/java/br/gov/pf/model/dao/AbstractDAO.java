@@ -20,69 +20,31 @@ public abstract class AbstractDAO<PK, T> implements Serializable {
         return this.entityManager;
     }
 
-    /**
-     * Retorna uma entidade pelo seu ID
-     *
-     * @param pk id da entidade
-     * @return
-     */
     public T getById(PK pk) {
         return (T) entityManager.find(getTypeClass(), pk);
     }
 
-    /**
-     * Retorna a entidade pelo atributo �nico, ou seja, assumir� que h� apenas
-     * uma entidade com este atributo, retornando apenas um elemento.
-     *
-     * @param propertyName  nome do atributo
-     * @param propertyValue valor do atributo
-     * @return
-     */
     public T getByProperty(String propertyName, String propertyValue) {
-        String queryString = "SELECT o FROM " + getTypeClass().getName() + " o where o." + propertyName + " = :param";
-
-        Query query = entityManager.createQuery(queryString);
-        query.setParameter("param", propertyValue);
-
+        Query query = getQueryOneProperty(propertyName, propertyValue);
         List<T> queryResult = query.getResultList();
-
         T returnObject = null;
-
-        if (!queryResult.isEmpty()) {
+        if (!queryResult.isEmpty())
             returnObject = queryResult.get(0);
-        }
-
         return returnObject;
     }
 
     public T getByTwoProperties(String firstPropertyName, String firstPropertyValue, String secondPropertyName,
                                 String secondPropertyValue) {
-
-        String queryString = "SELECT o FROM " + getTypeClass().getName() + " o where o." + firstPropertyName
-                + " = :param AND o." + secondPropertyName + " = :param2";
-
-        Query query = entityManager.createQuery(queryString);
-        query.setParameter("param", firstPropertyValue);
-        query.setParameter("param2", secondPropertyValue);
-
+        Query query = getQueryTwoProperty(firstPropertyName, firstPropertyValue, secondPropertyName, secondPropertyValue);
         List<T> queryResult = query.getResultList();
-
         T returnObject = null;
-
-        if (!queryResult.isEmpty()) {
+        if (!queryResult.isEmpty())
             returnObject = queryResult.get(0);
-        }
-
         return returnObject;
     }
 
     public List<T> listByProperty(String propertyName, String propertyValue) {
-
-        String queryString = "SELECT o FROM " + getTypeClass().getName() + " o where o." + propertyName + " = :param";
-
-        Query query = entityManager.createQuery(queryString);
-        query.setParameter("param", propertyValue);
-
+        Query query = getQueryOneProperty(propertyName, propertyValue);
         return (List<T>) query.getResultList();
     }
 
@@ -90,14 +52,7 @@ public abstract class AbstractDAO<PK, T> implements Serializable {
                                        String firstPropertyValue,
                                        String secondPropertyName,
                                        String secondPropertyValue) {
-
-        String queryString = "SELECT o FROM " + getTypeClass().getName() + " o where o." + firstPropertyName
-                + " = :param AND o." + secondPropertyName + " = :param2";
-
-        Query query = entityManager.createQuery(queryString);
-        query.setParameter("param", firstPropertyValue);
-        query.setParameter("param2", secondPropertyValue);
-
+        Query query = getQueryTwoProperty(firstPropertyName, firstPropertyValue, secondPropertyName, secondPropertyValue);
         return (List<T>) query.getResultList();
     }
 
@@ -130,17 +85,15 @@ public abstract class AbstractDAO<PK, T> implements Serializable {
         List<T> entities = findAll(predicate);
         if (!entities.isEmpty())
             return entities.get(0);
-
         return null;
     }
 
     public List<T> findAll(PredicateBuilder predicate) {
         Query query = entityManager.createQuery(predicate.getQuery().toString());
-        if (!predicate.getParams().isEmpty()) {
-            for (Parameter param : predicate.getParams()) {
+        if (!predicate.getParams().isEmpty())
+            for (Parameter param : predicate.getParams())
                 query.setParameter(param.getName(), param.getValue());
-            }
-        }
+
         if (predicate.getMaxResult() != null && predicate.getStartPosition() != null) {
             query.setMaxResults(predicate.getMaxResult());
             query.setFirstResult(predicate.getStartPosition());
@@ -162,5 +115,26 @@ public abstract class AbstractDAO<PK, T> implements Serializable {
         return new PredicateBuilder(getTypeClass());
     }
 
+    private Query getQueryOneProperty(String propertyName, String propertyValue) {
+        String queryString = "SELECT o FROM " + getTypeClass().getName() + " o where o." + propertyName + " = :param";
+        Query query = entityManager.createQuery(queryString);
+        try {
+            query.setParameter("param", propertyValue);
+            return query;
+        } catch (IllegalArgumentException e) {
+            query.setParameter("param", Long.valueOf(propertyValue));
+            return query;
+        }
+    }
+
+    private Query getQueryTwoProperty(String firstPropertyName, String firstPropertyValue, String secondPropertyName, String secondPropertyValue) {
+        String queryString = "SELECT o FROM " + getTypeClass().getName() + " o where o." + firstPropertyName
+                + " = :param AND o." + secondPropertyName + " = :param2";
+
+        Query query = entityManager.createQuery(queryString);
+        query.setParameter("param", firstPropertyValue);
+        query.setParameter("param2", secondPropertyValue);
+        return query;
+    }
 }
 

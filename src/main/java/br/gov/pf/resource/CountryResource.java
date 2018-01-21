@@ -8,9 +8,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Path;
 
-@Path("/contries")
+@Path("/countries")
 @Stateless
-@Secured
 public class CountryResource extends AbstractResource<Long, Country> {
 
     @Inject
