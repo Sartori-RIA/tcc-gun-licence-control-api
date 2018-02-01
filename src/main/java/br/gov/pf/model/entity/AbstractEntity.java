@@ -13,6 +13,7 @@ public abstract class AbstractEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -37,13 +38,15 @@ public abstract class AbstractEntity implements Serializable {
         this.updatedAt = new Date();
     }
 
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
     @PreUpdate
     public void setUpdatedAt() {
         this.updatedAt = new Date();
     }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+
 
 }

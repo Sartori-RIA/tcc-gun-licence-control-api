@@ -8,45 +8,39 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.Size.List;
 
 @Entity
 @Table(name = "address")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Address extends AbstractEntity {
 
-    @NotNull
     @Column(name = "cep")
-    private String cep;
+    private @NotNull String cep;
 
-    @NotNull
-    @Size.List({
-            @Size(min = 5),
-            @Size(max = 100)
-    })
     @Column(name = "street")
-    private String street;
-
-    @NotNull
-    @Size.List({
+    private @NotNull @List({
             @Size(min = 5),
             @Size(max = 100)
-    })
-    @Column(name = "neighborhood")
-    private String neighborhood;
+    }) String street;
 
-    @NotNull
+    @Column(name = "neighborhood")
+    private @NotNull @List({
+            @Size(min = 5),
+            @Size(max = 100)
+    }) String neighborhood;
+
     @Column(name = "addressNumber")
-    private String addressNumber;
+    private @NotNull String addressNumber;
 
     @Column(name = "complement")
     private String complement;
 
     @ManyToOne
-    @NotNull
-    private City city;
+    private @NotNull City city;
 
     public String getCep() {
-        return cep;
+        return this.cep;
     }
 
     public void setCep(String cep) {
@@ -54,7 +48,7 @@ public class Address extends AbstractEntity {
     }
 
     public String getStreet() {
-        return street;
+        return this.street;
     }
 
     public void setStreet(String street) {
@@ -62,7 +56,7 @@ public class Address extends AbstractEntity {
     }
 
     public String getNeighborhood() {
-        return neighborhood;
+        return this.neighborhood;
     }
 
     public void setNeighborhood(String neighborhood) {
@@ -70,7 +64,7 @@ public class Address extends AbstractEntity {
     }
 
     public String getAddressNumber() {
-        return addressNumber;
+        return this.addressNumber;
     }
 
     public void setAddressNumber(String addressNumber) {
@@ -78,7 +72,7 @@ public class Address extends AbstractEntity {
     }
 
     public String getComplement() {
-        return complement;
+        return this.complement;
     }
 
     public void setComplement(String complement) {
@@ -86,7 +80,7 @@ public class Address extends AbstractEntity {
     }
 
     public City getCity() {
-        return city;
+        return this.city;
     }
 
     public void setCity(City city) {
