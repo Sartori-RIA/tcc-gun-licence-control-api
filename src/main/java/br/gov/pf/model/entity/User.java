@@ -50,6 +50,9 @@ public class User extends AbstractEntity {
     private List<Gun> gun;
 
     @ManyToMany
+    @JoinTable(name = "address",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "address_id", referencedColumnName = "id")})
     private List<Address> addressList;
 
     public User() {
