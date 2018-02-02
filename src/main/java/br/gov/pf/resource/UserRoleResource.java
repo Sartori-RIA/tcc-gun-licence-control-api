@@ -3,7 +3,6 @@ package br.gov.pf.resource;
 
 import br.gov.pf.model.entity.UserRole;
 import br.gov.pf.model.service.UserRoleService;
-import br.gov.pf.security.Secured;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;

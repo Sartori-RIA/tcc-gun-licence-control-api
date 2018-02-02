@@ -5,7 +5,6 @@ import br.gov.pf.model.entity.User;
 import br.gov.pf.model.service.UserService;
 
 import javax.inject.Inject;
-import javax.servlet.ServletException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -20,7 +19,7 @@ public class ValidatorResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response validLicence(License json){
+    public Response validLicence(License json) {
         if (json == null || json.getSerial() == null)
             Response.status(401).build();
 

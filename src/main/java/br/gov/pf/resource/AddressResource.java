@@ -11,7 +11,8 @@ import javax.ws.rs.Path;
 @Stateless
 public class AddressResource extends AbstractResource<Long, Address> {
 
-    @Inject private AddressService service;
+    @Inject
+    private AddressService service;
 
     public AddressResource() {
     }

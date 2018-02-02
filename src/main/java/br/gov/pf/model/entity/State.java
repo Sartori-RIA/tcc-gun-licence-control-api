@@ -1,7 +1,5 @@
 package br.gov.pf.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -10,7 +8,6 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "states")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class State extends AbstractEntity {
 
     @NotNull
@@ -27,13 +24,6 @@ public class State extends AbstractEntity {
 
 
     public State() {
-    }
-
-
-    public State(@NotNull String description, @NotNull String abbrev, @NotNull Country country) {
-        this.description = description;
-        this.abbrev = abbrev;
-        this.country = country;
     }
 
     public String getDescription() {

@@ -1,14 +1,11 @@
 package br.gov.pf.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -16,7 +13,6 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "exams")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Exam extends AbstractEntity {
 
     @ManyToOne
@@ -31,16 +27,14 @@ public class Exam extends AbstractEntity {
     @Column(name = "result_description")
     private String resultDescription;
 
+    @ManyToOne
+    private @NotNull User examinator;
+
+    @ManyToOne
+    private @NotNull User civil;
+
 
     public Exam() {
-    }
-
-
-    public Exam(@NotNull ExamCategory examCategory, @Future Date date, boolean status, String resultDescription) {
-        this.examCategory = examCategory;
-        this.date = date;
-        this.status = status;
-        this.resultDescription = resultDescription;
     }
 
     /**
@@ -48,7 +42,7 @@ public class Exam extends AbstractEntity {
      */
 
     public ExamCategory getExamCategory() {
-        return this.examCategory;
+        return examCategory;
     }
 
     public void setExamCategory(ExamCategory examCategory) {
@@ -56,7 +50,7 @@ public class Exam extends AbstractEntity {
     }
 
     public Date getDate() {
-        return this.date;
+        return date;
     }
 
     public void setDate(Date date) {
@@ -64,7 +58,7 @@ public class Exam extends AbstractEntity {
     }
 
     public boolean isStatus() {
-        return this.status;
+        return status;
     }
 
     public void setStatus(boolean status) {
@@ -72,10 +66,26 @@ public class Exam extends AbstractEntity {
     }
 
     public String getResultDescription() {
-        return this.resultDescription;
+        return resultDescription;
     }
 
     public void setResultDescription(String resultDescription) {
         this.resultDescription = resultDescription;
+    }
+
+    public User getExaminator() {
+        return this.examinator;
+    }
+
+    public void setExaminator(User examinator) {
+        this.examinator = examinator;
+    }
+
+    public User getCivil() {
+        return this.civil;
+    }
+
+    public void setCivil(User civil) {
+        this.civil = civil;
     }
 }

@@ -2,7 +2,6 @@ package br.gov.pf.resource;
 
 import br.gov.pf.model.entity.Gun;
 import br.gov.pf.model.service.GunService;
-import br.gov.pf.security.Secured;
 import org.apache.log4j.Logger;
 
 import javax.ejb.Stateless;

@@ -2,7 +2,6 @@ package br.gov.pf.resource;
 
 import br.gov.pf.model.entity.State;
 import br.gov.pf.model.service.StateService;
-import br.gov.pf.security.Secured;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;

@@ -1,7 +1,5 @@
 package br.gov.pf.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -12,7 +10,6 @@ import javax.validation.constraints.Size.List;
 
 @Entity
 @Table(name = "address")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Address extends AbstractEntity {
 
     @Column(name = "cep")

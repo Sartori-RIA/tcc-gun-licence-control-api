@@ -1,30 +1,26 @@
 package br.gov.pf.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
 /**
  * Created by sartori on 13/07/17.
  */
 @Entity
 @Table(name = "guns")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Gun extends AbstractEntity {
 
-    @Column(name = "description", updatable = false, insertable = false)
+    @Column(name = "description")
     private @NotNull String description;
 
-    @Column(name = "description")
+    @Column(name = "caliber")
     private @NotNull String caliber;
 
     @Column(name = "serial_number")
     private @NotNull String serialNumber;
 
+    @ManyToOne
+    private License license;
 
     public Gun() {
     }
@@ -57,4 +53,11 @@ public class Gun extends AbstractEntity {
         this.serialNumber = serialNumber;
     }
 
+    public License getLicense() {
+        return this.license;
+    }
+
+    public void setLicense(License license) {
+        this.license = license;
+    }
 }

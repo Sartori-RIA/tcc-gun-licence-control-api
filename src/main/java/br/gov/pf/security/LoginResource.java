@@ -24,12 +24,12 @@ import java.util.Map;
 public class LoginResource {
     @Inject
     private UserService userService;
-    private Login login = new Login();
+    private final Login login = new Login();
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response login(Map<String, String> json) throws ServletException {
+    public Response login(Map<String, String> json) {
         if (json.get("cpf") == null || json.get("password") == null)
             Response.status(401).build();
 

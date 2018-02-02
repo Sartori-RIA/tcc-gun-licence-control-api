@@ -2,14 +2,12 @@ package br.gov.pf.model.entity;
 
 import br.gov.pf.util.BCrypt;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -41,27 +39,6 @@ public class User extends AbstractEntity {
 
     @ManyToOne
     private UserRole role;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SUBSELECT)
-    @JoinTable(name = "license_user",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "license_id", referencedColumnName = "id"))
-    private List<License> licenseList;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SUBSELECT)
-    @JoinTable(name = "exam_user",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "exam_id", referencedColumnName = "id"))
-    private List<Exam> examList;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SUBSELECT)
-    @JoinTable(name = "gun_user",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "gun_id", referencedColumnName = "id"))
-    private List<Gun> gunList;
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "address_user",
@@ -127,30 +104,6 @@ public class User extends AbstractEntity {
 
     public void setRole(UserRole role) {
         this.role = role;
-    }
-
-    public List<License> getLicenseList() {
-        return this.licenseList;
-    }
-
-    public void setLicenseList(List<License> licenseList) {
-        this.licenseList = licenseList;
-    }
-
-    public List<Exam> getExamList() {
-        return this.examList;
-    }
-
-    public void setExamList(List<Exam> examList) {
-        this.examList = examList;
-    }
-
-    public List<Gun> getGunList() {
-        return this.gunList;
-    }
-
-    public void setGunList(List<Gun> gunList) {
-        this.gunList = gunList;
     }
 
     public List<Address> getAddressList() {

@@ -1,14 +1,11 @@
 package br.gov.pf.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -16,7 +13,6 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "licenses")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class License extends AbstractEntity {
 
 
@@ -32,18 +28,10 @@ public class License extends AbstractEntity {
     @Column(name = "serial_number")
     private @NotNull String serial;
 
+    @ManyToOne
+    private @NotNull User user;
 
     public License() {
-    }
-
-    public License(@NotNull String description,
-                   @NotNull LicenseCategory licenseCategory,
-                   @NotNull @Future Date shelfLife,
-                   @NotNull String serial) {
-        this.description = description;
-        this.licenseCategory = licenseCategory;
-        this.shelfLife = shelfLife;
-        this.serial = serial;
     }
 
     /**
@@ -51,7 +39,7 @@ public class License extends AbstractEntity {
      */
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     public void setDescription(String description) {
@@ -59,7 +47,7 @@ public class License extends AbstractEntity {
     }
 
     public LicenseCategory getLicenseCategory() {
-        return this.licenseCategory;
+        return licenseCategory;
     }
 
     public void setLicenseCategory(LicenseCategory licenseCategory) {
@@ -67,7 +55,7 @@ public class License extends AbstractEntity {
     }
 
     public Date getShelfLife() {
-        return this.shelfLife;
+        return shelfLife;
     }
 
     public void setShelfLife(Date shelfLife) {
@@ -75,10 +63,18 @@ public class License extends AbstractEntity {
     }
 
     public String getSerial() {
-        return this.serial;
+        return serial;
     }
 
     public void setSerial(String serial) {
         this.serial = serial;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
