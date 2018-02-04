@@ -20,7 +20,7 @@ public class License extends AbstractEntity {
     private @NotNull String description;
 
     @ManyToOne
-    private @NotNull LicenseCategory licenseCategory;
+    private @NotNull LicenseCategory category;
 
     @Column(name = "shelf_life")
     private @NotNull @Future Date shelfLife;
@@ -46,12 +46,12 @@ public class License extends AbstractEntity {
         this.description = description;
     }
 
-    public LicenseCategory getLicenseCategory() {
-        return licenseCategory;
+    public LicenseCategory getCategory() {
+        return this.category;
     }
 
-    public void setLicenseCategory(LicenseCategory licenseCategory) {
-        this.licenseCategory = licenseCategory;
+    public void setCategory(LicenseCategory category) {
+        this.category = category;
     }
 
     public Date getShelfLife() {

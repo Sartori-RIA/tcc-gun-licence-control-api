@@ -2,6 +2,7 @@ package br.gov.pf.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -13,6 +14,8 @@ public class LicenseCategory extends AbstractEntity {
     @Column(name = "description")
     private @NotNull String description;
 
+    @OneToOne
+    private Requirement requirement;
 
     public LicenseCategory(@NotNull String description) {
         this.description = description;
@@ -33,4 +36,11 @@ public class LicenseCategory extends AbstractEntity {
         this.description = description;
     }
 
+    public Requirement getRequirement() {
+        return this.requirement;
+    }
+
+    public void setRequirement(Requirement requirement) {
+        this.requirement = requirement;
+    }
 }
