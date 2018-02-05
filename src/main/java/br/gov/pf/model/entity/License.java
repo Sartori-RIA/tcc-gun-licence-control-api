@@ -15,18 +15,17 @@ import java.util.Date;
 @Table(name = "licenses")
 public class License extends AbstractEntity {
 
-
-    @Column(name = "description")
-    private @NotNull String description;
-
     @ManyToOne
     private @NotNull LicenseCategory category;
 
     @Column(name = "shelf_life")
-    private @NotNull @Future Date shelfLife;
+    private @Future Date shelfLife;
 
     @Column(name = "serial_number")
-    private @NotNull String serial;
+    private String serial;
+
+    @Column(name = "status")
+    private boolean status;
 
     @ManyToOne
     private @NotNull User user;
@@ -37,14 +36,6 @@ public class License extends AbstractEntity {
     /**
      * GETS E SETS
      */
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public LicenseCategory getCategory() {
         return this.category;
@@ -76,5 +67,13 @@ public class License extends AbstractEntity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean isStatus() {
+        return this.status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

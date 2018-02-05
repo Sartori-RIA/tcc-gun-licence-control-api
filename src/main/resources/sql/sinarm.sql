@@ -72,3 +72,20 @@ VALUES
 INSERT INTO sinarm_db.exam_category (id, created_at, updated_at, description, role_id) VALUES
   (2, '2018-02-01 22:48:20', '2018-02-01 22:48:20', 'psicologico', 4),
   (3, '2018-02-01 22:48:29', '2018-02-01 22:48:29', 'teste de tiro', 3);
+
+# INSERT DE REQUISITOS
+INSERT INTO sinarm_db.requirements (id, created_at, updated_at, minimalAge) VALUES
+  (1, '2018-02-05 21:22:00', '2018-02-05 21:22:00', 25),
+  (2, '2018-02-05 21:22:15', '2018-02-05 21:22:15', 25);
+
+#INSERT DE EXAMES DOS REQUISITOS
+INSERT INTO sinarm_db.requirements_exam_category (Requirement_id, exams_id) VALUES
+  (1, 2),
+  (1, 3),
+  (2, 2),
+  (2, 3);
+
+#INSERT DE CATEGORIAS DE LICENÇAS
+INSERT INTO sinarm_db.licenses_categories (id, created_at, updated_at, description, requirement_id) VALUES
+  (1, '2018-02-05 21:22:00', '2018-02-05 21:22:00', 'Porte', 1),
+  (2, '2018-02-05 21:22:15', '2018-02-05 21:22:15', 'Posse', 2);
