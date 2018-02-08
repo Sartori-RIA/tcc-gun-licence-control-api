@@ -22,7 +22,7 @@ public class Exam extends AbstractEntity {
     private @Future Date date;
 
     @Column(name = "result")
-    private boolean status;
+    private Boolean status;
 
     @Column(name = "result_description")
     private String resultDescription;
@@ -57,11 +57,11 @@ public class Exam extends AbstractEntity {
         this.date = date;
     }
 
-    public boolean isStatus() {
+    public Boolean isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

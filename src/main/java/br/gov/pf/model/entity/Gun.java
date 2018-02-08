@@ -19,9 +19,6 @@ public class Gun extends AbstractEntity {
     @Column(name = "serial_number")
     private @NotNull String serialNumber;
 
-    @ManyToOne
-    private License license;
-
     public Gun() {
     }
 
@@ -51,13 +48,5 @@ public class Gun extends AbstractEntity {
 
     public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
-    }
-
-    public License getLicense() {
-        return this.license;
-    }
-
-    public void setLicense(License license) {
-        this.license = license;
     }
 }
