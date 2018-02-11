@@ -6,7 +6,12 @@ import org.apache.log4j.Logger;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * Created by sartori on 13/07/17.
@@ -20,5 +25,35 @@ public class UserResource extends AbstractResource<Long, User> {
     private UserService service;
 
     public UserResource() {
+    }
+
+    @Override
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response update(User entity) {
+        if (entity == null)
+            return Response.noContent().build();
+
+        User oldUser = service.getById(entity.getId());
+        if (oldUser == null)
+            return Response.status(401).build();
+
+        if (entity.getPassword() == null)
+            entity.setPassword(oldUser.getPassword());
+        if (entity.getName() == null || entity.getName() != oldUser.getName())
+            entity.setName(oldUser.getName());
+        if (entity.getDateOfBirth() == null || entity.getDateOfBirth() != oldUser.getDateOfBirth())
+            entity.setDateOfBirth(oldUser.getDateOfBirth());
+        if(entity.getCpf() == null || entity.getCpf() != oldUser.getCpf())
+            entity.setCpf(oldUser.getCpf());
+        if(entity.getGender() == null || entity.getGender() != oldUser.getGender())
+            entity.setGender(oldUser.getGender());
+        try {
+            return Response.ok(service.update(entity)).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.serverError().build();
+        }
     }
 }
