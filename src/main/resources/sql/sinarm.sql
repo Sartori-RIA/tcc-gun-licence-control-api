@@ -55,18 +55,25 @@ INSERT INTO sinarm_db.cities (id, created_at, updated_at, description, state_id)
   (10, '2018-01-20 19:54:20', '2018-01-20 19:54:20', 'Porto Alegre', 23);
 
 # INSERT DE USUARIOS, SENHA PADRAO = 123456
-INSERT INTO sinarm_db.users (id, created_at, updated_at, cpf, date_of_birth, email, name, password, gender_id, role_id)
+INSERT INTO sinarm_db.users (
+  id, created_at, updated_at, CPF, criminal_recors, date_of_birth, email, fathers_name,
+  mothers_name, name, nationality, naturalness, password, RG, RG_issuing_body, rg_uf, gender_id, role_id)
 VALUES
-  (1, '2018-01-20 19:54:20', '2018-01-20 19:54:20', '111', '2018-01-20 19:54:20', 'email@email.com', 'nome do admin',
-   '$2a$05$99WnoBXA/g14iw6AHheWSeOzPJd67HMgtzhv9NS0NA1nEr1SLSa1G', 1, 1),
-  (2, '2018-01-20 19:54:20', '2018-01-20 19:54:20', '333', '2018-01-20 19:54:20', 'email@email.com',
-   'nome do instrutor', '$2a$05$cO4oBK050mY8fCVu4lz1GuJ9ap1O5t0nxcilCu.26hLoX6ARoPaNy', 1, 3),
-  (3, '2018-01-20 19:54:20', '2018-01-20 19:54:20', '222', '2018-01-20 19:54:20', 'email@email.com', 'nome do delegado',
-   '$2a$05$lcXq1moicMqXKhihCNkLOe/OJi4G3FPx2K8v/WZ9Y5CBr8u8gLx6u', 1, 2),
-  (4, '2018-01-20 19:54:20', '2018-01-20 19:54:20', '444', '2018-01-20 19:54:20', 'email@email.com',
-   'nome do psicologo', '$2a$05$zmpnOyuqQKhB0auQwipUuOO5Wm/6QBeMpzqwvO9dYY2oCPEtPN8P6', 1, 4),
-  (5, '2018-01-20 19:54:20', '2018-01-20 19:54:20', '555', '2018-01-20 19:54:20', 'email@email.com', 'nome do cliente',
-   '$2a$05$YUUdCRjfuo2gFHm.bjjsoO7oS7DJloAWaF/rNYB2rfWyHKg0GN70W', 1, 5);
+  (1, '2018-02-12 20:19:50', '2018-02-12 20:19:50', '10150393911', null, '2018-02-01 00:00:00', 'lucas@gmail.com',
+     'Sidnei', 'vera', 'lucas', 'Brasil', 'Foz', '$2a$05$SD/.zaVczZv9gAVJUNqxK.Ecxc.jBUk.MZ3R3fAxEOHxEu94yPaim',
+  '9.886.498-9', 'SSP', 'RG', 1, 1),
+  (2, '2018-02-12 20:19:50', '2018-02-12 20:19:50', '111', null, '2018-02-01 00:00:00', 'lucas@gmail.com',
+      'Sidnei', 'vera', 'delegado', 'Brasil', 'Foz', '$2a$05$SD/.zaVczZv9gAVJUNqxK.Ecxc.jBUk.MZ3R3fAxEOHxEu94yPaim',
+   '9.886.498-9', 'SSP', 'RG', 1, 2),
+  (3, '2018-02-12 20:19:50', '2018-02-12 20:19:50', '222', null, '2018-02-01 00:00:00', 'lucas@gmail.com',
+      'Sidnei', 'vera', 'instrutor', 'Brasil', 'Foz', '$2a$05$SD/.zaVczZv9gAVJUNqxK.Ecxc.jBUk.MZ3R3fAxEOHxEu94yPaim',
+   '9.886.498-9', 'SSP', 'RG', 1, 3),
+  (4, '2018-02-12 20:19:50', '2018-02-12 20:19:50', '333', null, '2018-02-01 00:00:00', 'lucas@gmail.com',
+      'Sidnei', 'vera', 'psidologo', 'Brasil', 'Foz', '$2a$05$SD/.zaVczZv9gAVJUNqxK.Ecxc.jBUk.MZ3R3fAxEOHxEu94yPaim',
+   '9.886.498-9', 'SSP', 'RG', 1, 4),
+  (5, '2018-02-12 20:19:50', '2018-02-12 20:19:50', '444', null, '2018-02-01 00:00:00', 'lucas@gmail.com',
+      'Sidnei', 'vera', 'civil', 'Brasil', 'Foz', '$2a$05$SD/.zaVczZv9gAVJUNqxK.Ecxc.jBUk.MZ3R3fAxEOHxEu94yPaim',
+   '9.886.498-9', 'SSP', 'RG', 1, 5);
 
 # INSERT DE TIPOS DE EXAMES
 INSERT INTO sinarm_db.exam_category (id, created_at, updated_at, description, role_id) VALUES
@@ -74,9 +81,9 @@ INSERT INTO sinarm_db.exam_category (id, created_at, updated_at, description, ro
   (3, '2018-02-01 22:48:29', '2018-02-01 22:48:29', 'teste de tiro', 3);
 
 # INSERT DE REQUISITOS
-INSERT INTO sinarm_db.requirements (id, created_at, updated_at, minimalAge) VALUES
-  (1, '2018-02-05 21:22:00', '2018-02-05 21:22:00', 25),
-  (2, '2018-02-05 21:22:15', '2018-02-05 21:22:15', 25);
+INSERT INTO sinarm_db.requirements (id, created_at, updated_at, minimal_age, criminal_records, responding_process) VALUES
+  (1, '2018-02-05 21:22:00', '2018-02-05 21:22:00', 25, true, true),
+  (2, '2018-02-05 21:22:15', '2018-02-05 21:22:15', 25, true, true);
 
 #INSERT DE EXAMES DOS REQUISITOS
 INSERT INTO sinarm_db.requirements_exam_category (Requirement_id, exams_id) VALUES

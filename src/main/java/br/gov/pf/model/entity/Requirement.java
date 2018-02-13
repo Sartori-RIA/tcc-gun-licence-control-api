@@ -10,8 +10,14 @@ import java.util.List;
 @Entity
 public class Requirement extends AbstractEntity {
 
-    @Column
+    @Column(name = "minimal_age")
     private Integer minimalAge;
+
+    @Column(name = "criminal_records")
+    private Boolean criminalRecors;
+
+    @Column(name = "responding_process")
+    private Boolean respondingProcess;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
@@ -31,5 +37,21 @@ public class Requirement extends AbstractEntity {
 
     public void setExams(List<ExamCategory> exams) {
         this.exams = exams;
+    }
+
+    public Boolean getCriminalRecors() {
+        return this.criminalRecors;
+    }
+
+    public void setCriminalRecors(Boolean criminalRecors) {
+        this.criminalRecors = criminalRecors;
+    }
+
+    public Boolean getRespondingProcess() {
+        return this.respondingProcess;
+    }
+
+    public void setRespondingProcess(Boolean respondingProcess) {
+        this.respondingProcess = respondingProcess;
     }
 }

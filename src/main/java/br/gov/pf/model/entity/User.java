@@ -2,8 +2,7 @@ package br.gov.pf.model.entity;
 
 import br.gov.pf.util.BCrypt;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -21,11 +20,32 @@ public class User extends AbstractEntity {
     @Column(name = "name")
     private @NotNull String name;
 
+    @Column(name = "fathers_name")
+    private @NotNull String fathersName;
+
+    @Column(name = "mothers_name")
+    private @NotNull String mothersName;
+
+    @Column(name = "nationality")
+    private @NotNull String nationality;
+
+    @Column(name = "naturalness")
+    private @NotNull String naturalness;
+
     @ManyToOne
     private @NotNull Gender gender;
 
-    @Column(name = "CPF") //@CPF //TODO remover este comentario quando pronto
-    private @NotNull String cpf;
+    @Column(name = "CPF")
+    private @CPF @NotNull String cpf;
+
+    @Column(name = "RG")
+    private @NotNull String rg;
+
+    @Column(name = "RG_issuing_body")
+    private @NotNull String rgIssuingBody;
+
+    @Column(name = "rg_uf")
+    private @NotNull String rgUf;
 
     @Column(name = "email")
     private @NotNull String email;
@@ -46,12 +66,14 @@ public class User extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "address_id", referencedColumnName = "id"))
     private List<Address> addressList;
 
+    @Column(name = "criminal_recors")
+    private Boolean criminalRecord;
 
     public User() {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -59,7 +81,7 @@ public class User extends AbstractEntity {
     }
 
     public Gender getGender() {
-        return this.gender;
+        return gender;
     }
 
     public void setGender(Gender gender) {
@@ -67,7 +89,7 @@ public class User extends AbstractEntity {
     }
 
     public String getCpf() {
-        return this.cpf;
+        return cpf;
     }
 
     public void setCpf(String cpf) {
@@ -75,7 +97,7 @@ public class User extends AbstractEntity {
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
@@ -83,7 +105,7 @@ public class User extends AbstractEntity {
     }
 
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
     public void setPassword(String password) {
@@ -91,7 +113,7 @@ public class User extends AbstractEntity {
     }
 
     public Date getDateOfBirth() {
-        return this.dateOfBirth;
+        return dateOfBirth;
     }
 
     public void setDateOfBirth(Date dateOfBirth) {
@@ -99,7 +121,7 @@ public class User extends AbstractEntity {
     }
 
     public UserRole getRole() {
-        return this.role;
+        return role;
     }
 
     public void setRole(UserRole role) {
@@ -107,16 +129,80 @@ public class User extends AbstractEntity {
     }
 
     public List<Address> getAddressList() {
-        return this.addressList;
+        return addressList;
     }
 
     public void setAddressList(List<Address> addressList) {
         this.addressList = addressList;
     }
 
+    public String getFathersName() {
+        return this.fathersName;
+    }
+
+    public void setFathersName(String fathersName) {
+        this.fathersName = fathersName;
+    }
+
+    public String getMothersName() {
+        return this.mothersName;
+    }
+
+    public void setMothersName(String mothersName) {
+        this.mothersName = mothersName;
+    }
+
+    public String getNationality() {
+        return this.nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public String getNaturalness() {
+        return this.naturalness;
+    }
+
+    public void setNaturalness(String naturalness) {
+        this.naturalness = naturalness;
+    }
+
+    public String getRg() {
+        return this.rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    public String getRgIssuingBody() {
+        return this.rgIssuingBody;
+    }
+
+    public void setRgIssuingBody(String rgIssuingBody) {
+        this.rgIssuingBody = rgIssuingBody;
+    }
+
+    public String getRgUf() {
+        return this.rgUf;
+    }
+
+    public void setRgUf(String rgUf) {
+        this.rgUf = rgUf;
+    }
+
+    public Boolean getCriminalRecord() {
+        return this.criminalRecord;
+    }
+
+    public void setCriminalRecord(Boolean criminalRecord) {
+        this.criminalRecord = criminalRecord;
+    }
+
     @PrePersist
     public void prePersist() {
-        this.setPassword(BCrypt.hashpw(this.getPassword(), BCrypt.gensalt(5)));
+        setPassword(BCrypt.hashpw(getPassword(), BCrypt.gensalt(5)));
     }
 
 }
