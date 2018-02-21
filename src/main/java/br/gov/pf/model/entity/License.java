@@ -1,5 +1,8 @@
 package br.gov.pf.model.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
@@ -32,7 +35,8 @@ public class License extends AbstractEntity {
     @ManyToOne
     private Gun gun;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     @JoinTable(name = "licence_exam",
             joinColumns = @JoinColumn(name = "licence_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "exam_id", referencedColumnName = "id"))
@@ -101,7 +105,7 @@ public class License extends AbstractEntity {
         this.examList = examList;
     }
 
-    @PostUpdate
+    @PostPersist
     public void postUpdate() {
         setSerial(getId() + "-" + UUID.randomUUID());
     }

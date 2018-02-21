@@ -2,6 +2,7 @@ package br.gov.pf.resource;
 
 import br.gov.pf.model.entity.License;
 import br.gov.pf.model.entity.User;
+import br.gov.pf.model.service.LicenseService;
 import br.gov.pf.model.service.UserService;
 
 import javax.ejb.Stateless;
@@ -18,6 +19,8 @@ public class ValidatorResource {
 
     @Inject
     private UserService userService;
+    @Inject
+    private LicenseService licenseService;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -25,12 +28,12 @@ public class ValidatorResource {
         if (json == null || json.getSerial() == null)
             Response.status(401).build();
 
-        User user = this.userService.getByProperty("license.serial", json.getSerial());
+        License license = this.licenseService.getByProperty("serial",json.getSerial());
 
-        if (user == null)
+        if (license == null)
             return Response.status(404).build();
 
-        return Response.ok(user).build();
+        return Response.ok(license).build();
     }
 
 }

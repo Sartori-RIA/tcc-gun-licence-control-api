@@ -17,6 +17,6 @@ public class LicenseService extends AbstractService<Long, License> {
 
     @Override
     public AbstractDAO<Long, License> getDAO() {
-        return this.dao;
+        return dao;
     }
 }

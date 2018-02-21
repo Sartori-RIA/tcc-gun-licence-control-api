@@ -3,14 +3,12 @@ package br.gov.pf.resource;
 import br.gov.pf.model.entity.User;
 import br.gov.pf.model.service.UserService;
 import br.gov.pf.security.Secured;
+import br.gov.pf.util.UserUtil;
 import org.apache.log4j.Logger;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -26,6 +24,15 @@ public class UserResource extends AbstractResource<Long, User> {
     private UserService service;
 
     public UserResource() {
+    }
+
+
+    @GET
+    @Path("/age")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Integer getAge(User user){
+        return UserUtil.getAge(user.getDateOfBirth());
     }
 
     @Override

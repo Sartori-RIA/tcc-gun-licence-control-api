@@ -1,8 +1,10 @@
 package br.gov.pf.model.entity;
 
 import br.gov.pf.util.BCrypt;
-import br.gov.pf.util.UserUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
@@ -62,6 +64,7 @@ public class User extends AbstractEntity {
     private UserRole role;
 
     @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     @JoinTable(name = "address_user",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "address_id", referencedColumnName = "id"))
@@ -69,6 +72,9 @@ public class User extends AbstractEntity {
 
     @Column(name = "criminal_recors")
     private Boolean criminalRecord;
+
+    @Column(name = "responding_process")
+    private Boolean respondingProcess;
 
     public User() {
     }
@@ -201,13 +207,19 @@ public class User extends AbstractEntity {
         this.criminalRecord = criminalRecord;
     }
 
-    public String getAge(){
-        return String.valueOf(UserUtil.getAge(getDateOfBirth()));
+    public Boolean getRespondingProcess() {
+        return this.respondingProcess;
+    }
+
+    public void setRespondingProcess(Boolean respondingProcess) {
+        this.respondingProcess = respondingProcess;
     }
 
     @PrePersist
     public void prePersist() {
         setPassword(BCrypt.hashpw(getPassword(), BCrypt.gensalt(5)));
+        setCriminalRecord(false);
+        setRespondingProcess(false);
     }
 
 }

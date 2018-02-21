@@ -54,27 +54,6 @@ INSERT INTO sinarm_db.cities (id, created_at, updated_at, description, state_id)
   (9, '2018-01-20 19:54:20', '2018-01-20 19:54:20', 'Blumenau', 22),
   (10, '2018-01-20 19:54:20', '2018-01-20 19:54:20', 'Porto Alegre', 23);
 
-# INSERT DE USUARIOS, SENHA PADRAO = 123456
-/*INSERT INTO sinarm_db.users (
-  id, created_at, updated_at, CPF, criminal_recors, date_of_birth, email, fathers_name,
-  mothers_name, name, nationality, naturalness, password, RG, RG_issuing_body, rg_uf, gender_id, role_id)
-VALUES
-  (1, '2018-02-12 20:19:50', '2018-02-12 20:19:50', '10150393911', null, '2018-02-01 00:00:00', 'lucas@gmail.com',
-     'Sidnei', 'vera', 'lucas', 'Brasil', 'Foz', '$2a$05$SD/.zaVczZv9gAVJUNqxK.Ecxc.jBUk.MZ3R3fAxEOHxEu94yPaim',
-  '9.886.498-9', 'SSP', 'RG', 1, 1),
-  (2, '2018-02-12 20:19:50', '2018-02-12 20:19:50', '111', null, '2018-02-01 00:00:00', 'lucas@gmail.com',
-      'Sidnei', 'vera', 'delegado', 'Brasil', 'Foz', '$2a$05$SD/.zaVczZv9gAVJUNqxK.Ecxc.jBUk.MZ3R3fAxEOHxEu94yPaim',
-   '9.886.498-9', 'SSP', 'RG', 1, 2),
-  (3, '2018-02-12 20:19:50', '2018-02-12 20:19:50', '222', null, '2018-02-01 00:00:00', 'lucas@gmail.com',
-      'Sidnei', 'vera', 'instrutor', 'Brasil', 'Foz', '$2a$05$SD/.zaVczZv9gAVJUNqxK.Ecxc.jBUk.MZ3R3fAxEOHxEu94yPaim',
-   '9.886.498-9', 'SSP', 'RG', 1, 3),
-  (4, '2018-02-12 20:19:50', '2018-02-12 20:19:50', '333', null, '2018-02-01 00:00:00', 'lucas@gmail.com',
-      'Sidnei', 'vera', 'psidologo', 'Brasil', 'Foz', '$2a$05$SD/.zaVczZv9gAVJUNqxK.Ecxc.jBUk.MZ3R3fAxEOHxEu94yPaim',
-   '9.886.498-9', 'SSP', 'RG', 1, 4),
-  (5, '2018-02-12 20:19:50', '2018-02-12 20:19:50', '444', null, '2018-02-01 00:00:00', 'lucas@gmail.com',
-      'Sidnei', 'vera', 'civil', 'Brasil', 'Foz', '$2a$05$SD/.zaVczZv9gAVJUNqxK.Ecxc.jBUk.MZ3R3fAxEOHxEu94yPaim',
-   '9.886.498-9', 'SSP', 'RG', 1, 5);
-*/
 # INSERT DE TIPOS DE EXAMES
 INSERT INTO sinarm_db.exam_category (id, created_at, updated_at, description, role_id) VALUES
   (2, '2018-02-01 22:48:20', '2018-02-01 22:48:20', 'psicologico', 4),
