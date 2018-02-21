@@ -1,6 +1,7 @@
 package br.gov.pf.model.entity;
 
 import br.gov.pf.util.BCrypt;
+import br.gov.pf.util.UserUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -137,7 +138,7 @@ public class User extends AbstractEntity {
     }
 
     public String getFathersName() {
-        return this.fathersName;
+        return fathersName;
     }
 
     public void setFathersName(String fathersName) {
@@ -145,7 +146,7 @@ public class User extends AbstractEntity {
     }
 
     public String getMothersName() {
-        return this.mothersName;
+        return mothersName;
     }
 
     public void setMothersName(String mothersName) {
@@ -153,7 +154,7 @@ public class User extends AbstractEntity {
     }
 
     public String getNationality() {
-        return this.nationality;
+        return nationality;
     }
 
     public void setNationality(String nationality) {
@@ -161,7 +162,7 @@ public class User extends AbstractEntity {
     }
 
     public String getNaturalness() {
-        return this.naturalness;
+        return naturalness;
     }
 
     public void setNaturalness(String naturalness) {
@@ -169,7 +170,7 @@ public class User extends AbstractEntity {
     }
 
     public String getRg() {
-        return this.rg;
+        return rg;
     }
 
     public void setRg(String rg) {
@@ -177,7 +178,7 @@ public class User extends AbstractEntity {
     }
 
     public String getRgIssuingBody() {
-        return this.rgIssuingBody;
+        return rgIssuingBody;
     }
 
     public void setRgIssuingBody(String rgIssuingBody) {
@@ -185,7 +186,7 @@ public class User extends AbstractEntity {
     }
 
     public String getRgUf() {
-        return this.rgUf;
+        return rgUf;
     }
 
     public void setRgUf(String rgUf) {
@@ -193,11 +194,15 @@ public class User extends AbstractEntity {
     }
 
     public Boolean getCriminalRecord() {
-        return this.criminalRecord;
+        return criminalRecord;
     }
 
     public void setCriminalRecord(Boolean criminalRecord) {
         this.criminalRecord = criminalRecord;
+    }
+
+    public String getAge(){
+        return String.valueOf(UserUtil.getAge(getDateOfBirth()));
     }
 
     @PrePersist

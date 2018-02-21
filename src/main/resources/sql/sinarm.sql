@@ -55,7 +55,7 @@ INSERT INTO sinarm_db.cities (id, created_at, updated_at, description, state_id)
   (10, '2018-01-20 19:54:20', '2018-01-20 19:54:20', 'Porto Alegre', 23);
 
 # INSERT DE USUARIOS, SENHA PADRAO = 123456
-INSERT INTO sinarm_db.users (
+/*INSERT INTO sinarm_db.users (
   id, created_at, updated_at, CPF, criminal_recors, date_of_birth, email, fathers_name,
   mothers_name, name, nationality, naturalness, password, RG, RG_issuing_body, rg_uf, gender_id, role_id)
 VALUES
@@ -74,7 +74,7 @@ VALUES
   (5, '2018-02-12 20:19:50', '2018-02-12 20:19:50', '444', null, '2018-02-01 00:00:00', 'lucas@gmail.com',
       'Sidnei', 'vera', 'civil', 'Brasil', 'Foz', '$2a$05$SD/.zaVczZv9gAVJUNqxK.Ecxc.jBUk.MZ3R3fAxEOHxEu94yPaim',
    '9.886.498-9', 'SSP', 'RG', 1, 5);
-
+*/
 # INSERT DE TIPOS DE EXAMES
 INSERT INTO sinarm_db.exam_category (id, created_at, updated_at, description, role_id) VALUES
   (2, '2018-02-01 22:48:20', '2018-02-01 22:48:20', 'psicologico', 4),
@@ -86,7 +86,7 @@ INSERT INTO sinarm_db.requirements (id, created_at, updated_at, minimal_age, cri
   (2, '2018-02-05 21:22:15', '2018-02-05 21:22:15', 25, true, true);
 
 #INSERT DE EXAMES DOS REQUISITOS
-INSERT INTO sinarm_db.requirements_exam_category (Requirement_id, exams_id) VALUES
+INSERT INTO sinarm_db.requirements_exam_category (requirement_id, exam_category_id) VALUES
   (1, 2),
   (1, 3),
   (2, 2),

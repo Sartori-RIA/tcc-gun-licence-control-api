@@ -21,6 +21,9 @@ public class Requirement extends AbstractEntity {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
+    @JoinTable(name = "requirements_exam_category",
+            joinColumns = @JoinColumn(name = "requirement_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "exam_category_id", referencedColumnName = "id"))
     private List<ExamCategory> exams;
 
     public Integer getMinimalAge() {

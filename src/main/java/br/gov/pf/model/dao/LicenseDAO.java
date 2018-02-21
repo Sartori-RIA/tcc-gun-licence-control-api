@@ -8,5 +8,6 @@ import javax.ejb.Stateless;
  * Created by sartori on 13/07/17.
  */
 @Stateless
-public class LicenceDAO extends AbstractDAO<Long, License> {
+public class LicenseDAO extends AbstractDAO<Long, License> {
+
 }

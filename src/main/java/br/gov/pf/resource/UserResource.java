@@ -2,6 +2,7 @@ package br.gov.pf.resource;
 
 import br.gov.pf.model.entity.User;
 import br.gov.pf.model.service.UserService;
+import br.gov.pf.security.Secured;
 import org.apache.log4j.Logger;
 
 import javax.ejb.Stateless;
@@ -41,16 +42,17 @@ public class UserResource extends AbstractResource<Long, User> {
 
         if (entity.getPassword() == null)
             entity.setPassword(oldUser.getPassword());
-        if (entity.getName() == null || entity.getName() != oldUser.getName())
+        if ((entity.getName() == null) || (entity.getName() != oldUser.getName()))
             entity.setName(oldUser.getName());
-        if (entity.getDateOfBirth() == null || entity.getDateOfBirth() != oldUser.getDateOfBirth())
+        if ((entity.getDateOfBirth() == null) || (entity.getDateOfBirth() != oldUser.getDateOfBirth()))
             entity.setDateOfBirth(oldUser.getDateOfBirth());
-        if(entity.getCpf() == null || entity.getCpf() != oldUser.getCpf())
+        if((entity.getCpf() == null) || (entity.getCpf() != oldUser.getCpf()))
             entity.setCpf(oldUser.getCpf());
-        if(entity.getGender() == null || entity.getGender() != oldUser.getGender())
+        if((entity.getGender() == null) || (entity.getGender() != oldUser.getGender()))
             entity.setGender(oldUser.getGender());
         try {
-            return Response.ok(service.update(entity)).build();
+            service.update(entity);
+            return Response.ok(entity).build();
         } catch (Exception e) {
             e.printStackTrace();
             return Response.serverError().build();

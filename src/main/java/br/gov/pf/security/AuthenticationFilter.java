@@ -1,8 +1,11 @@
 package br.gov.pf.security;
 
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureException;
+import br.gov.pf.util.Util;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.auth0.jwt.exceptions.TokenExpiredException;
+import com.auth0.jwt.interfaces.DecodedJWT;
 
 import javax.annotation.Priority;
 import javax.ws.rs.Priorities;
@@ -12,8 +15,7 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.Base64;
+import java.util.Date;
 
 import static org.jboss.security.auth.callback.RFC2617Digest.REALM;
 
@@ -28,21 +30,16 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
 
-        // Get the Authorization header from the request
         String authorizationHeader = containerRequestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
 
-        // Validate the Authorization header
         if (!isTokenBasedAuthentication(authorizationHeader)) {
             abortWithUnauthorized(containerRequestContext);
             return;
         }
-        // Extract the token from the Authorization header
         String token = authorizationHeader.substring(AUTHENTICATION_SCHEME.length()).trim();
 
         try {
-            // Validate the token
             validateToken(token);
-
         } catch (Exception e) {
             abortWithUnauthorized(containerRequestContext);
         }
@@ -82,16 +79,38 @@ public class AuthenticationFilter implements ContainerRequestFilter {
      * @throws Exception
      */
     private Response validateToken(String token) throws Exception {
+        Algorithm algorithm = Algorithm.HMAC256(Util.secret);
         try {
-            String base64 = "";
+
+            DecodedJWT decodedJWT = JWT.decode(token);
+            Date exp = decodedJWT.getExpiresAt();
+
+        } catch (JWTDecodeException e) {
+            System.out.println("===============================================");
+            System.out.println("=============TOKEN NAO CONFIAVEL ==============");
+            System.out.println("===============================================");
+            return Response.status(401).build();
+        } catch (TokenExpiredException e) {
+            System.out.println("===============================================");
+            System.out.println("=============TOKEN EXPIRADO ===================");
+            System.out.println("===============================================");
+            return Response.status(401).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(401).build();
+        }
+        /*try {
+         *//* String base64 = "";
             try {
                 base64 = Base64.getEncoder().encodeToString("SECRETKEY".getBytes("UTF-8"));
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
             Jwts.parser().setSigningKey(base64).parseClaimsJws(token).getBody().getExpiration();
-            return Response.ok().build();
-        } catch (ExpiredJwtException e) {
+            tokenRefresh(token, base64);*//*
+
+            return Response.ok().build();*/
+        /*} catch (ExpiredJwtException e) {
             System.out.println("===============================================");
             System.out.println("=============TOKEN EXPIRADO ===================");
             System.out.println("===============================================");
@@ -106,7 +125,18 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             System.out.println("=============TOKEN NÃO É VALIDO================");
             System.out.println("===============================================");
             return Response.status(401).build();
-        }
+        }*/
+        return Response.ok().build();
+    }
+
+    private String tokenRefresh(String token, String base64) {
+       /* Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.HOUR_OF_DAY, 1);
+        Date expiration = calendar.getTime();
+        Jwts.parser().setSigningKey(base64).parseClaimsJws(token).getBody().setExpiration(expiration);
+        return token;*/
+        return token;
     }
 }
 

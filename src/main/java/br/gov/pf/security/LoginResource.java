@@ -3,11 +3,11 @@ package br.gov.pf.security;
 import br.gov.pf.model.entity.User;
 import br.gov.pf.model.service.UserService;
 import br.gov.pf.util.BCrypt;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import br.gov.pf.util.Util;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 
 import javax.inject.Inject;
-import javax.servlet.ServletException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -29,9 +29,10 @@ public class LoginResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response login(Map<String, String> json) {
-        if (json.get("cpf") == null || json.get("password") == null)
-            Response.status(401).build();
+    public Response login(Map<String, String> json) throws UnsupportedEncodingException {
+        if (json.get("cpf") == null || json.get("password") == null ||
+                json.get("cpf") == "" || json.get("password") == "")
+            return Response.status(401).build();
 
         String cpf = json.get("cpf");
         String password = json.get("password");
@@ -39,11 +40,10 @@ public class LoginResource {
         User user = userService.getByProperty("cpf", cpf);
 
         if (user == null)
-            Response.status(401).build();
+            return Response.status(401).build();
 
-        String pwd = user.getPassword();
-        if (!BCrypt.checkpw(password, pwd))
-            Response.status(401).build();
+        if (BCrypt.checkpw(password, user.getPassword()))
+            return Response.status(401).build();
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
@@ -55,16 +55,22 @@ public class LoginResource {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        String token = Jwts.builder()
-                .setHeaderParam("typ", "JWT")
-                .setSubject(cpf).claim("role", user.getRole())
-                .setIssuedAt(new Date())
-                .setExpiration(expiration)
-                .signWith(SignatureAlgorithm.HS256, base64).compact();
+
+        Algorithm algorithm = Algorithm.HMAC256(Util.secret);
+        String token = JWT.create()
+                .withIssuer(Util.issuer)
+                .withSubject(cpf)
+                .withClaim("role", user.getRole().getDescription())
+                .withIssuedAt(new Date())
+                .withExpiresAt(expiration)
+                .sign(algorithm);
+
         this.login.setToken(token);
+
         return Response.ok(this.login).build();
 
     }
+
 
     @POST
     @Path("/register")
