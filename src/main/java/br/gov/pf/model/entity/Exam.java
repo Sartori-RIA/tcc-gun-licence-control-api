@@ -88,4 +88,8 @@ public class Exam extends AbstractEntity {
     public void setCivil(User civil) {
         this.civil = civil;
     }
+
+    public Boolean getStatus() {
+        return this.status;
+    }
 }

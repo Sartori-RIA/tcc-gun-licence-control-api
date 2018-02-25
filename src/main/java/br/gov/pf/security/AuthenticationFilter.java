@@ -99,33 +99,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             e.printStackTrace();
             return Response.status(401).build();
         }
-        /*try {
-         *//* String base64 = "";
-            try {
-                base64 = Base64.getEncoder().encodeToString("SECRETKEY".getBytes("UTF-8"));
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            Jwts.parser().setSigningKey(base64).parseClaimsJws(token).getBody().getExpiration();
-            tokenRefresh(token, base64);*//*
-
-            return Response.ok().build();*/
-        /*} catch (ExpiredJwtException e) {
-            System.out.println("===============================================");
-            System.out.println("=============TOKEN EXPIRADO ===================");
-            System.out.println("===============================================");
-            return Response.status(401).build();
-        } catch (SignatureException e) {
-            System.out.println("===============================================");
-            System.out.println("ASSINATURA NÃO É VALIDA, NÃO PODE SER CONFIAVEL");
-            System.out.println("===============================================");
-            return Response.status(401).build();
-        } catch (Exception e) {
-            System.out.println("===============================================");
-            System.out.println("=============TOKEN NÃO É VALIDO================");
-            System.out.println("===============================================");
-            return Response.status(401).build();
-        }*/
         return Response.ok().build();
     }
 

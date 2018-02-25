@@ -72,6 +72,6 @@ INSERT INTO sinarm_db.requirements_exam_category (requirement_id, exam_category_
   (2, 3);
 
 #INSERT DE CATEGORIAS DE LICENÇAS
-INSERT INTO sinarm_db.licenses_categories (id, created_at, updated_at, description, requirement_id) VALUES
-  (1, '2018-02-05 21:22:00', '2018-02-05 21:22:00', 'Porte', 1),
-  (2, '2018-02-05 21:22:15', '2018-02-05 21:22:15', 'Posse', 2);
+INSERT INTO sinarm_db.licenses_categories (id, created_at, updated_at, description, requirement_id, years_to_expirate) VALUES
+  (1, '2018-02-05 21:22:00', '2018-02-05 21:22:00', 'Porte', 1, 5),
+  (2, '2018-02-05 21:22:15', '2018-02-05 21:22:15', 'Posse', 2, 5);

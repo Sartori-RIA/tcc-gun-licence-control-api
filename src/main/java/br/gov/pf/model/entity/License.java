@@ -6,9 +6,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by sartori on 13/07/17.
@@ -35,6 +33,9 @@ public class License extends AbstractEntity {
     @ManyToOne
     private Gun gun;
 
+    @ManyToOne
+    private Address address;
+
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     @JoinTable(name = "licence_exam",
@@ -50,7 +51,7 @@ public class License extends AbstractEntity {
      */
 
     public LicenseCategory getCategory() {
-        return this.category;
+        return category;
     }
 
     public void setCategory(LicenseCategory category) {
@@ -58,7 +59,7 @@ public class License extends AbstractEntity {
     }
 
     public Date getShelfLife() {
-        return shelfLife;
+        return this.shelfLife;
     }
 
     public void setShelfLife(Date shelfLife) {
@@ -66,7 +67,7 @@ public class License extends AbstractEntity {
     }
 
     public String getSerial() {
-        return serial;
+        return this.serial;
     }
 
     public void setSerial(String serial) {
@@ -74,7 +75,7 @@ public class License extends AbstractEntity {
     }
 
     public User getUser() {
-        return this.user;
+        return user;
     }
 
     public void setUser(User user) {
@@ -82,7 +83,7 @@ public class License extends AbstractEntity {
     }
 
     public boolean isStatus() {
-        return this.status;
+        return status;
     }
 
     public void setStatus(boolean status) {
@@ -90,7 +91,7 @@ public class License extends AbstractEntity {
     }
 
     public Gun getGun() {
-        return this.gun;
+        return gun;
     }
 
     public void setGun(Gun gun) {
@@ -98,15 +99,50 @@ public class License extends AbstractEntity {
     }
 
     public List<Exam> getExamList() {
-        return this.examList;
+        return examList;
     }
 
     public void setExamList(List<Exam> examList) {
         this.examList = examList;
     }
 
-    @PostPersist
+    public Address getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    @PostUpdate
     public void postUpdate() {
+        if (verifyExams()) {
+            setStatus(true);
+            setShelfLife(this.setExpirateDate());
+        }
+    }
+
+    @PostPersist
+    public void postPersist() {
         setSerial(getId() + "-" + UUID.randomUUID());
     }
+
+    private Boolean verifyExams() {
+        ArrayList<Exam> exams = new ArrayList<>();
+        if (getExamList() != null) {
+            for (ExamCategory examCategory : getCategory().getRequirement().getExams())
+                for (Exam exam : getExamList())
+                    if (exam.getExamCategory().equals(examCategory) && exam.getStatus())
+                        exams.add(exam);
+            return exams.size() == getCategory().getRequirement().getExams().size();
+        }
+        return Boolean.FALSE;
+    }
+
+    private Date setExpirateDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.YEAR, getCategory().getYearsExpirate());
+        return calendar.getTime();
+    }
+
 }

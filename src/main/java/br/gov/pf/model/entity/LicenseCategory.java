@@ -14,6 +14,9 @@ public class LicenseCategory extends AbstractEntity {
     @Column(name = "description")
     private @NotNull String description;
 
+    @Column(name = "years_to_expirate")
+    private Integer yearsExpirate;
+
     @OneToOne
     private Requirement requirement;
 
@@ -42,5 +45,13 @@ public class LicenseCategory extends AbstractEntity {
 
     public void setRequirement(Requirement requirement) {
         this.requirement = requirement;
+    }
+
+    public Integer getYearsExpirate() {
+        return this.yearsExpirate;
+    }
+
+    public void setYearsExpirate(Integer yearsExpirate) {
+        this.yearsExpirate = yearsExpirate;
     }
 }
