@@ -10,4 +10,8 @@ import javax.ejb.Stateless;
 @Stateless
 public class LicenseDAO extends AbstractDAO<Long, License> {
 
+    @Override
+    public License getByProperty(String propertyName, String propertyValue) {
+        return super.getByProperty(propertyName, propertyValue);
+    }
 }

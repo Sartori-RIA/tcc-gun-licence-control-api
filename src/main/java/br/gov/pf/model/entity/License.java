@@ -36,7 +36,7 @@ public class License extends AbstractEntity {
     @ManyToOne
     private Address address;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Fetch(FetchMode.SUBSELECT)
     @JoinTable(name = "licence_exam",
             joinColumns = @JoinColumn(name = "licence_id", referencedColumnName = "id"),
@@ -114,35 +114,13 @@ public class License extends AbstractEntity {
         this.address = address;
     }
 
-    @PostUpdate
-    public void postUpdate() {
-        if (verifyExams()) {
-            setStatus(true);
-            setShelfLife(this.setExpirateDate());
-        }
+    @PrePersist
+    public void prePersist(){
+        setStatus(false);
     }
-
     @PostPersist
     public void postPersist() {
         setSerial(getId() + "-" + UUID.randomUUID());
-    }
-
-    private Boolean verifyExams() {
-        ArrayList<Exam> exams = new ArrayList<>();
-        if (getExamList() != null) {
-            for (ExamCategory examCategory : getCategory().getRequirement().getExams())
-                for (Exam exam : getExamList())
-                    if (exam.getExamCategory().equals(examCategory) && exam.getStatus())
-                        exams.add(exam);
-            return exams.size() == getCategory().getRequirement().getExams().size();
-        }
-        return Boolean.FALSE;
-    }
-
-    private Date setExpirateDate() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.YEAR, getCategory().getYearsExpirate());
-        return calendar.getTime();
     }
 
 }

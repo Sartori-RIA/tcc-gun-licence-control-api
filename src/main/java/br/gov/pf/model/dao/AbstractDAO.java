@@ -118,6 +118,10 @@ public abstract class AbstractDAO<PK, T> implements Serializable {
     private Query getQueryOneProperty(String propertyName, String propertyValue) {
         String queryString = "SELECT o FROM " + getTypeClass().getName() + " o where o." + propertyName + " = :param";
         Query query = entityManager.createQuery(queryString);
+
+        if (propertyName.equals("status"))
+            return query.setParameter("param", Boolean.valueOf(propertyValue));
+
         try {
             query.setParameter("param", propertyValue);
             return query;
