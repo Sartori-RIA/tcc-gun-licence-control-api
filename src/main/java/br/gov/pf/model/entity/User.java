@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class User extends AbstractEntity {
     private @NotNull Gender gender;
 
     @Column(name = "CPF")
-    private @CPF @NotNull String cpf;
+    private @NotNull String cpf;
 
     @Column(name = "RG")
     private @NotNull String rg;

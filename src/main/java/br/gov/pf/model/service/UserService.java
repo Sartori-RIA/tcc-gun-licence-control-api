@@ -2,10 +2,13 @@ package br.gov.pf.model.service;
 
 import br.gov.pf.model.dao.AbstractDAO;
 import br.gov.pf.model.dao.UserDAO;
+import br.gov.pf.model.entity.Address;
 import br.gov.pf.model.entity.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sartori on 13/07/17.
@@ -30,7 +33,17 @@ public class UserService extends AbstractService<Long, User> {
     public User save(User entity) throws Exception {
         if (entity.getRole() == null)
             entity.setRole(roleService.getByProperty("description", "CIVIL"));
-        return super.save(entity);
+        if(entity.getAddressList() == null) {
+            return super.save(entity);
+        }else{
+            User temp = entity;
+            List<Address> addresses = entity.getAddressList();
+            temp.setAddressList(null);
+            User user = super.save(temp);
+            User finalUser = getById(user.getId());
+            finalUser.setAddressList(addresses);
+            return super.update(finalUser);
+        }
     }
 
     @Override

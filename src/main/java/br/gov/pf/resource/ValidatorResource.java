@@ -1,7 +1,6 @@
 package br.gov.pf.resource;
 
 import br.gov.pf.model.entity.License;
-import br.gov.pf.model.entity.User;
 import br.gov.pf.model.service.LicenseService;
 import br.gov.pf.model.service.UserService;
 
@@ -28,7 +27,7 @@ public class ValidatorResource {
         if (json == null || json.getSerial() == null)
             Response.status(401).build();
 
-        License license = this.licenseService.getByProperty("serial",json.getSerial());
+        License license = this.licenseService.getByProperty("serial", json.getSerial());
 
         if (license == null)
             return Response.status(404).build();

@@ -36,6 +36,7 @@ public class LoginResource {
 
         String cpf = json.get("cpf");
         String password = json.get("password");
+        password = password.trim();
 
         User user = userService.getByProperty("cpf", cpf);
 

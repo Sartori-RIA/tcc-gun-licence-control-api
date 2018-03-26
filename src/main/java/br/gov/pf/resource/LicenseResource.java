@@ -4,6 +4,7 @@ import br.gov.pf.model.entity.License;
 import br.gov.pf.model.entity.User;
 import br.gov.pf.model.service.LicenseService;
 import br.gov.pf.model.service.UserService;
+import br.gov.pf.security.Secured;
 import br.gov.pf.util.UserUtil;
 import org.apache.log4j.Logger;
 
@@ -16,6 +17,7 @@ import javax.ws.rs.core.Response;
 /**
  * Created by sartori on 13/07/17.
  */
+@Secured
 @Stateless
 @Path("/licenses")
 public class LicenseResource extends AbstractResource<Long, License> {

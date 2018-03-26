@@ -13,8 +13,8 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.Provider;
-import java.io.IOException;
 import java.util.Date;
 
 import static org.jboss.security.auth.callback.RFC2617Digest.REALM;
@@ -25,10 +25,10 @@ import static org.jboss.security.auth.callback.RFC2617Digest.REALM;
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter {
 
-    private String AUTHENTICATION_SCHEME = "Bearer";
+    private final String AUTHENTICATION_SCHEME = "Bearer";
 
 
-    public void filter(ContainerRequestContext containerRequestContext) throws IOException {
+    public void filter(ContainerRequestContext containerRequestContext) {
 
         String authorizationHeader = containerRequestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
 
@@ -66,8 +66,8 @@ public class AuthenticationFilter implements ContainerRequestFilter {
      */
     private void abortWithUnauthorized(ContainerRequestContext requestContext) {
         requestContext.abortWith(
-                Response.status(Response.Status.UNAUTHORIZED)
-                        .header(HttpHeaders.WWW_AUTHENTICATE, AUTHENTICATION_SCHEME + " realm=\"" + REALM + "\"")
+                Response.status(Status.UNAUTHORIZED)
+                        .header(HttpHeaders.WWW_AUTHENTICATE, this.AUTHENTICATION_SCHEME + " realm=\"" + REALM + "\"")
                         .build());
     }
 

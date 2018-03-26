@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 /**
  * Created by sartori on 13/07/17.
  */
+@Secured
 @Stateless
 @Path("/users")
 public class UserResource extends AbstractResource<Long, User> {
@@ -31,7 +32,7 @@ public class UserResource extends AbstractResource<Long, User> {
     @Path("/age")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Integer getAge(User user){
+    public Integer getAge(User user) {
         return UserUtil.getAge(user.getDateOfBirth());
     }
 
@@ -53,9 +54,9 @@ public class UserResource extends AbstractResource<Long, User> {
             entity.setName(oldUser.getName());
         if ((entity.getDateOfBirth() == null) || (entity.getDateOfBirth() != oldUser.getDateOfBirth()))
             entity.setDateOfBirth(oldUser.getDateOfBirth());
-        if((entity.getCpf() == null) || (entity.getCpf() != oldUser.getCpf()))
+        if ((entity.getCpf() == null) || (entity.getCpf() != oldUser.getCpf()))
             entity.setCpf(oldUser.getCpf());
-        if((entity.getGender() == null) || (entity.getGender() != oldUser.getGender()))
+        if ((entity.getGender() == null) || (entity.getGender() != oldUser.getGender()))
             entity.setGender(oldUser.getGender());
         try {
             service.update(entity);
