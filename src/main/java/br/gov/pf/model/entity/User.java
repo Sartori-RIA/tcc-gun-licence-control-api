@@ -1,8 +1,8 @@
 package br.gov.pf.model.entity;
 
-import br.gov.pf.util.BCrypt;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.ColumnDefault;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.br.CPF;
@@ -217,7 +217,9 @@ public class User extends AbstractEntity {
 
     @PrePersist
     public void prePersist() {
-        setPassword(BCrypt.hashpw(getPassword(), BCrypt.gensalt(5)));
+        Argon2 argon2 = Argon2Factory.create();
+        setPassword(argon2.hash(2, 65536, 1, getPassword()));
+        //   setPassword(BCrypt.hashpw(getPassword(), BCrypt.gensalt(5)));
         setCriminalRecord(false);
         setRespondingProcess(false);
     }

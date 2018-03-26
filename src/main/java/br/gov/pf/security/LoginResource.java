@@ -6,6 +6,8 @@ import br.gov.pf.util.BCrypt;
 import br.gov.pf.util.Util;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -41,8 +43,8 @@ public class LoginResource {
 
         if (user == null)
             return Response.status(401).build();
-
-        if (BCrypt.checkpw(password, user.getPassword()))
+        Argon2 argon2 = Argon2Factory.create();
+        if(!argon2.verify(user.getPassword(), password))
             return Response.status(401).build();
 
         Calendar calendar = Calendar.getInstance();
