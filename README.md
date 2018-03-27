@@ -8,22 +8,37 @@ IDEA utilizada: Intellij IDEA Ultimate 17.2.1
 
 ##Tecnologias:
 
++ **Java 8**
+
+### Banco de Dados
+
++ **MySQL**
+
+### Persistencia de Dados
+
 + **Hibernate**
 + **BeanValidation**
-+ **MySQL**
-+ **Java 8**
-+ **Jax-rs**
 + **EJB**
 + **Javax Injection**
-+ **JWT**
-+ **JUnit**
-+ **REST**
-+ **Wildfly 10.1.0.final**
 
+### Testes 
+
++ **JUnit**
+
+### Servidor
+
++ **REST**
++ **Jax-rs**
++ **Wildfly 11.0.0.final**
+
+### Segurança
+
++ **JWT - Auth0**
++ **Argon2**
 
 ## Requisitos
 
-+ **Wildfly >=10.1.0**
++ **Wildfly >= 11.0.0.final**
 + **jdk >=1.8**
 + **MySQL ultima versao**
 + **criar um DB chamado `sinarm_db`**

@@ -2,15 +2,12 @@ package br.gov.pf.model.entity;
 
 import br.gov.pf.util.BCrypt;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

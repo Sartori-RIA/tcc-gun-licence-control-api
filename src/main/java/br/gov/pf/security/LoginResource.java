@@ -43,7 +43,7 @@ public class LoginResource {
         if (user == null)
             return Response.status(401).build();
 
-        if (BCrypt.checkpw(password, user.getPassword()))
+        if(BCrypt.checkpw(password,user.getPassword()))
             return Response.status(401).build();
 
         Calendar calendar = Calendar.getInstance();
