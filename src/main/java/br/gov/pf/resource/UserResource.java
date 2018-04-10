@@ -19,6 +19,7 @@ import javax.ws.rs.core.Response;
 @Stateless
 @Path("/users")
 public class UserResource extends AbstractResource<Long, User> {
+
     private static final Logger LOGGER = Logger.getLogger(UserResource.class);
 
     @Inject

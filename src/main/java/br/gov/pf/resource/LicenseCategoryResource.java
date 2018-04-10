@@ -13,7 +13,9 @@ import java.util.logging.Logger;
 @Stateless
 @Path("/licenses-types")
 public class LicenseCategoryResource extends AbstractResource<Long, LicenseCategory> {
+
     private static final Logger LOGGER = Logger.getLogger(String.valueOf(LicenseCategory.class));
+
     @Inject
     private LicenseCategoryService service;
 

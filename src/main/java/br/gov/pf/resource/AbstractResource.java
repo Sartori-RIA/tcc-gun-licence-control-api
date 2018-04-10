@@ -19,19 +19,18 @@ public abstract class AbstractResource<PK, T> implements Serializable {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<T> findAll(@QueryParam("start") int start,
-                           @QueryParam("qnt") int quantity) {
+    public Response findAll(@QueryParam("start") int start,
+                            @QueryParam("qnt") int quantity) {
         try {
             if (quantity <= 0)
                 quantity = 100;
             if (start >= 0) {
                 PredicateBuilder builder = service.getPredicateBuilder();
-                return service.findAll(builder.limit(start, quantity));
+                return Response.ok(service.findAll(builder.limit(start, quantity))).build();
             } else
-                return service.findAll();
+                return Response.ok(service.findAll()).build();
         } catch (Exception ex) {
-            ex.printStackTrace();
-            throw new WebApplicationException(500);
+            return Response.status(500).build();
         }
     }
 
@@ -108,11 +107,10 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(T entity) {
         try {
-            this.service.save(entity);
-            return Response.status(200).entity(entity).build();
+            return Response.status(200).entity(service.save(entity)).build();
         } catch (Exception ex) {
             ex.printStackTrace();
-            throw new WebApplicationException(500);
+            return Response.status(500).build();
         }
     }
 
@@ -121,10 +119,10 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(T entity) {
         try {
-            this.service.update(entity);
-            return Response.status(200).entity(entity).build();
+            return Response.status(200).entity(service.update(entity)).build();
         } catch (Exception ex) {
-            throw new WebApplicationException(500);
+            ex.printStackTrace();
+            return Response.status(500).build();
         }
     }
 
@@ -133,10 +131,11 @@ public abstract class AbstractResource<PK, T> implements Serializable {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") PK id) {
         try {
-            this.service.deleteById(id);
+            service.deleteById(id);
             return Response.status(200).build();
         } catch (Exception ex) {
-            throw new WebApplicationException(500);
+            ex.printStackTrace();
+            return Response.status(500).build();
         }
     }
 

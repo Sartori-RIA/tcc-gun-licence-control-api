@@ -8,7 +8,7 @@ IDEA utilizada: Intellij IDEA Ultimate 17.2.1
 
 ##Tecnologias:
 
-+ **Java 8**
++ **Java 10**
 
 ### Banco de Dados
 
@@ -39,7 +39,7 @@ IDEA utilizada: Intellij IDEA Ultimate 17.2.1
 ## Requisitos
 
 + **Wildfly >= 11.0.0.final**
-+ **jdk >=1.8**
++ **jdk >= 10**
 + **MySQL ultima versao**
 + **criar um DB chamado `sinarm_db`**
 + **instale no seu servidor todas as libs listadas no arquivo `pom.xml` que estejam com o seguinte trecho `<scope>provided</scope>`**

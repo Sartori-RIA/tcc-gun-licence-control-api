@@ -1,9 +1,10 @@
 package br.gov.pf.model.entity;
 
-import br.gov.pf.util.BCrypt;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -51,7 +52,6 @@ public class User extends AbstractEntity {
     @Column(name = "email")
     private @NotNull String email;
 
-    @JsonIgnore
     @Column(name = "password")
     private String password;
 
@@ -213,9 +213,12 @@ public class User extends AbstractEntity {
         this.respondingProcess = respondingProcess;
     }
 
+
     @PrePersist
     public void prePersist() {
-        setPassword(BCrypt.hashpw(getPassword(), BCrypt.gensalt(5)));
+        Argon2 argon2 = Argon2Factory.create();
+        String hash = argon2.hash(2, 65536, 1, getPassword());
+        setPassword(hash);
         setCriminalRecord(false);
         setRespondingProcess(false);
     }

@@ -16,7 +16,8 @@ import javax.ws.rs.Path;
 @Stateless
 @Path("/guns")
 public class GunResource extends AbstractResource<Long, Gun> {
-    private static final Logger LOGGER = Logger.getLogger(GunResource.class);
+
+    private static final Logger LOGGER = Logger.getLogger(Gun.class);
 
     @Inject
     private GunService service;

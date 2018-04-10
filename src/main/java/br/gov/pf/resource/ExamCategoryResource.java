@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 @Stateless
 @Path("/exams-types")
 public class ExamCategoryResource extends AbstractResource<Long, ExamCategory> {
+
     private static final Logger LOGGER = Logger.getLogger(String.valueOf(ExamCategory.class));
 
     @Inject

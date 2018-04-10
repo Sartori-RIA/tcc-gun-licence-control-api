@@ -21,6 +21,7 @@ import javax.ws.rs.core.Response;
 @Stateless
 @Path("/licenses")
 public class LicenseResource extends AbstractResource<Long, License> {
+
     private static final Logger LOGGER = Logger.getLogger(LicenseResource.class);
 
     @Inject
@@ -40,11 +41,11 @@ public class LicenseResource extends AbstractResource<Long, License> {
         User user = userService.getById(entity.getUser().getId());
         Integer age = UserUtil.getAge(user.getDateOfBirth());
         if (age < entity.getCategory().getRequirement().getMinimalAge())
-            return Response.status(401).build();
+            return Response.status(400).build();
         if (entity.getCategory().getRequirement().getCriminalRecors() && user.getCriminalRecord())
-            return Response.status(401).build();
+            return Response.status(400).build();
         if (entity.getCategory().getRequirement().getRespondingProcess() && user.getRespondingProcess())
-            return Response.status(401).build();
+            return Response.status(400).build();
 
         return super.save(entity);
     }
@@ -55,7 +56,7 @@ public class LicenseResource extends AbstractResource<Long, License> {
     @Override
     public Response update(License entity) {
         if (entity.getShelfLife() != null & entity.isStatus())
-            return Response.status(401).build();
+            return Response.status(400).build();
         return super.update(entity);
     }
 }

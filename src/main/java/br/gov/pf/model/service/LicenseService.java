@@ -30,7 +30,7 @@ public class LicenseService extends AbstractService<Long, License> {
     public License update(License entity) throws Exception {
         if (verifyExams(entity)) {
             entity.setStatus(true);
-            entity.setShelfLife(this.setExpirateDate(entity));
+            entity.setShelfLife(setExpirateDate(entity));
         }
         return super.update(entity);
     }
@@ -39,10 +39,12 @@ public class LicenseService extends AbstractService<Long, License> {
     private Boolean verifyExams(License entity) {
         ArrayList<Exam> exams = new ArrayList<>();
         if (entity.getExamList() != null) {
-            for (ExamCategory examCategory : entity.getCategory().getRequirement().getExams())
-                for (Exam exam : entity.getExamList())
-                    if (exam.getExamCategory().getId() == examCategory.getId() && exam.getStatus())
+            entity.getCategory().getRequirement().getExams().forEach(examCategory -> {
+                entity.getExamList().forEach(exam -> {
+                    if (exam.getExamCategory().getId().equals(examCategory.getId()) && exam.getStatus())
                         exams.add(exam);
+                });
+            });
             return exams.size() == entity.getCategory().getRequirement().getExams().size();
         }
         return Boolean.FALSE;
