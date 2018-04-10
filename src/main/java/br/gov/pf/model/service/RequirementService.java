@@ -8,8 +8,9 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 @Stateless
-public class RequirementService extends AbstractService<Long, Requirement>{
-    @Inject private RequirementDAO dao;
+public class RequirementService extends AbstractService<Long, Requirement> {
+    @Inject
+    private RequirementDAO dao;
 
     @Override
     public AbstractDAO<Long, Requirement> getDAO() {

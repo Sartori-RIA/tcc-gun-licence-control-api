@@ -7,7 +7,6 @@ import br.gov.pf.model.entity.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,9 +32,9 @@ public class UserService extends AbstractService<Long, User> {
     public User save(User entity) throws Exception {
         if (entity.getRole() == null)
             entity.setRole(roleService.getByProperty("description", "CIVIL"));
-        if(entity.getAddressList() == null) {
+        if (entity.getAddressList() == null) {
             return super.save(entity);
-        }else{
+        } else {
             User temp = entity;
             List<Address> addresses = entity.getAddressList();
             temp.setAddressList(null);

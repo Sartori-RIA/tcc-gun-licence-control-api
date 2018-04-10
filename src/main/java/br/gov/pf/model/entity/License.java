@@ -6,7 +6,9 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by sartori on 13/07/17.
@@ -115,9 +117,10 @@ public class License extends AbstractEntity {
     }
 
     @PrePersist
-    public void prePersist(){
+    public void prePersist() {
         setStatus(false);
     }
+
     @PostPersist
     public void postPersist() {
         setSerial(getId() + "-" + UUID.randomUUID());

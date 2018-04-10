@@ -3,7 +3,6 @@ package br.gov.pf.model.service;
 import br.gov.pf.model.dao.AbstractDAO;
 import br.gov.pf.model.dao.LicenseDAO;
 import br.gov.pf.model.entity.Exam;
-import br.gov.pf.model.entity.ExamCategory;
 import br.gov.pf.model.entity.License;
 
 import javax.ejb.Stateless;
@@ -11,7 +10,6 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by sartori on 13/07/17.

@@ -5,8 +5,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class UserUtil {
-    public static int getAge(Date birthday)
-    {
+    public static int getAge(Date birthday) {
         GregorianCalendar today = new GregorianCalendar();
         GregorianCalendar bday = new GregorianCalendar();
         GregorianCalendar bdayThisYear = new GregorianCalendar();
@@ -17,7 +16,7 @@ public class UserUtil {
 
         int age = today.get(Calendar.YEAR) - bday.get(Calendar.YEAR);
 
-        if(today.getTimeInMillis() < bdayThisYear.getTimeInMillis())
+        if (today.getTimeInMillis() < bdayThisYear.getTimeInMillis())
             age--;
 
         return age;

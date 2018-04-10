@@ -1,6 +1,5 @@
 package br.gov.pf.resource;
 
-import br.gov.pf.model.entity.City;
 import br.gov.pf.model.entity.Requirement;
 import br.gov.pf.model.service.RequirementService;
 import br.gov.pf.security.Secured;
