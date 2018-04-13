@@ -82,7 +82,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         Algorithm algorithm = Algorithm.HMAC256(Util.getSecret());
         try {
             DecodedJWT decodedJWT = JWT.decode(token);
-            Date exp = decodedJWT.getExpiresAt();
+            final Date exp = decodedJWT.getExpiresAt();
         } catch (JWTDecodeException e) {
             System.out.println("===============================================");
             System.out.println("=============TOKEN NAO CONFIAVEL ==============");

@@ -46,96 +46,48 @@ public class ValidatorResource {
                         "    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js\"></script>\n" +
                         "</head>";
 
-        String style = "<style>\n" +
-                "    .license {\n" +
-                "        background-color: greenyellow;\n" +
-                "        width: 600px;\n" +
-                "    }\n" +
-                "\n" +
-                "    .field {\n" +
-                "        outline: 1px solid green;\n" +
-                "        outline-offset: -4px;\n" +
-                "    }\n" +
-                "\n" +
-                "    .field>.title {\n" +
-                "        color: red;\n" +
-                "    }\n" +
-                "</style>";
-        String html = header + style;
+        String html = header;
         String bodyNotFound = "<h1 class=\"center title\">Licença não encontrata</h1>";
 
         if (license == null)
             return Response.status(404).entity(html + bodyNotFound).build();
-
-        String body = "<body>\n" +
-                "    <div class=\"container\">\n" +
-                "        <div class=\"license\">\n" +
-                "            <header class=\"center teal darken-4 white-text\">\n" +
-                "                <h4>Licença de " + license.getCategory().getDescription() + " de Arma</h4>\n" +
-                "            </header>\n" +
-                "            <div class=\"row\">\n" +
-                "                <div class=\"col s12 content field\">\n" +
-                "                    <div class=\"col s2 title\">Nome</div>\n" +
-                "                    <div class=\"col s8\">" + license.getUser().getName() + "</div>\n" +
-                "                </div>\n" +
-                "            </div>\n" +
-                "            <div class=\"row\">\n" +
-                "                <div class=\"col s6 content field\">\n" +
-                "                    <div class=\"col s2 title\">CPF</div>\n" +
-                "                    <div class=\"col s8\">" + license.getUser().getCpf() + "</div>\n" +
-                "                </div>\n" +
-                "                <div class=\"col s6 content field\">\n" +
-                "                    <div class=\"col s2 title\">RG</div>\n" +
-                "                    <div class=\"col s8\">" + license.getUser().getRg() + "</div>\n" +
-                "                </div>\n" +
-                "            </div>\n" +
-                "            <div class=\"row\">\n" +
-                "                <div class=\"col s6 field\">\n" +
-                "                    <div class=\"col s12 title\">Categoria</div>\n" +
-                "                    <div class=\"col 12\">" + license.getCategory().getDescription() + "</div>\n" +
-                "                </div>\n" +
-                "                <div class=\"col s6 field\">\n" +
-                "                    <div class=\"col s12 title\">Situção</div>\n" +
-                "                    <div class=\"col s12\">" + getStatus(license) + "</div>\n" +
-                "                </div>\n" +
-                "            </div>\n" +
-                "            <div class=\"row\">\n" +
-                "                <div class=\"col s12 field\">\n" +
-                "                    <div class=\"col s12 title center\">Numero de Serie</div>\n" +
-                "                    <div class=\"col s12\">" + license.getSerial() + "</div>\n" +
-                "                </div>\n" +
-                "            </div>\n" +
-                "            <div class=\"row\">\n" +
-                "                <div class=\"col s12 field\">\n" +
-                "                    <div class=\"col s2 title\">Validade</div>\n" +
-                "                    <div class=\"col s8\">" + license.getShelfLife() + "</div>\n" +
-                "                </div>\n" +
-                "            </div>\n" +
-                "            <div class=\"row\">\n" +
-                "                <div class=\"col s12 field\">\n" +
-                "                    <div class=\"col s2 title\">Rua</div>\n" +
-                "                    <div class=\"col s8\">" + license.getAddress().getStreet() + " - " + license.getAddress().getAddressNumber() + "</div>\n" +
-                "                </div>\n" +
-                "                <div class=\"col s12 field\">\n" +
-                "                    <div class=\"col s2 title\">Cidade</div>\n" +
-                "                    <div class=\"col s8\">" + license.getAddress().getCity().getDescription() + "</div>\n" +
-                "                </div>\n" +
-                "            </div>\n" +
-                "            <div class=\"row\">\n" +
-                "                <div class=\"col s6 field\">\n" +
-                "                    <div class=\"col s4 title\">Estado</div>\n" +
-                "                    <div class=\"col s6\">" + license.getAddress().getCity().getState().getDescription() + "</div>\n" +
-                "                </div>\n" +
-                "                <div class=\"col s6 field\">\n" +
-                "                    <div class=\"col s4 title\">País</div>\n" +
-                "                    <div class=\"col s6\">" + license.getAddress().getCity().getState().getCountry().getDescription() + "</div>\n" +
-                "                </div>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "    </div>\n" +
+        String body = "<body> " +
+                "<div class=\"row\">\n" +
+                "    <div class=\"col s12 m7\">\n" +
+                "       <div class=\"card\">\n" +
+                "           <div class=\"card-title center-align \"><strong>Portador:</strong>" + license.getUser().getName() + " </div>" +
+                "               <div class=\"card-content\">\n" +
+                "                   <div><p><strong>Numero de serie: </strong>" + license.getSerial() + "</p></div>\n" +
+                "                   <div><p><strong>Categoria: </strong>" + license.getCategory().getDescription() + "</p> </div>\n" +
+                "                   <div><p><strong>Situação: </strong>" + getStatus(license) + "</p></div>" +
+                "                   <div><p><strong>Validade até: </strong>" + license.getShelfLife() + "</p></div>\n" +
+                "                   <div><p><strong>CPF: </strong>" + formatCPF(license) + "</p></div>" +
+                "                   <div><p><strong>RG: </strong>" + formatRG(license) + "</p></div>" +
+                "                   <div><p><strong>Rua: </strong>" + license.getAddress().getStreet() + " - " + license.getAddress().getAddressNumber() + "</p></div>" +
+                "                   <div><p><strong>Cidade: </strong>" + license.getAddress().getCity().getDescription() + "</p></div>\n" +
+                "                   <div><p><strong>Estado: </strong>" + license.getAddress().getCity().getState().getDescription() + "</p></div>\n" +
+                "                   <div><p><strong>Pais: </strong>" + license.getAddress().getCity().getState().getCountry().getDescription() + "</p>\n" +
+                "               </div>" +
+                "           </div>\n" +
+                "       </div>\n" +
+                "   </div>" +
                 "</body>";
 
         return Response.ok(html + body).build();
+    }
+
+    private String formatRG(License license) {
+        return license.getUser().getRg();
+    }
+
+    private String formatCPF(License license) {
+        String cpf = license.getUser().getCpf();
+        String b1 = cpf.substring(0,3);
+        String b2 = cpf.substring(3,6);
+        String b3 = cpf.substring(6,9);
+        String b4 = cpf.substring(9,11);
+        return b1+"."+b2+"."+b3+"-"+b4;
+
     }
 
 
