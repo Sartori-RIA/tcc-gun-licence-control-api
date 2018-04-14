@@ -1,0 +1,68 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+POST http://localhost:8080/sinarm/api/users
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTEiLCJyb2xlIjoiQURNSU4iLCJpc3MiOiJhdXRoMCIsImV4cCI6MTUyMzcxNzU1MCwiaWF0IjoxNTIzNzEzOTUwfQ.wglTdQV6dM9gfxl-MYnoXFcwYOSDaEW5ZtWF7BkNhJY
+
+{
+   "name": "psicologo",
+   "gender": {
+      "id": 1,
+      "createdAt": null,
+      "updatedAt": null,
+      "description": "Masculino",
+      "abbrev": "M"
+   },
+   "dateOfBirth": "10081970",
+   "cpf": "10150393911",
+   "rg": "12312313",
+   "rgIssuingBody": "ssp",
+   "rgUf": "PR",
+    "password": "qwerty",
+      "email": "psicologo@email.com",
+      "role": {
+         "id": 4,
+         "createdAt": null,
+         "updatedAt": null,
+         "description": "PSICOLOGO"
+      },
+      "mothersName": "mae",
+      "fathersName": "pai",
+      "nationality": "Brasil",
+      "naturalness": "Foz do Iguaçu",
+      "addressList": [
+               {
+                  "cep": "85020-530",
+                  "street": "Avenida Cezar Stange",
+                  "neighborhood": "Boqueirão",
+                  "addressNumber": "104",
+                  "complement": "casa",
+                  "city": {
+                     "id": 6,
+                     "createdAt": 1516488860000,
+                     "updatedAt": 1516488860000,
+                     "description": "Guarapuava",
+                     "state": {
+                        "id": 21,
+                        "createdAt": null,
+                        "updatedAt": null,
+                        "description": "PARANÁ",
+                        "abbrev": "PR",
+                        "country": {
+                           "id": 1,
+                           "createdAt": null,
+                           "updatedAt": null,
+                           "description": "Brasil"
+                        }
+                     }
+                  }
+               }
+            ]
+         }
+
+###

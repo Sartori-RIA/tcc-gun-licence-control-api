@@ -7,6 +7,7 @@ import br.gov.pf.model.entity.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,7 +41,15 @@ public class UserService extends AbstractService<Long, User> {
             temp.setAddressList(null);
             User user = super.save(temp);
             User finalUser = getById(user.getId());
-            finalUser.setAddressList(addresses);
+            List<Address> addressesList = new ArrayList<>();
+            addresses.forEach(value ->{
+                try {
+                    addressesList.add(addressService.save(value));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            finalUser.setAddressList(addressesList);
             return super.update(finalUser);
         }
     }
