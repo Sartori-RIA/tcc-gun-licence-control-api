@@ -33,9 +33,6 @@ public class License extends AbstractEntity {
     private @NotNull User user;
 
     @ManyToOne
-    private Gun gun;
-
-    @ManyToOne
     private Address address;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -90,14 +87,6 @@ public class License extends AbstractEntity {
 
     public void setStatus(boolean status) {
         this.status = status;
-    }
-
-    public Gun getGun() {
-        return gun;
-    }
-
-    public void setGun(Gun gun) {
-        this.gun = gun;
     }
 
     public List<Exam> getExamList() {
