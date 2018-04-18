@@ -6,12 +6,12 @@ INSERT INTO sinarm_db.genders (description, abbrev) VALUES
   ('Feminino', 'F');
 
 # INSERT DE PERMISSOES DE USUARIOS
-INSERT INTO sinarm_db.users_roles (description) VALUES
-  ('ADMIN'),
-  ('DELEGADO'),
-  ('INSTRUTOR'),
-  ('PSICOLOGO'),
-  ('CIVIL');
+INSERT INTO sinarm_db.users_roles (id, description) VALUES
+  (1, 'ADMIN'),
+  (2, 'DELEGADO'),
+  (3, 'INSTRUTOR'),
+  (4, 'PSICOLOGO'),
+  (5, 'CIVIL');
 
 # INSERT DE PAISES
 INSERT INTO sinarm_db.countries (description) VALUES ('Brasil');
@@ -79,39 +79,79 @@ VALUES
   (2, '2018-02-05 21:22:15', '2018-02-05 21:22:15', 'Posse', 2, 5);
 
 #INSERT DE USUARIOS
-INSERT INTO sinarm_db.users (id, created_at, updated_at, CPF, criminal_recors, date_of_birth, email, fathers_name,
+INSERT INTO sinarm_db.users (created_at, updated_at, CPF, criminal_recors, date_of_birth, email, fathers_name,
                              mothers_name, name, nationality, naturalness, password, responding_process,
                              RG, RG_issuing_body, rg_uf, gender_id, role_id) VALUES
-  (5, '2018-04-10 19:34:14', '2018-04-10 19:34:14', '444', false, '1970-10-08 00:00:00', 'lucas@lucas.com', 'pai',
-      'mae', 'lucas', 'Brasil', 'Foz do Iguaçu',
-   '$argon2i$v=19$m=65536,t=2,p=1$av10VlmxPYm7zNmKviuubw$oBivTexoCNBoOWuWgx935XvyJ7MU+Ec7yHINmoKbLRk', false,
-   '12313131', 'ssp', 'PARANÁ', 1, 5),
-  (6, '2018-04-10 19:34:14', '2018-04-10 19:34:14', '111', false, '1970-10-08 00:00:00', 'lucas@lucas.com', 'pai',
-      'mae', 'lucas', 'Brasil', 'Foz do Iguaçu',
+  ('2018-04-10 19:34:14', '2018-04-10 19:34:14', '111', false, '1970-10-08 00:00:00', 'lucas@lucas.com', 'pai',
+                          'mae', 'admin1', 'Brasil', 'Foz do Iguaçu',
    '$argon2i$v=19$m=65536,t=2,p=1$av10VlmxPYm7zNmKviuubw$oBivTexoCNBoOWuWgx935XvyJ7MU+Ec7yHINmoKbLRk', false,
    '12313131', 'ssp', 'PARANÁ', 1, 1),
-  (7, '2018-04-10 19:34:14', '2018-04-10 19:34:14', '222', false, '1970-10-08 00:00:00', 'lucas@lucas.com', 'pai',
-      'mae', 'instrutor 1', 'Brasil', 'Foz do Iguaçu',
+  ('2018-04-10 19:34:14', '2018-04-10 19:34:14', '222', false, '1970-10-08 00:00:00', 'lucas@lucas.com', 'pai',
+                          'mae', 'admin2', 'Brasil', 'Foz do Iguaçu',
    '$argon2i$v=19$m=65536,t=2,p=1$av10VlmxPYm7zNmKviuubw$oBivTexoCNBoOWuWgx935XvyJ7MU+Ec7yHINmoKbLRk', false,
-   '12313131', 'ssp', 'PARANÁ', 1, 3),
-  (8, '2018-04-10 19:34:14', '2018-04-10 19:34:14', '333', false, '1970-10-08 00:00:00', 'lucas@lucas.com', 'pai',
-      'mae', 'psicologo 1', 'Brasil', 'Foz do Iguaçu',
+   '12313131', 'ssp', 'PARANÁ', 1, 1);
+
+INSERT INTO sinarm_db.users (created_at, updated_at, CPF, criminal_recors, date_of_birth, email, fathers_name,
+                             mothers_name, name, nationality, naturalness, password, responding_process,
+                             RG, RG_issuing_body, rg_uf, gender_id, role_id) VALUES
+  ('2018-04-14 11:31:58', '2018-04-14 11:32:24', '333', false, '1969-12-31 23:48:02', 'psicologo@email.com', 'pai',
+                          'mae', 'delegado1', 'Brasil', 'Foz do Iguaçu',
+   '$argon2i$v=19$m=65536,t=2,p=1$vniMAnTIS92obm6/7486bQ$vk1U3WpbhqWiql3dBf8Ve74tm8z9pS1id56cHEWhZFY', false,
+   '12312313', 'ssp', 'PR', 1, 2),
+  ('2018-04-14 11:31:58', '2018-04-14 11:32:24', '444', false, '1969-12-31 23:48:02', 'psicologo@email.com', 'pai',
+                          'mae', 'delegado2', 'Brasil', 'Foz do Iguaçu',
+   '$argon2i$v=19$m=65536,t=2,p=1$vniMAnTIS92obm6/7486bQ$vk1U3WpbhqWiql3dBf8Ve74tm8z9pS1id56cHEWhZFY', false,
+   '12312313', 'ssp', 'PR', 1, 2);
+
+INSERT INTO sinarm_db.users (created_at, updated_at, CPF, criminal_recors, date_of_birth, email, fathers_name,
+                             mothers_name, name, nationality, naturalness, password, responding_process,
+                             RG, RG_issuing_body, rg_uf, gender_id, role_id) VALUES
+  ('2018-04-14 11:31:58', '2018-04-14 11:32:24', '555', false, '1969-12-31 23:48:02', 'psicologo@email.com', 'pai',
+                          'mae', 'instrutor1', 'Brasil', 'Foz do Iguaçu',
+   '$argon2i$v=19$m=65536,t=2,p=1$vniMAnTIS92obm6/7486bQ$vk1U3WpbhqWiql3dBf8Ve74tm8z9pS1id56cHEWhZFY', false,
+   '12312313', 'ssp', 'PR', 1, 3),
+  ('2018-04-14 11:31:58', '2018-04-14 11:32:24', '666', false, '1969-12-31 23:48:02', 'psicologo@email.com', 'pai',
+                          'mae', 'instrutor2', 'Brasil', 'Foz do Iguaçu',
+   '$argon2i$v=19$m=65536,t=2,p=1$vniMAnTIS92obm6/7486bQ$vk1U3WpbhqWiql3dBf8Ve74tm8z9pS1id56cHEWhZFY', false,
+   '12312313', 'ssp', 'PR', 1, 3);
+
+INSERT INTO sinarm_db.users (created_at, updated_at, CPF, criminal_recors, date_of_birth, email, fathers_name,
+                             mothers_name, name, nationality, naturalness, password, responding_process,
+                             RG, RG_issuing_body, rg_uf, gender_id, role_id) VALUES
+  ('2018-04-10 19:34:14', '2018-04-10 19:34:14', '777', false, '1970-10-08 00:00:00', 'lucas@lucas.com', 'pai',
+                          'mae', 'psicologo1', 'Brasil', 'Foz do Iguaçu',
    '$argon2i$v=19$m=65536,t=2,p=1$av10VlmxPYm7zNmKviuubw$oBivTexoCNBoOWuWgx935XvyJ7MU+Ec7yHINmoKbLRk', false,
    '12313131', 'ssp', 'PARANÁ', 1, 4),
-  (11, '2018-04-14 11:31:58', '2018-04-14 11:32:24', '555', false, '1969-12-31 23:48:02', 'psicologo@email.com', 'pai',
-       'mae', 'psicologo', 'Brasil', 'Foz do Iguaçu',
+  ('2018-04-10 19:34:14', '2018-04-10 19:34:14', '888', false, '1970-10-08 00:00:00', 'lucas@lucas.com', 'pai',
+                          'mae', 'psicologo2', 'Brasil', 'Foz do Iguaçu',
+   '$argon2i$v=19$m=65536,t=2,p=1$av10VlmxPYm7zNmKviuubw$oBivTexoCNBoOWuWgx935XvyJ7MU+Ec7yHINmoKbLRk', false,
+   '12313131', 'ssp', 'PARANÁ', 1, 4);
+
+INSERT INTO sinarm_db.users (created_at, updated_at, CPF, criminal_recors, date_of_birth, email, fathers_name,
+                             mothers_name, name, nationality, naturalness, password, responding_process,
+                             RG, RG_issuing_body, rg_uf, gender_id, role_id) VALUES
+  ('2018-04-14 11:31:58', '2018-04-14 11:32:24', '999', false, '1969-12-31 23:48:02', 'psicologo@email.com', 'pai',
+                          'mae', 'client1', 'Brasil', 'Foz do Iguaçu',
    '$argon2i$v=19$m=65536,t=2,p=1$vniMAnTIS92obm6/7486bQ$vk1U3WpbhqWiql3dBf8Ve74tm8z9pS1id56cHEWhZFY', false,
-   '12312313', 'ssp', 'PR', 1, 4);
+   '12312313', 'ssp', 'PR', 1, 5),
+  ('2018-04-14 11:31:58', '2018-04-14 11:32:24', '1010', false, '1969-12-31 23:48:02', 'psicologo@email.com', 'pai',
+                          'mae', 'civil2', 'Brasil', 'Foz do Iguaçu',
+   '$argon2i$v=19$m=65536,t=2,p=1$vniMAnTIS92obm6/7486bQ$vk1U3WpbhqWiql3dBf8Ve74tm8z9pS1id56cHEWhZFY', false,
+   '12312313', 'ssp', 'PR', 1, 5);
 
 #INSERT DE ENDERECOS
 INSERT INTO sinarm_db.address (id, created_at, updated_at, addressNumber, cep, complement, neighborhood, street, city_id)
 VALUES
-  (1, '2018-04-12 20:01:48', '2018-04-12 20:01:48', '104', '85020-530', 'casa', 'Boqueirão', 'Avenida Cezar Stange',
-   10),
+  (1, '2018-04-12 20:01:48', '2018-04-12 20:01:48', '104', '85020-530', 'casa', 'Boqueirão', 'Avenida Cezar Stange', 10),
   (2, '2018-04-14 11:32:03', '2018-04-14 11:32:03', '104', '85020-530', 'casa', 'Boqueirão', 'Avenida Cezar Stange', 6),
   (3, '2018-04-14 11:32:03', '2018-04-14 11:32:03', '104', '85020-530', 'casa', 'Boqueirão', 'Avenida Cezar Stange', 6),
   (4, '2018-04-14 11:32:03', '2018-04-14 11:32:03', '104', '85020-530', 'casa', 'Boqueirão', 'Avenida Cezar Stange', 6),
   (5, '2018-04-14 11:32:03', '2018-04-14 11:32:03', '104', '85020-530', 'casa', 'Boqueirão', 'Avenida Cezar Stange', 6);
 
 #INSERT DA TABLEA INTERMEDIARIA DE ENDERECOS X USUARIOS
-INSERT INTO sinarm_db.address_user (user_id, address_id) VALUES (5, 1), (6, 3), (7, 4), (8, 5), (11, 2);
+INSERT INTO sinarm_db.address_user (user_id, address_id) VALUES
+  (4, 1),
+  (5, 2),
+  (6, 3),
+  (7, 4),
+  (8, 5);
