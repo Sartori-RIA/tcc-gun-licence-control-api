@@ -32,8 +32,6 @@ public class License extends AbstractEntity {
     @ManyToOne
     private @NotNull User user;
 
-    @ManyToOne
-    private Gun gun;
 
     @ManyToOne
     private Address address;
@@ -90,14 +88,6 @@ public class License extends AbstractEntity {
 
     public void setStatus(boolean status) {
         this.status = status;
-    }
-
-    public Gun getGun() {
-        return gun;
-    }
-
-    public void setGun(Gun gun) {
-        this.gun = gun;
     }
 
     public List<Exam> getExamList() {
