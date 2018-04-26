@@ -32,10 +32,6 @@ public class License extends AbstractEntity {
     @ManyToOne
     private @NotNull User user;
 
-
-    @ManyToOne
-    private Address address;
-
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Fetch(FetchMode.SUBSELECT)
     @JoinTable(name = "licence_exam",
