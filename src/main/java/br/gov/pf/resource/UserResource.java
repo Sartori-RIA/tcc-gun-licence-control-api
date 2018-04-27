@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 /**
  * Created by sartori on 13/07/17.
  */
-@Secured
+//@Secured
 @Stateless
 @Path("/users")
 public class UserResource extends AbstractResource<Long, User> {
