@@ -61,10 +61,6 @@ public class Exam extends AbstractEntity {
         return status;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-
     public String getResultDescription() {
         return resultDescription;
     }
@@ -82,8 +78,6 @@ public class Exam extends AbstractEntity {
     }
 
     public User getCivil() {
-        Country c = new Country("");
-
         return this.civil;
     }
 
@@ -93,5 +87,9 @@ public class Exam extends AbstractEntity {
 
     public Boolean getStatus() {
         return this.status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }
