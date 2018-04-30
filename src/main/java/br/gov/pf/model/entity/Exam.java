@@ -82,6 +82,8 @@ public class Exam extends AbstractEntity {
     }
 
     public User getCivil() {
+        Country c = new Country("");
+
         return this.civil;
     }
 

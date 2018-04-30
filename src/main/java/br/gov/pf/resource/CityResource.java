@@ -10,7 +10,7 @@ import javax.ws.rs.Path;
 import java.util.logging.Logger;
 
 
-@Secured
+//@Secured
 @Stateless
 @Path("/cities")
 public class CityResource extends AbstractResource<Long, City> {
