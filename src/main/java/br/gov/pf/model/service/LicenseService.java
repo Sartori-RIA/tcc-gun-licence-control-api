@@ -39,7 +39,7 @@ public class LicenseService extends AbstractService<Long, License> {
         if (entity.getExamList() != null) {
             entity.getCategory().getRequirement().getExams().forEach(examCategory -> {
                 entity.getExamList().forEach(exam -> {
-                    if (exam.getExamCategory().getId().equals(examCategory.getId()) && exam.getStatus())
+                    if ((exam.getExamCategory().getId() == (examCategory.getId())) && exam.getStatus())
                         exams.add(exam);
                 });
             });

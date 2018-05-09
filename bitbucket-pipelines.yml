@@ -11,4 +11,7 @@ pipelines:
         caches:
           - maven
         script: # Modify the commands below to build your repository.
+          - mvn clean
+          - mvn kotlin:compile
+          - mvn install
           - mvn -B verify # -B batch mode makes Maven less verbose

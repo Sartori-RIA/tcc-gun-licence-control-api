@@ -55,7 +55,7 @@ public class LicenseResource extends AbstractResource<Long, License> {
     @Produces(MediaType.APPLICATION_JSON)
     @Override
     public Response update(License entity) {
-        if (entity.getShelfLife() != null & entity.isStatus())
+        if (entity.getShelfLife() != null & entity.getStatus())
             return Response.status(400).build();
         return super.update(entity);
     }
