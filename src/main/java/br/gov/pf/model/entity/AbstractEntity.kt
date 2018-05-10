@@ -18,11 +18,11 @@ abstract class AbstractEntity : Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
-    var createdAt: Date = Date()
+    lateinit var createdAt: Date
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at")
-    var updatedAt: Date = Date()
+    lateinit var updatedAt: Date
 
 
     @PrePersist
