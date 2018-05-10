@@ -21,7 +21,7 @@ class License : AbstractEntity() {
 
     @Column(name = "shelf_life")
     @Future
-    var shelfLife: Date = Date()
+    var shelfLife: Date? = null
 
     @Column(name = "serial_number")
     var serial: String = ""
@@ -31,17 +31,17 @@ class License : AbstractEntity() {
 
     @ManyToOne
     @NotNull
-    var user: User = User()
+    var user: User? = null
 
     @ManyToOne
-    var address: Address = Address()
+    var address: Address? = null
 
     @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
     @Fetch(FetchMode.SUBSELECT)
     @JoinTable(name = "licence_exam",
             joinColumns = [JoinColumn(name = "licence_id", referencedColumnName = "id")],
             inverseJoinColumns = [JoinColumn(name = "exam_id", referencedColumnName = "id")])
-    var examList: List<Exam> = ArrayList()
+    var examList: List<Exam>? = null
 
 
     @PostPersist

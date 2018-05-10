@@ -82,11 +82,11 @@ public class ValidatorResource {
 
     private String formatCPF(License license) {
         String cpf = license.getUser().getCpf();
-        String b1 = cpf.substring(0,3);
-        String b2 = cpf.substring(3,6);
-        String b3 = cpf.substring(6,9);
-        String b4 = cpf.substring(9,11);
-        return b1+"."+b2+"."+b3+"-"+b4;
+        String b1 = cpf.substring(0, 3);
+        String b2 = cpf.substring(3, 6);
+        String b3 = cpf.substring(6, 9);
+        String b4 = cpf.substring(9, 11);
+        return b1 + "." + b2 + "." + b3 + "-" + b4;
 
     }
 
