@@ -6,9 +6,10 @@
 
 IDEA utilizada: Intellij IDEA Ultimate 17.2.1
 
-##Tecnologias:
+## Tecnologias:
 
-+ **Java 10**
++ **Java 1.8**
++ **Kotlin**
 
 ### Banco de Dados
 
@@ -39,8 +40,15 @@ IDEA utilizada: Intellij IDEA Ultimate 17.2.1
 ## Requisitos
 
 + **Wildfly >= 11.0.0.final**
-+ **jdk >= 10**
++ **jdk >= 1.8**
 + **MySQL ultima versao**
+
+#### Servidor em Docker já configurado
+
++ git clone https://github.com/Sartori-RIA/tcc-gun-licence-control-servidor-wildfly-docker.git
+
+#### Servidor não configurado
+
 + **criar um DB chamado `sinarm_db`**
 + **instale no seu servidor todas as libs listadas no arquivo `pom.xml` que estejam com o seguinte trecho `<scope>provided</scope>`**
 
