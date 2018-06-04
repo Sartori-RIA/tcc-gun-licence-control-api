@@ -2,8 +2,6 @@
 
 ## projeto de back-end para sistema utilizado para TCC
 
-### author: Lucas Antonio Ramos Sartori
-
 IDEA utilizada: Intellij IDEA Ultimate 17.2.1
 
 ## Tecnologias:
@@ -84,3 +82,6 @@ IDEA utilizada: Intellij IDEA Ultimate 17.2.1
 ```
 
 + **Apos iniciado o servidor pela primeira vez para criar o banco, rodar o script `/src/main/resources/sql/sinarm.sql`**
+
+## Author
+[<img alt="Lucas Antonio Ramos Sartori" src="https://avatars1.githubusercontent.com/u/15223764?s=460&v=4" width="117">](https://github.com/sartori-ria)
