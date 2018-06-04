@@ -1,4 +1,4 @@
-# tcc-project-sinarm-api
+# Sistema para o gerenciamento de Licenças de posse e porte de armas de fogo ( API RESTFul - JavaEE)
 
 ## projeto de back-end para sistema utilizado para TCC
 
